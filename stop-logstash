@@ -1,0 +1,36 @@
+#!/bin/bash
+
+echo -n "Enter path to the data file: "
+DATA=/home/osboxes/Downloads/logstash-py/test.od
+echo $DATA
+
+echo -n "Enter path to the conf file: "
+CONF=/etc/logstash/conf.d/odbyroute-logstash.conf
+echo $CONF
+
+echo -n "Enter path to sincedb file: " #probably unnecessary
+SINCEDB=/home/osboxes/Downloads/logstash-py/logstash_odbyroute.sincedb
+echo $SINCEDB
+
+# If sincedb doesn't exist, create it (logstash does this, but when?)
+
+# Paths in conf file should be the ones given by the user
+
+# Run logstash
+#systemctl start logstash
+sudo /usr/share/logstash/bin/logstash -f $CONF
+
+# Current position in the file
+CURRENT="$(tail -1 $SINCEDB | awk '{printf $4}')"
+echo "CURRENT: $CURRENT"
+FILESIZE="$(stat  -c '%s' $DATA)"
+echo "FILESIZE: $FILESIZE"
+
+while : ; do
+  echo "Working"
+  echo "Current: $CURRENT"
+  if [[ $CURRENT = $FILESIZE ]]; then
+      echo "Done"
+      exit 0
+  fi
+done

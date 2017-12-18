@@ -1,0 +1,55 @@
+{
+  "template": "odbyroute*",
+  "version": 1,
+  "settings": {
+    "max_result_window": 10000
+  },
+  "mappings": {
+    "*": {
+      "properties": {
+        "operator": { 
+          "type": "integer"
+        },
+        "authRouteCode" : { 
+          "type": "keyword"
+        },
+        "timePeriodInStopTime" : { 
+          "type": "keyword"
+        },
+        "authStartStopCode" : { 
+          "type": "keyword"
+        },
+        "authEndStopCode" : { 
+          "type": "keyword"
+        },
+        "userStartStopCode" : { 
+          "type": "keyword"
+        },
+        "userEndStopCode" : { 
+          "type": "keyword"
+        },
+        "startStopName" : { 
+          "type": "keyword"
+        },
+        "endStopName" : { 
+          "type": "keyword"
+        },
+        "startZone" : { 
+          "type": "integer"
+        },
+        "endZone" : { 
+          "type": "integer"
+        },
+        "tripNumber" : { 
+          "type": "integer"
+        },
+        "tripWithoutLanding" : { 
+          "type": "integer"
+        },
+        "expandedTripNumber" : { 
+          "type": "integer"
+        }
+      }
+    }
+  }
+}
