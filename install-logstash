@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Download and install Logstash
+# Check http://www.elastic.co/downloads/logstash for latest version and replace wget link
+# Only download the file if it doesn't already exist
+if [ ! -f logstash-6.1.1.deb ]; then
+    wget https://artifacts.elastic.co/downloads/logstash/logstash-6.1.1.deb
+fi
+# Install deb
+sudo dpkg -i logstash-6.1.1.deb
+
+# Give permissions (https://discuss.elastic.co/t/i-cannot-start-logstash-on-my-machine-error-message-inside/88900)
+chown -R logstash.logstash /usr/share/logstash
+sudo chmod -R 777 /usr/share/logstash/data
+
+
