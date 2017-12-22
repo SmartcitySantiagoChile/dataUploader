@@ -14,3 +14,5 @@ echo Giving permissions to Logstash ...
 sudo chown -R logstash.logstash /usr/share/logstash
 sudo chmod -R 777 /usr/share/logstash/data
 sudo chown -R logstash.logstash /etc/default/logstash
+
+echo Done.
