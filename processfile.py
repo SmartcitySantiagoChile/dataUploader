@@ -1,44 +1,34 @@
 import os
 import subprocess
+import time
 
-# this works
-#data = raw_input("Enter path to the data file: ")
-#/home/osboxes/Downloads/logstash-py/test.od
-#/home/osboxes/Downloads/logstash-py/2017-07-31.od
-#conf = raw_input("Enter path to the conf file: ")
-#/etc/logstash/conf.d/odbyroute-logstash.conf
-#sincedb = raw_input("Enter path to sincedb file: ")
-#/home/osboxes/Downloads/logstash-py/logstash_odbyroute.sincedb
-# till here
-
-data="/home/osboxes/Downloads/logstash-py/test.od"
-conf="/etc/logstash/conf.d/odbyroute-logstash.conf"
-sincedb="/home/osboxes/Downloads/logstash-py/logstash_odbyroute.sincedb"
-
-# If sincedb doesn't exist, create it (logstash does this, but when?)
+# Ask the user for the paths
+data = raw_input("Enter path to the data file: ")
+conf = raw_input("Enter path to the conf file: ")
+sincedb = raw_input("Enter path to sincedb file: ")
 
 # Paths in conf file should be the ones given by the user
-
-# Run logstash
-#systemctl start logstash
-cmd = ("sudo /usr/share/logstash/bin/logstash --path.settings /etc/logstash -f " + conf)
-os.system(cmd)
+#data="/home/osboxes/Downloads/profile-test/2017-07-31.perfiles"
+#conf="/home/osboxes/Downloads/profile-test/profile-logstash.conf"
+#sincedb="/home/osboxes/Downloads/profile-test/profile-logstash.sincedb"
 
 # Current position in the file
-#current = subprocess.check_output("cat syscall_list.txt | grep f89e7000 | awk '{print $2}'", shell=True)
-current = os.system("tail -1 $SINCEDB | awk '{printf $4}'")
-print(current)
-#os.system("echo "CURRENT: $CURRENT"")
-#os.system("FILESIZE="$(stat  -c '%s' $DATA)"")
-#os.system("echo "FILESIZE: $FILESIZE"")
+current = 0
+# Total size of the data file
+filesize = int(filter(str.isdigit, subprocess.check_output(["stat", "-c", "%s'", data])))
 
-#print(CURRENT)
+# Run logstash
+logstash = subprocess.Popen(['/usr/share/logstash/bin/logstash', '-f', conf])
+time.sleep(10) # give it some time to start
 
-#while : ; do
-#  echo "Working"
-#  echo "Current: $CURRENT"
-#  if [[ $CURRENT = $FILESIZE ]]; then
-#      echo "Done"
-#      exit 0
-#  fi
-#done
+while (current != filesize):
+    try:
+        current = int(filter(str.isdigit, subprocess.check_output("tail -1 " + sincedb + " | awk '{printf $4}'", shell=True)))
+        print("current: " + str(current))
+    except (OSError, ValueError):
+	    pass
+    time.sleep(15) #if you don't wait before rechecking, Logstash will take longer to run and may be unable to write to sincedb as the file is constantly being read
+
+logstash.terminate()
+#os.system("rm " + sincedb)
+print("Success")
