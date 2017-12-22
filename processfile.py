@@ -19,7 +19,10 @@ filesize = int(filter(str.isdigit, subprocess.check_output(["stat", "-c", "%s'",
 
 # Run logstash
 logstash = subprocess.Popen(['/usr/share/logstash/bin/logstash', '-f', conf])
-time.sleep(10) # give it some time to start
+print("Starting Logstash...")
+time.sleep(15) # give it some time to start
+print("Please wait...")
+time.sleep(15)
 
 while (current != filesize):
     try:
