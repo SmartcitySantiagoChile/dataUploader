@@ -9,6 +9,7 @@ fi
 # Install deb
 sudo dpkg -i logstash-6.1.1.deb
 
+echo Giving permissions to Logstash
 # Give permissions (https://discuss.elastic.co/t/i-cannot-start-logstash-on-my-machine-error-message-inside/88900)
 sudo chown -R logstash.logstash /usr/share/logstash
 sudo chmod -R 777 /usr/share/logstash/data
