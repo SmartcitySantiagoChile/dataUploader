@@ -10,9 +10,9 @@ class ShapeFile(DataFile):
 	def __init__(self, datafile):
 		DataFile.__init__(self, datafile)
 
-	def load(self, client, index_name, doctype):
+	def load(self, client, index_name, doctype, threads):
 		self.prepareFile()
-		for success, info in parallel_bulk(client, self.read_routes(), index=index_name, doc_type=doctype):
+		for success, info in parallel_bulk(client, self.read_routes(), thread_count=int(threads), index=index_name, doc_type=doctype):
     				if not success: print('Doc failed', info)
 
 	def headerIsOK(self):

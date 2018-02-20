@@ -9,10 +9,10 @@ class DataFile:
 	def __init__(self, datafile):
 		self.datafile = datafile
 
-	def load(self, client, index_name, doctype):
+	def load(self, client, index_name, doctype, threads):
 		with open(self.datafile, "r", encoding="latin-1") as f:
 			reader = csv.DictReader(f, delimiter='|')
-			for success, info in parallel_bulk(client, reader, index=index_name, doc_type=doctype):
+			for success, info in parallel_bulk(client, reader, thread_count=int(threads), index=index_name, doc_type=doctype):
     				if not success: print('Doc failed', info)
 
 def nameToDate(filename):

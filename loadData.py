@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-#This script will create an index on a existing elasticsearch instance and populate it using data from a given file. If an index with the same name already exists, it will use that index instead.
+#This script will create an index on a existing elasticsearch instance and populate it using data from a given file.
+#If an index with the same name already exists, it will use that index instead.
 
 import argparse, elasticsearch
 from datafile import *
@@ -15,19 +16,22 @@ if __name__ == "__main__":
 	parser.add_argument('-file', help='data file path, e.g. /usr/local/file')
 	parser.add_argument('-doctype', help='type of the document, e.g. "doctype"')
 	parser.add_argument('-mapping', help='mapping file path, e.g. /usr/local/mapping')
+	parser.add_argument('-threads', default=4, help='number of threads to use, default is 4')
 	args = parser.parse_args()
 	
 	#Get a client
 	es = Elasticsearch(hosts=[{"host": args.host, "port": args.port}])
 	#Read mapping
 	mapping = open(args.mapping, 'r').read()
-	#Create index with mapping, ignore if it exists already
-	es.indices.create(index=args.index, ignore=400, body=mapping)
 
 	#Give names to arguments
 	index_name = args.index
 	doctype = args.doctype
 	datafile = args.file
+	threads = args.threads
+
+	#Create index with mapping, ignore if it exists already
+	es.indices.create(index=index_name, ignore=400, body=mapping)
 
 	#Get filename and extension
 	filename, file_extension = os.path.splitext(datafile)
@@ -37,5 +41,5 @@ if __name__ == "__main__":
 	else:
 		fileToLoad = DataFile(datafile)
 	#Load file
-	fileToLoad.load(es, index_name, doctype)
+	fileToLoad.load(es, index_name, doctype, threads)
 
