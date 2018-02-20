@@ -12,7 +12,7 @@ To load a file, the usage is:
 
     python3 loadData -host "127.0.0.1" -port 9200 -index "index-name" -file 'path/to/file' -doctype '*' -mapping 'path/to/mapping'
     
-The default host is 127.0.0.1 and the port is 9200, but the options -host and -port allow to use other hosts and ports. The doctype has to be the same type mentioned in the mapping and the mapping has to be in JSON format. E.g: 
+The default host is 127.0.0.1 and the port is 9200, but the options ```-host``` and ```-port``` allow to use other hosts and ports. The doctype has to be the same type mentioned in the mapping and the mapping has to be in JSON format. E.g: 
 
     {
         "mappings": {
