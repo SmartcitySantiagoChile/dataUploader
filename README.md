@@ -28,4 +28,4 @@ The default host is 127.0.0.1 and the port is 9200, but the options -host and -p
     
 In this case, the doctype is ```'*'```.
     
-    
+There is also the ```-threads``` option that allows to choose the number of threads to use when loading the data. Usage: ```-threads 8```. The default number is 4.
