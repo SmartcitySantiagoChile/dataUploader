@@ -1,4 +1,4 @@
-# ESUploader
+## dataUploader
 Python script to upload files to Elasticsearch
 
 To run the uploader, first download the files in the repo https://github.com/SmartcitySantiagoChile/elasticsearchInstaller/ and follow the instructions provided in the Readme.
@@ -37,10 +37,10 @@ As the ES team is planning to deprecate doctypes, the mappings used to load the 
     {
         "mappings": {
             "doc": {
-                "properties": {
-                    "id": {"type": "long"},
-	            "dateTime": {"type": "date", "format" : "yyyy-MM-dd HH:mm:ss"},
-                    "type": {"type": "text"},
+                "properties":
+		        "id": {"type": "long"},
+		        "dateTime": {"type": "date", "format" : "yyyy-MM-dd HH:mm:ss"},
+	                "type": {"type": "text"},
                     "description": {"type": "text"}
                 }
             }
