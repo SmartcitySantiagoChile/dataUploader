@@ -1,0 +1,44 @@
+{
+  "template": "speed*",
+  "version": 1,
+  "settings": {},
+  "mappings": {
+    "doc": {
+      "properties": {
+        "route" : { 
+          "type": "keyword"
+        },
+        "merged" : { 
+          "type": "keyword"
+        },
+        "section": {
+          "type": "integer"
+        },
+        "date" : { 
+          "type": "date"
+        },
+        "periodId": {
+          "type": "integer"
+        },
+        "dayType": {
+          "type": "integer"
+        },
+        "speed" : { 
+          "type": "float"
+        },
+        "totalDistance": { 
+          "type": "float"
+        },
+        "totalTime" : { 
+          "type": "float"
+        },
+        "nObs": {
+          "type": "integer"
+        },
+        "nInvalidObs": { 
+          "type": "integer"
+        }
+      }
+    }
+  }
+}
