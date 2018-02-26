@@ -14,7 +14,7 @@ from shape import ShapeFile
 from speed import SpeedFile
 from stop import StopFile
 
-if __name__ == "__main__":
+def main():
     # Arguments and description
     parser = argparse.ArgumentParser(description='Add documents from a file to an elasticsearch index.')
     parser.add_argument('-host', default="127.0.0.1", help='elasticsearch host, default is "127.0.0.1"')
@@ -36,7 +36,7 @@ if __name__ == "__main__":
     threads = int(args.threads)
     timeout = int(args.timeout)
 
-    # Get filename and extension (replace for a switch/case or something)
+    # Get filename and extension
     filename, file_extension = os.path.basename(datafile).split(".")
 
     # Determine file type according to the extension
@@ -55,3 +55,6 @@ if __name__ == "__main__":
 
     # Load file
     fileToLoad.load(es, index, chunk_size, threads, timeout)
+
+if __name__ == "__main__":
+    main()
