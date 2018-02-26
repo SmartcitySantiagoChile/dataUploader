@@ -39,7 +39,7 @@ As the ES team is planning to deprecate doctypes, the mappings used to load the 
             "doc": {
                 "properties": {
                     "id": {"type": "long"},
-					"dateTime": {"type": "date", "format" : "yyyy-MM-dd HH:mm:ss"},
+	            "dateTime": {"type": "date", "format" : "yyyy-MM-dd HH:mm:ss"},
                     "type": {"type": "text"},
                     "description": {"type": "text"}
                 }
