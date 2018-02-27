@@ -29,7 +29,7 @@
     "doc": {
       "properties": {
         "operator": {
-          "type": "integer"
+          "type": "byte"
         },
         "route": {
           "type": "keyword"
@@ -41,7 +41,8 @@
           "type": "keyword"
         },
         "licensePlate": { 
-          "type": "keyword"
+          "type": "keyword",
+          "index": false
         },
         "authStopCode" : { 
           "type": "text",
@@ -82,30 +83,36 @@
           "type": "keyword"
         },
         "expeditionStopOrder": {
-          "type": "integer"
+          "type": "short",
+          "index": false
         },
         "expeditionDayId" : { 
-          "type": "integer"
+          "type": "integer",
+          "index": false
         },
         "stopDistanceFromPathStart" : { 
-          "type": "half_float"
+          "type": "half_float",
+          "index": false
         },
         "expandedBoarding" : { 
-          "type": "half_float"
+          "type": "half_float",
+          "index": false
         },
         "expandedAlighting": { 
-          "type": "half_float"
+          "type": "half_float",
+          "index": false
         },
         "loadProfile": { 
-          "type": "half_float"
+          "type": "half_float",
+          "index": false
         },
         "busCapacity" : { 
-          "type": "integer"
+          "type": "integer",
+          "index": false
         },
         "expeditionStopTime" : { 
-          "type": "date",
-          "format" : "yyyy-MM-dd HH:mm:ss",
-          "null_value": "0"
+          "type": "text",
+          "index": false
         },
         "timePeriodInStartTime": {
           "type": "keyword"
@@ -117,16 +124,18 @@
           "type": "keyword"
         },
         "busStation": {
-          "type": "integer"
+          "type": "byte",
+          "index": false
         },
         "transactions" : { 
-          "type": "integer"
+          "type": "short",
+          "index": false
         },
         "halfHourInStartTime" : { 
-          "type": "integer"
+          "type": "short"
         },
         "halfHourInStopTime" : { 
-          "type": "integer"
+          "type": "short"
         }
       }
     }
