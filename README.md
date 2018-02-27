@@ -10,7 +10,7 @@ After elasticsearch and cerebro are running, go to the dataUploader folder and e
     
 To load a file, the usage is:
 
-    python3 loadData -index index-name -file path/to/file
+    python3 loadData.py -index index-name -file path/to/file
 
 ##### Arguments:
 
