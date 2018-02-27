@@ -3,7 +3,7 @@ Python script to upload files to Elasticsearch
 
 To run the uploader, first download the files in the repo https://github.com/SmartcitySantiagoChile/elasticsearchInstaller/ and follow the instructions provided in the Readme.
 
-After elasticsearch and cerebro are running, go to the ESUploader folder and execute:
+After elasticsearch and cerebro are running, go to the dataUploader folder and execute:
 
     chmod +x requirements
     ./requirements

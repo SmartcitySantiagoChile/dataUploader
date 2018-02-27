@@ -1,6 +1,4 @@
 {
-  "template": "profile*",
-  "version": 1,
   "settings": {
     "max_result_window": 15000,
     "index": {

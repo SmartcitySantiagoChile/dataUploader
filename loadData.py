@@ -17,13 +17,13 @@ from stop import StopFile
 def main():
     # Arguments and description
     parser = argparse.ArgumentParser(description='Add documents from a file to an elasticsearch index.')
-    parser.add_argument('-host', default="127.0.0.1", help='elasticsearch host, default is "127.0.0.1"')
-    parser.add_argument('-port', default=9200, help='port, default is 9200')
-    parser.add_argument('-index', help='name of the index to create/use')
-    parser.add_argument('-file', help='data file path, e.g. /path/to/file')
-    parser.add_argument('-chunk', default=5000, help='number of docs to send in one chunk, default is 5000')
-    parser.add_argument('-threads', default=4, help='number of threads to use, default is 4')
-    parser.add_argument('-timeout', default=30, help='explicit timeout for each call, default is 30 (seconds)')
+    parser.add_argument('--host', default="127.0.0.1", help='elasticsearch host, default is "127.0.0.1"')
+    parser.add_argument('--port', default=9200, help='port, default is 9200')
+    parser.add_argument('--index', help='name of the index to create/use')
+    parser.add_argument('file', help='data file path, e.g. /path/to/file')
+    parser.add_argument('--chunk', default=5000, type=int, help='number of docs to send in one chunk, default is 5000')
+    parser.add_argument('--threads', default=4, type=int, help='number of threads to use, default is 4')
+    parser.add_argument('--timeout', default=30, type=int, help='explicit timeout for each call, default is 30 (seconds)')
     args = parser.parse_args()
 
     # Get a client
@@ -32,9 +32,9 @@ def main():
     # Give names to arguments
     index = args.index
     datafile = args.file
-    chunk_size = int(args.chunk)
-    threads = int(args.threads)
-    timeout = int(args.timeout)
+    chunk_size = args.chunk
+    threads = args.threads
+    timeout = args.timeout
 
     # Get filename and extension
     filename, file_extension = os.path.basename(datafile).split(".")
