@@ -14,6 +14,13 @@ from shape import ShapeFile
 from speed import SpeedFile
 from stop import StopFile
 
+
+def getExtension(datafile):
+    # Get filename and extension
+    filename, file_extension = os.path.basename(datafile).split(".")
+    return file_extension
+
+
 def main():
     # Arguments and description
     parser = argparse.ArgumentParser(description='Add documents from a file to an elasticsearch index.')
@@ -23,7 +30,8 @@ def main():
     parser.add_argument('file', help='data file path, e.g. /path/to/file')
     parser.add_argument('--chunk', default=5000, type=int, help='number of docs to send in one chunk, default is 5000')
     parser.add_argument('--threads', default=4, type=int, help='number of threads to use, default is 4')
-    parser.add_argument('--timeout', default=30, type=int, help='explicit timeout for each call, default is 30 (seconds)')
+    parser.add_argument('--timeout', default=30, type=int,
+                        help='explicit timeout for each call, default is 30 (seconds)')
     args = parser.parse_args()
 
     # Get a client
@@ -36,8 +44,12 @@ def main():
     threads = args.threads
     timeout = args.timeout
 
-    # Get filename and extension
-    filename, file_extension = os.path.basename(datafile).split(".")
+    # Get file extension
+    file_extension = getExtension(datafile)
+
+    # If no index name was supplied, index name is the same as file extension
+    if index is None:
+        index = file_extension
 
     # Determine file type according to the extension
     if file_extension == 'shape':
@@ -55,6 +67,7 @@ def main():
 
     # Load file
     file_to_load.load(es, index, chunk_size, threads, timeout)
+
 
 if __name__ == "__main__":
     main()

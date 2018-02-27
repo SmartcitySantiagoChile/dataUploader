@@ -8,13 +8,12 @@ class ProfileFile(DataFile):
     def __init__(self, datafile):
         DataFile.__init__(self, datafile)
 
-
     def makeDocs(self):
         with open(self.datafile, "r", encoding="latin-1") as f:
             reader = csv.DictReader(f, delimiter='|')
             for row in reader:
-                path = os.path.basename(self.datafile)
-                timestamp = datetime.now()
+                path = self.getPath()
+                timestamp = getTimeStamp()
                 operator = row['operator']
                 route = row['route']
                 userRoute = row['userRoute']
@@ -55,7 +54,7 @@ class ProfileFile(DataFile):
                         "licensePlate": licensePlate,
                         "authStopCode": authStopCode,
                         "userStopName": userStopName,
-                        "expeditionStartTime":expeditionStartTime,
+                        "expeditionStartTime": expeditionStartTime,
                         "expeditionEndTime": expeditionEndTime,
                         "fulfillment": fulfillment,
                         "expeditionStopOrder": expeditionStopOrder,
@@ -74,8 +73,8 @@ class ProfileFile(DataFile):
                         "transactions": transactions,
                         "halfHourInStartTime": halfHourInStartTime,
                         "halfHourInStopTime": halfHourInStopTime
-                        }
                     }
+                }
 
     def getHeader(self):
         return 'operator|route|userRoute|shapeRoute|licensePlate|authStopCode|userStopName|expeditionStartTime|expeditionEndTime|fulfillment|expeditionStopOrder|expeditionDayId|stopDistanceFromPathStart|#Subidas|#SubidasLejanas|Subidastotal|expandedBoarding|#Bajadas|#BajadasLejanas|Bajadastotal|expandedAlighting|loadProfile|busCapacity|TiempoGPSInterpolado|TiempoPrimeraTrx|TiempoGPSMasCercano|expeditionStopTime|nSubidasTmp|userStopCode|timePeriodInStartTime|timePeriodInStopTime|dayType|busStation|transactions|halfHourInStartTime|halfHourInStopTime'

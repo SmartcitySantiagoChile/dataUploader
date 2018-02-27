@@ -12,8 +12,8 @@ class SpeedFile(DataFile):
         with open(self.datafile, "r", encoding="latin-1") as f:
             reader = csv.DictReader(f, delimiter='|')
             for row in reader:
-                path = os.path.basename(self.datafile)
-                timestamp = datetime.now()
+                path = self.getPath()
+                timestamp = getTimeStamp()
                 merged = str(row['route'] + '-' + row['section'] + '-' + row['periodId'])
                 yield {"_source": dict(timestamp=timestamp, path=path, merged=merged, **row)}
 

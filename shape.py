@@ -13,14 +13,14 @@ class ShapeFile(DataFile):
     def makeDocs(self):
         # Get filename and extension
         filename, file_extension = os.path.basename(self.datafile).split(".")
-        with open(self.datafile, "r") as f:
+        with open(self.datafile, "r", encoding="latin-1") as f:
             reader = csv.DictReader(f, delimiter='|')
             # Group data using 'route' as key
             for route, points in groupby(reader, lambda p: p['route']):
                 points = list(points)
                 startDate = nameToDate(filename)
-                path = os.path.basename(self.datafile)
-                timestamp = datetime.now()
+                path = self.getPath()
+                timestamp = getTimeStamp()
                 points = [
                     {
                         'segmentStart': p['segmentStart'],

@@ -8,9 +8,6 @@
   "mappings": {
     "doc": {
       "properties": {
-        "order" : { 
-          "type": "integer"
-        },
         "authRouteCode" : { 
           "type": "keyword"
         },
@@ -20,20 +17,27 @@
         "operator": { 
           "type": "integer"
         },
-        "authStopCode" : { 
-          "type": "keyword"
-        },
-        "userStopCode" : { 
-          "type": "keyword"
-        },
-        "stopName" : { 
-          "type": "text"
-        },
-        "latitude" : { 
-          "type": "float"
-        },
-        "longitude" : { 
-          "type": "float"
+        "stops": {
+          "properties": {
+            "order" : { 
+              "type": "integer"
+            },
+            "longitude": {
+              "type": "float"
+            },
+            "latitude": {
+              "type": "float"
+            },
+            "authStopCode" : { 
+              "type": "keyword"
+            },
+            "userStopCode" : { 
+              "type": "keyword"
+            },
+            "stopName" : { 
+              "type": "text"
+            }
+          }
         }
       }
     }

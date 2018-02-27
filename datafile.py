@@ -87,6 +87,13 @@ class DataFile:
         else:
             self.addHeader()
 
+    def getPath(self):
+        return os.path.basename(self.datafile)
+
+
+def getTimeStamp():
+    return datetime.utcnow()
+
 
 def nameToDate(filename):
     startDate = datetime.strptime(filename, '%Y-%m-%d').isoformat() + '.000Z'  # Python doesn't support military Z.
