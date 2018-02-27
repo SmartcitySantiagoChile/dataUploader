@@ -12,31 +12,31 @@
           "type": "keyword"
         },
         "section": {
-          "type": "integer"
+          "type": "short"
         },
         "date" : { 
           "type": "date"
         },
         "periodId": {
-          "type": "integer"
+          "type": "byte"
         },
         "dayType": {
-          "type": "integer"
+          "type": "byte"
         },
         "speed" : { 
-          "type": "float"
+          "type": "half_float"
         },
         "totalDistance": { 
-          "type": "float"
+          "type": "half_float"
         },
         "totalTime" : { 
-          "type": "float"
+          "type": "half_float"
         },
         "nObs": {
-          "type": "integer"
+          "type": "short"
         },
         "nInvalidObs": { 
-          "type": "integer"
+          "type": "short"
         }
       }
     }

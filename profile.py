@@ -37,7 +37,7 @@ class ProfileFile(DataFile):
                 timePeriodInStartTime = row['timePeriodInStartTime']
                 timePeriodInStopTime = row['timePeriodInStopTime']
                 if expeditionStopTime == '-':
-                    expeditionStopTime = 0
+                    expeditionStopTime = "0"
                     timePeriodInStopTime = ""
                 dayType = row['dayType']
                 busStation = row['busStation']
