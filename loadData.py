@@ -41,20 +41,20 @@ def main():
 
     # Determine file type according to the extension
     if file_extension == 'shape':
-        fileToLoad = ShapeFile(datafile)
+        file_to_load = ShapeFile(datafile)
     elif file_extension == 'speed':
-        fileToLoad = SpeedFile(datafile)
+        file_to_load = SpeedFile(datafile)
     elif file_extension == 'expedition':
-        fileToLoad = ExpeditionFile(datafile)
+        file_to_load = ExpeditionFile(datafile)
     elif file_extension == 'profile':
-        fileToLoad = ProfileFile(datafile)
+        file_to_load = ProfileFile(datafile)
     elif file_extension == 'stop':
-        fileToLoad = StopFile(datafile)
+        file_to_load = StopFile(datafile)
     else:
-        fileToLoad = DataFile(datafile)
+        file_to_load = DataFile(datafile)
 
     # Load file
-    fileToLoad.load(es, index, chunk_size, threads, timeout)
+    file_to_load.load(es, index, chunk_size, threads, timeout)
 
 if __name__ == "__main__":
     main()
