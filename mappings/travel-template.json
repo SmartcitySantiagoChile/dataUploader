@@ -9,13 +9,13 @@
           "type": "long" 
         },
         "tipodia" : {
-          "type": "integer" 
+          "type": "byte" 
         },
         "factor_expansion" : {
-          "type": "float" 
+          "type": "half_float" 
         },
         "n_etapas" : {
-          "type": "integer" 
+          "type": "byte" 
         },
         "tviaje" : {
           "type": "float" 
@@ -33,28 +33,28 @@
           "type" : "date",
           "format" : "yyyy-MM-dd HH:mm:ss"},
         "mediahora_subida" : {
-          "type": "integer" 
+          "type": "byte" 
         },
         "mediahora_bajada" : {
-          "type": "integer" 
+          "type": "byte" 
         },
         "periodo_subida" : {
-          "type": "integer" 
+          "type": "byte" 
         },
         "periodo_bajada" : {
-          "type": "integer" 
+          "type": "byte" 
         },
         "tipo_transporte_1" : {
-          "type": "integer" 
+          "type": "byte" 
         },
         "tipo_transporte_2" : {
-          "type": "integer" 
+          "type": "byte" 
         },
         "tipo_transporte_3" : {
-          "type": "integer" 
+          "type": "byte" 
         },
         "tipo_transporte_4" : {
-          "type": "integer" 
+          "type": "byte" 
         },
         "srv_1" : {
           "type": "keyword" 
@@ -81,10 +81,10 @@
           "type": "integer" 
         },
         "zona_subida" : {
-          "type": "integer" 
+          "type": "short" 
         },
         "zona_bajada" : {
-          "type": "integer" 
+          "type": "short" 
         }
       }
     }
