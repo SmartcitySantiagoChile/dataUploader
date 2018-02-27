@@ -5,25 +5,25 @@ To run the uploader, first download the files in the repo https://github.com/Sma
 
 After elasticsearch and cerebro are running, go to the dataUploader folder and execute:
 
-    chmod +x requirements
-    ./requirements
+    chmod +x requirements.sh
+    ./requirements.sh
     
 To load a file, the usage is:
 
-    python3 loadData.py -index index-name -file path/to/file
+    python3 loadData.py path/to/file
 
 ##### Arguments:
 
-    -index: name of the index to create/use. If an index with the same name does not exist, the application will create it. Otherwise, it will use the existing index.
-    -file: path to the file that contains the data to load.
+    file: path to the file that contains the data to load.
     
 ##### Optional:
 
-    -host: the IP where ES is running. Default:"127.0.0.1".
-    -port: the port that application is listening on. Default: 9200.
-    -chunk: number of docs to send to ES in one chunk. Default: 5000.
-    -threads: number of threads to use. Default: 4.
-    -timeout: timeout parameter of the ES client. Default:30 (in seconds.)
+    --host: the IP where ES is running. Default:"127.0.0.1".
+    --port: the port that application is listening on. Default: 9200.
+    --index: name of the index to create/use. If an index with the same name does not exist, the application will create it. Otherwise, it will use the existing index. By default, the name of the index is the extension of the file being uploaded.
+    --chunk: number of docs to send to ES in one chunk. Default: 5000.
+    --threads: number of threads to use. Default: 4.
+    --timeout: timeout parameter of the ES client. Default:30 (in seconds.)
 
 The default chunk size and number of threads are the ones that gave the best results when experimenting with different files, so using the defaults is recommended. Nevertheless, sometimes loading a big file can cause a timeout error; in this case, raising the timeout value should solve the issue (https://github.com/elastic/elasticsearch-py/issues/231)
 
