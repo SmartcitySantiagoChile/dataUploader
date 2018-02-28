@@ -1,8 +1,10 @@
 #!/usr/bin/python3
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 
 from itertools import groupby
 
-from datafile import *
+from reader.datafile import *
 
 
 # Class that represents a shape file.
@@ -18,9 +20,9 @@ class ShapeFile(DataFile):
             # Group data using 'route' as key
             for route, points in groupby(reader, lambda p: p['route']):
                 points = list(points)
-                startDate = nameToDate(filename)
+                startDate = name_to_date(filename)
                 path = self.getPath()
-                timestamp = getTimeStamp()
+                timestamp = get_timestamp()
                 points = [
                     {
                         'segmentStart': p['segmentStart'],

@@ -1,6 +1,7 @@
-#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 
-from datafile import *
+from reader.datafile import *
 
 
 # Class that represents a speed file.
@@ -13,7 +14,7 @@ class SpeedFile(DataFile):
             reader = csv.DictReader(f, delimiter='|')
             for row in reader:
                 path = self.getPath()
-                timestamp = getTimeStamp()
+                timestamp = get_timestamp()
                 merged = str(row['route'] + '-' + row['section'] + '-' + row['periodId'])
                 yield {"_source": dict(timestamp=timestamp, path=path, merged=merged, **row)}
 

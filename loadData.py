@@ -7,15 +7,15 @@ import os
 
 from elasticsearch import Elasticsearch
 
-from datafile import DataFile
-from expedition import ExpeditionFile
-from profile import ProfileFile
-from shape import ShapeFile
-from speed import SpeedFile
-from stop import StopFile
+from reader.datafile import DataFile
+from reader.expedition import ExpeditionFile
+from reader.profile import ProfileFile
+from reader.shape import ShapeFile
+from reader.speed import SpeedFile
+from reader.stop import StopFile
 
 
-def getExtension(datafile):
+def get_extension(datafile):
     # Get filename and extension
     filename, file_extension = os.path.basename(datafile).split(".")
     return file_extension
@@ -45,7 +45,7 @@ def main():
     timeout = args.timeout
 
     # Get file extension
-    file_extension = getExtension(datafile)
+    file_extension = get_extension(datafile)
 
     # If no index name was supplied, index name is the same as file extension
     if index is None:

@@ -1,8 +1,9 @@
-#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 
 from itertools import groupby
 
-from datafile import *
+from reader.datafile import *
 
 
 # Class that represents a stop file.
@@ -19,8 +20,8 @@ class StopFile(DataFile):
             for authUserOp, stops in groupby(reader, lambda p: (p['authRouteCode'], p['userRouteCode'], p['operator'])):
                 stops = list(stops)
                 path = self.getPath()
-                timestamp = getTimeStamp()
-                date = nameToDate(filename)
+                timestamp = get_timestamp()
+                date = name_to_date(filename)
                 stops = [
                     {
                         'order': p['order'],

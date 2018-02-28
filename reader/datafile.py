@@ -1,5 +1,5 @@
-#!/usr/bin/python3
-# Class that represents a general file.
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 
 import csv
 import os
@@ -18,8 +18,8 @@ class DataFile:
     def getMapping(self):
         filename, file_extension = os.path.basename(self.datafile).split(".")
         current_dir = os.path.dirname(__file__)
-        mappingFile = os.path.join(current_dir, 'mappings/' + file_extension + '-template.json')
-        return mappingFile
+        mapping_file = os.path.join(current_dir, '..', 'mappings', file_extension + '-template.json')
+        return mapping_file
 
     def load(self, client, index_name, chunk_size, threads, timeout):
         # The file needs to have the right header
@@ -91,10 +91,10 @@ class DataFile:
         return os.path.basename(self.datafile)
 
 
-def getTimeStamp():
+def get_timestamp():
     return datetime.utcnow()
 
 
-def nameToDate(filename):
+def name_to_date(filename):
     startDate = datetime.strptime(filename, '%Y-%m-%d').isoformat() + '.000Z'  # Python doesn't support military Z.
     return startDate
