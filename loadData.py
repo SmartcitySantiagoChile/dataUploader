@@ -3,12 +3,12 @@ from __future__ import unicode_literals
 
 from elasticsearch import Elasticsearch
 
-from .uploader.datafile import DataFile
-from .uploader.expedition import ExpeditionFile
-from .uploader.profile import ProfileFile
-from .uploader.shape import ShapeFile
-from .uploader.speed import SpeedFile
-from .uploader.stop import StopFile
+from uploader.datafile import DataFile
+from uploader.expedition import ExpeditionFile
+from uploader.profile import ProfileFile
+from uploader.shape import ShapeFile
+from uploader.speed import SpeedFile
+from uploader.stop import StopFile
 
 import argparse
 import os
