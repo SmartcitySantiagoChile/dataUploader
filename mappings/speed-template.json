@@ -1,6 +1,4 @@
 {
-  "template": "speed*",
-  "version": 1,
   "settings": {},
   "mappings": {
     "doc": {

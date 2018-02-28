@@ -1,6 +1,4 @@
 {
-  "template": "stop*",
-  "version": 1,
   "settings": {
     "max_result_window": 10000,
     "index.mapping.ignore_malformed": false

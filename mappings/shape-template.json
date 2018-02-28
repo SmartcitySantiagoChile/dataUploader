@@ -1,6 +1,4 @@
 {
-  "template": "shape*",
-  "version": 1,
   "settings": {},
   "mappings": {
     "doc": {

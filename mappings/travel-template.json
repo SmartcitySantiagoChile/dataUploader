@@ -1,6 +1,4 @@
 {
-  "template": "travel",
-  "version": 1,
   "settings": {},
   "mappings": {
     "doc" : {
