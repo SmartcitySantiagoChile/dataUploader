@@ -20,6 +20,34 @@ def get_extension(datafile):
     return file_extension
 
 
+def upload_file(es_instance, datafile, index_name=None, chunk_size=5000, threads=4, timeout=30):
+    """ upload file to elasticsearch """
+
+    # Get file extension
+    file_extension = get_extension(datafile)
+
+    # If no index name was supplied, index name is the same as file extension
+    if index_name is None:
+        index_name = file_extension
+
+    # Determine file type according to the extension
+    if file_extension == 'shape':
+        file_to_load = ShapeFile(datafile)
+    elif file_extension == 'speed':
+        file_to_load = SpeedFile(datafile)
+    elif file_extension == 'expedition':
+        file_to_load = ExpeditionFile(datafile)
+    elif file_extension == 'profile':
+        file_to_load = ProfileFile(datafile)
+    elif file_extension == 'stop':
+        file_to_load = StopFile(datafile)
+    else:
+        file_to_load = DataFile(datafile)
+
+    # Load file to elasticsearch
+    file_to_load.load(es_instance, index_name, chunk_size, threads, timeout)
+
+
 def main():
     """
     This script will create an index on a existing elasticsearch instance and populate it using data from a given
@@ -49,29 +77,7 @@ def main():
     threads = args.threads
     timeout = args.timeout
 
-    # Get file extension
-    file_extension = get_extension(datafile)
-
-    # If no index name was supplied, index name is the same as file extension
-    if index_name is None:
-        index_name = file_extension
-
-    # Determine file type according to the extension
-    if file_extension == 'shape':
-        file_to_load = ShapeFile(datafile)
-    elif file_extension == 'speed':
-        file_to_load = SpeedFile(datafile)
-    elif file_extension == 'expedition':
-        file_to_load = ExpeditionFile(datafile)
-    elif file_extension == 'profile':
-        file_to_load = ProfileFile(datafile)
-    elif file_extension == 'stop':
-        file_to_load = StopFile(datafile)
-    else:
-        file_to_load = DataFile(datafile)
-
-    # Load file to elasticsearch
-    file_to_load.load(es, index_name, chunk_size, threads, timeout)
+    upload_file(es, datafile, index_name, chunk_size, threads, timeout)
 
 
 if __name__ == "__main__":
