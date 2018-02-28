@@ -1,36 +1,40 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from reader.datafile import *
+from uploader.datafile import DataFile, get_timestamp
+
+import csv
+import io
 
 
-# Class that represents an expedition file.
 class ExpeditionFile(DataFile):
+    """ Class that represents an expedition file. """
+
     def __init__(self, datafile):
         DataFile.__init__(self, datafile)
 
     def makeDocs(self):
-        with open(self.datafile, "r", encoding="latin-1") as f:
+        with io.open(self.datafile, "r", encoding="latin-1") as f:
             reader = csv.DictReader(f, delimiter='|')
             for row in reader:
                 path = self.getPath()
                 timestamp = get_timestamp()
                 route = row['route']
-                licensePlate = row['licensePlate']
-                expeditionStartTime = row['expeditionStartTime']
-                expeditionEndTime = row['expeditionEndTime']
+                license_plate = row['licensePlate']
+                expedition_start_time = row['expeditionStartTime']
+                expedition_end_time = row['expeditionEndTime']
                 fulfillment = row['fulfillment']
-                periodId = row['periodId']
+                period_id = row['periodId']
                 yield {
                     "_source": {
                         "path": path,
                         "timestamp": timestamp,
                         "route": route,
-                        "licensePlate": licensePlate,
-                        "expeditionStartTime": expeditionStartTime,
-                        "expeditionEndTime": expeditionEndTime,
+                        "licensePlate": license_plate,
+                        "expeditionStartTime": expedition_start_time,
+                        "expeditionEndTime": expedition_end_time,
                         "fulfillment": fulfillment,
-                        "periodId": periodId
+                        "periodId": period_id
                     }
                 }
 

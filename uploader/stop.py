@@ -3,21 +3,26 @@ from __future__ import unicode_literals
 
 from itertools import groupby
 
-from reader.datafile import *
+from uploader.datafile import DataFile, get_timestamp, name_to_date
+
+import os
+import csv
+import io
 
 
-# Class that represents a stop file.
 class StopFile(DataFile):
+    """ Class that represents a stop file. """
+
     def __init__(self, datafile):
         DataFile.__init__(self, datafile)
 
     def makeDocs(self):
         # Get filename and extension
         filename, file_extension = os.path.basename(self.datafile).split(".")
-        with open(self.datafile, "r", encoding="latin-1") as f:
+        with io.open(self.datafile, "r", encoding="latin-1") as f:
             reader = csv.DictReader(f, delimiter='|')
             # Group data using 'authRouteCode' as key
-            for authUserOp, stops in groupby(reader, lambda p: (p['authRouteCode'], p['userRouteCode'], p['operator'])):
+            for authUserOp, stops in groupby(reader, lambda r: (r['authRouteCode'], r['userRouteCode'], r['operator'])):
                 stops = list(stops)
                 path = self.getPath()
                 timestamp = get_timestamp()

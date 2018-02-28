@@ -1,16 +1,20 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from reader.datafile import *
+from uploader.datafile import DataFile, get_timestamp
+
+import csv
+import io
 
 
-# Class that represents a speed file.
 class SpeedFile(DataFile):
+    """ Class that represents a speed file. """
+
     def __init__(self, datafile):
         DataFile.__init__(self, datafile)
 
     def makeDocs(self):
-        with open(self.datafile, "r", encoding="latin-1") as f:
+        with io.open(self.datafile, "r", encoding="latin-1") as f:
             reader = csv.DictReader(f, delimiter='|')
             for row in reader:
                 path = self.getPath()

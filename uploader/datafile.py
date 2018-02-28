@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-import csv
-import os
-import re
+from elasticsearch.helpers import parallel_bulk
 from datetime import datetime
 from subprocess import call
 
-from elasticsearch.helpers import parallel_bulk
+import csv
+import io
+import os
+import re
 
 
 class DataFile:
@@ -35,7 +36,7 @@ class DataFile:
 
     # Yield all fields in file + path and timestamp
     def makeDocs(self):
-        with open(self.datafile, "r", encoding="latin-1") as f:
+        with io.open(self.datafile, "r", encoding="latin-1") as f:
             reader = csv.DictReader(f, delimiter='|')
             for row in reader:
                 path = os.path.basename(self.datafile)
@@ -52,7 +53,7 @@ class DataFile:
 
     def headerIsOK(self):
         # Read first line
-        with open(self.datafile, 'r', encoding='latin-1') as f:
+        with io.open(self.datafile, 'r', encoding='latin-1') as f:
             header = f.readline().rstrip('\n')
         # If the header is already the one we want
         if header == self.getHeader():
@@ -62,7 +63,7 @@ class DataFile:
 
     def hasHeader(self):
         # Read first line
-        with open(self.datafile, 'r', encoding='latin-1') as f:
+        with io.open(self.datafile, 'r', encoding='latin-1') as f:
             header = f.readline().rstrip('\n')
         # Check it only contains letters, spaces, |'s and #'s
         search = re.compile(r'[^a-zA-Z|# .]').search
@@ -96,5 +97,5 @@ def get_timestamp():
 
 
 def name_to_date(filename):
-    startDate = datetime.strptime(filename, '%Y-%m-%d').isoformat() + '.000Z'  # Python doesn't support military Z.
-    return startDate
+    start_date = datetime.strptime(filename, '%Y-%m-%d').isoformat() + '.000Z'  # Python doesn't support military Z.
+    return start_date
