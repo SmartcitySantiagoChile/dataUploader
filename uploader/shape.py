@@ -27,7 +27,7 @@ class ShapeFile(DataFile):
                 start_date = name_to_date(filename)
                 path = self.getPath()
                 timestamp = get_timestamp()
-                points = [{'segmentStart': p['segmentStart'], 'longitude': p['longitude'], 'latitude': p['latitude']}
+                points = [{'segmentStart': int(p['segmentStart']), 'longitude': float(p['longitude']), 'latitude': float(p['latitude'])}
                           for p in points]
                 yield {
                     "_source": {
