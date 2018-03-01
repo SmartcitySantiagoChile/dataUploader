@@ -17,37 +17,44 @@ class ProfileFile(DataFile):
         with io.open(self.datafile, "r", encoding="latin-1") as f:
             reader = csv.DictReader(f, delimiter='|')
             for row in reader:
-                path = self.getPath()
-                timestamp = get_timestamp()
-                operator = row['operator']
-                route = row['route']
-                user_route = row['userRoute']
-                shape_route = row['shapeRoute']
-                license_plate = row['licensePlate']
-                auth_stop_code = row['authStopCode']
-                user_stop_name = row['userStopName']
-                expedition_start_time = row['expeditionStartTime']
-                expedition_end_time = row['expeditionEndTime']
-                fulfillment = row['fulfillment']
-                expedition_stop_order = row['expeditionStopOrder']
-                expedition_day_id = row['expeditionDayId']
-                stop_distance_from_path_start = row['stopDistanceFromPathStart']
-                expanded_boarding = row['expandedBoarding']
-                expanded_alighting = row['expandedAlighting']
-                load_profile = row['loadProfile']
-                bus_capacity = row['busCapacity']
-                expedition_stop_time = row['expeditionStopTime']
-                user_stop_code = row['userStopCode']
-                time_period_in_start_time = row['timePeriodInStartTime']
-                time_period_in_stop_time = row['timePeriodInStopTime']
-                if expedition_stop_time == '-':
-                    expedition_stop_time = "0"
-                    time_period_in_stop_time = ""
-                day_type = row['dayType']
-                bus_station = row['busStation']
-                transactions = row['transactions']
-                half_hour_in_start_time = row['halfHourInStartTime']
-                half_hour_in_stop_time = row['halfHourInStopTime']
+                try:
+                    path = self.getPath()
+                    timestamp = get_timestamp()
+                    operator = int(row['operator'])
+                    route = row['route']
+                    user_route = row['userRoute']
+                    shape_route = row['shapeRoute']
+                    license_plate = row['licensePlate']
+                    auth_stop_code = row['authStopCode']
+                    user_stop_name = row['userStopName']
+                    expedition_start_time = row['expeditionStartTime']
+                    expedition_end_time = row['expeditionEndTime']
+                    fulfillment = row['fulfillment']
+                    expedition_stop_order = int(row['expeditionStopOrder'])
+                    expedition_day_id = int(row['expeditionDayId'])
+                    stop_distance_from_path_start = int(row['stopDistanceFromPathStart'])
+                    expanded_boarding = float(row['expandedBoarding'])
+                    expanded_alighting = float(row['expandedAlighting'])
+                    load_profile = float(row['loadProfile'])
+                    bus_capacity = int(row['busCapacity'])
+                    expedition_stop_time = row['expeditionStopTime']
+                    user_stop_code = row['userStopCode']
+                    time_period_in_start_time = row['timePeriodInStartTime']
+                    time_period_in_stop_time = row['timePeriodInStopTime']
+                    if expedition_stop_time == '-':
+                        expedition_stop_time = "0"
+                        time_period_in_stop_time = ""
+                    # TODO: make day_type int
+                    day_type = row['dayType']
+                    bus_station = int(row['busStation'])
+                    transactions = int(row['transactions'])
+                    print(row['halfHourInStopTime'])
+                    half_hour_in_start_time = int(row['halfHourInStartTime'])
+                    half_hour_in_stop_time = int(row['halfHourInStopTime'])
+                except:
+                    print("asd")
+                    print("Unexpected error:", sys.exc_info()[0])
+                    continue
                 yield {
                     "_source": {
                         "path": path,
