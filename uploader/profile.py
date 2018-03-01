@@ -6,6 +6,7 @@ from uploader.datafile import DataFile, get_timestamp
 import csv
 import io
 import sys
+import traceback
 
 
 class ProfileFile(DataFile):
@@ -84,7 +85,8 @@ class ProfileFile(DataFile):
                         }
                     }
                 except:
-                    print("Unexpected error:", sys.exc_info()[0])
+                    traceback.print_exc()
+                    #print("Unexpected error:", sys.exc_info()[0])
 
     def getHeader(self):
         return 'operator|route|userRoute|shapeRoute|licensePlate|authStopCode|userStopName|expeditionStartTime|expeditionEndTime|fulfillment|expeditionStopOrder|expeditionDayId|stopDistanceFromPathStart|#Subidas|#SubidasLejanas|Subidastotal|expandedBoarding|#Bajadas|#BajadasLejanas|Bajadastotal|expandedAlighting|loadProfile|busCapacity|TiempoGPSInterpolado|TiempoPrimeraTrx|TiempoGPSMasCercano|expeditionStopTime|nSubidasTmp|userStopCode|timePeriodInStartTime|timePeriodInStopTime|dayType|busStation|transactions|halfHourInStartTime|halfHourInStopTime'
