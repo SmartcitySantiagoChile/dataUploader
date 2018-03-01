@@ -5,6 +5,7 @@ from uploader.datafile import DataFile, get_timestamp
 
 import csv
 import io
+import sys
 
 
 class ProfileFile(DataFile):
@@ -44,49 +45,46 @@ class ProfileFile(DataFile):
                     if expedition_stop_time == '-':
                         expedition_stop_time = "0"
                         time_period_in_stop_time = ""
-                    # TODO: make day_type int
+                    # TODO: make day_type int when it will convert to number type
                     day_type = row['dayType']
                     bus_station = int(row['busStation'])
                     transactions = int(row['transactions'])
-                    print(row['halfHourInStopTime'])
                     half_hour_in_start_time = int(row['halfHourInStartTime'])
                     half_hour_in_stop_time = int(row['halfHourInStopTime'])
-                except:
-                    print("asd")
-                    print("Unexpected error:", sys.exc_info()[0])
-                    continue
-                yield {
-                    "_source": {
-                        "path": path,
-                        "timestamp": timestamp,
-                        "operator": operator,
-                        "route": route,
-                        "userRoute": user_route,
-                        "shapeRoute": shape_route,
-                        "licensePlate": license_plate,
-                        "authStopCode": auth_stop_code,
-                        "userStopName": user_stop_name,
-                        "expeditionStartTime": expedition_start_time,
-                        "expeditionEndTime": expedition_end_time,
-                        "fulfillment": fulfillment,
-                        "expeditionStopOrder": expedition_stop_order,
-                        "expeditionDayId": expedition_day_id,
-                        "stopDistanceFromPathStart": stop_distance_from_path_start,
-                        "expandedBoarding": expanded_boarding,
-                        "expandedAlighting": expanded_alighting,
-                        "loadProfile": load_profile,
-                        "busCapacity": bus_capacity,
-                        "expeditionStopTime": expedition_stop_time,
-                        "userStopCode": user_stop_code,
-                        "timePeriodInStartTime": time_period_in_start_time,
-                        "timePeriodInStopTime": time_period_in_stop_time,
-                        "dayType": day_type,
-                        "busStation": bus_station,
-                        "transactions": transactions,
-                        "halfHourInStartTime": half_hour_in_start_time,
-                        "halfHourInStopTime": half_hour_in_stop_time
+                    yield {
+                        "_source": {
+                            "path": path,
+                            "timestamp": timestamp,
+                            "operator": operator,
+                            "route": route,
+                            "userRoute": user_route,
+                            "shapeRoute": shape_route,
+                            "licensePlate": license_plate,
+                            "authStopCode": auth_stop_code,
+                            "userStopName": user_stop_name,
+                            "expeditionStartTime": expedition_start_time,
+                            "expeditionEndTime": expedition_end_time,
+                            "fulfillment": fulfillment,
+                            "expeditionStopOrder": expedition_stop_order,
+                            "expeditionDayId": expedition_day_id,
+                            "stopDistanceFromPathStart": stop_distance_from_path_start,
+                            "expandedBoarding": expanded_boarding,
+                            "expandedAlighting": expanded_alighting,
+                            "loadProfile": load_profile,
+                            "busCapacity": bus_capacity,
+                            "expeditionStopTime": expedition_stop_time,
+                            "userStopCode": user_stop_code,
+                            "timePeriodInStartTime": time_period_in_start_time,
+                            "timePeriodInStopTime": time_period_in_stop_time,
+                            "dayType": day_type,
+                            "busStation": bus_station,
+                            "transactions": transactions,
+                            "halfHourInStartTime": half_hour_in_start_time,
+                            "halfHourInStopTime": half_hour_in_stop_time
+                        }
                     }
-                }
+                except:
+                    print("Unexpected error:", sys.exc_info()[0])
 
     def getHeader(self):
         return 'operator|route|userRoute|shapeRoute|licensePlate|authStopCode|userStopName|expeditionStartTime|expeditionEndTime|fulfillment|expeditionStopOrder|expeditionDayId|stopDistanceFromPathStart|#Subidas|#SubidasLejanas|Subidastotal|expandedBoarding|#Bajadas|#BajadasLejanas|Bajadastotal|expandedAlighting|loadProfile|busCapacity|TiempoGPSInterpolado|TiempoPrimeraTrx|TiempoGPSMasCercano|expeditionStopTime|nSubidasTmp|userStopCode|timePeriodInStartTime|timePeriodInStopTime|dayType|busStation|transactions|halfHourInStartTime|halfHourInStopTime'
