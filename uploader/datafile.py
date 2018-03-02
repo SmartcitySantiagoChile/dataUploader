@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 from elasticsearch.helpers import parallel_bulk
 from elasticsearch_dsl import Search
+from elasticsearch.exceptions import TransportError
 
 from datetime import datetime
 from subprocess import call
@@ -30,13 +31,15 @@ class DataFile:
 
     def load(self, client, index_name, chunk_size, threads, timeout):
         # check if exist some document in index from this file
-
-        file_name, _ = self.get_file_name_and_extension()
-        es_query = Search(using=client, index=index_name).filter('term', path=file_name)
-        result = es_query.execute()
-        if result.hits.total != 0:
-            raise ValueError('There are {0} documents from this file in the index'.format(result))
-
+        try:
+            file_name, _ = self.get_file_name_and_extension()
+            es_query = Search(using=client, index=index_name).filter('term', path=file_name)
+            result = es_query.execute()
+            if result.hits.total != 0:
+                raise ValueError('There are {0} documents from this file in the index'.format(result))
+        except TransportError as e:
+            if e.status_code != 404:
+                raise e
         # The file needs to have the right header
         self.fix_header()
         # Create index with mapping. If it already exists, ignore this
