@@ -32,8 +32,8 @@ class DataFile:
     def load(self, client, index_name, chunk_size, threads, timeout):
         # check if exist some document in index from this file
         try:
-            file_name, _ = self.get_file_name_and_extension()
-            es_query = Search(using=client, index=index_name).filter('term', path=file_name)
+            file_name = '{0}.{1}'.format(*self.get_file_name_and_extension())
+            es_query = Search(using=client, index=index_name).filter('term', path=file_name)[:0]
             result = es_query.execute()
             if result.hits.total != 0:
                 raise ValueError('There are {0} documents from this file in the index'.format(result))
