@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from itertools import groupby
 
-from uploader.datafile import DataFile, get_timestamp, name_to_date
+from uploader.datafile import DataFile, get_timestamp
 
 import os
 import csv
@@ -26,7 +26,7 @@ class StopFile(DataFile):
                 stops = list(stops)
                 path = self.get_path()
                 timestamp = get_timestamp()
-                date = name_to_date(filename)
+                date = self.name_to_date()
                 stops = [
                     {
                         'order': int(p['order']),

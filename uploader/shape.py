@@ -3,11 +3,10 @@ from __future__ import unicode_literals
 
 from itertools import groupby
 
-from uploader.datafile import DataFile, get_timestamp, name_to_date
+from uploader.datafile import DataFile, get_timestamp
 
 import csv
 import io
-import os
 
 
 class ShapeFile(DataFile):
@@ -17,14 +16,12 @@ class ShapeFile(DataFile):
         DataFile.__init__(self, datafile)
 
     def make_docs(self):
-        # Get filename and extension
-        filename, file_extension = os.path.basename(self.datafile).split(".")
         with io.open(self.datafile, "r", encoding="latin-1") as f:
             reader = csv.DictReader(f, delimiter='|')
             # Group data using 'route' as key
             for route, points in groupby(reader, lambda point: point['route']):
                 points = list(points)
-                start_date = name_to_date(filename)
+                start_date = self.name_to_date()
                 path = self.get_path()
                 timestamp = get_timestamp()
                 points = [{

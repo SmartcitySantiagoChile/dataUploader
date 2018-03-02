@@ -22,16 +22,21 @@ class DataFile:
         mapping_file = os.path.join(current_dir, '..', 'mappings', file_extension + '-template.json')
         return mapping_file
 
+    def get_file_name_and_extension(self):
+        file_name, file_extension = os.path.basename(self.datafile).split(".")
+        return file_name, file_extension
+
     def load(self, client, index_name, chunk_size, threads, timeout):
+        # check if exist some document in index from this file
+
         # The file needs to have the right header
         self.fix_header()
         # Create index with mapping. If it already exists, ignore this
         client.indices.create(index=index_name, ignore=400, body=open(self.mapping, 'r').read())
         # Send docs to elasticsearch
         for success, info in parallel_bulk(client, self.make_docs(), thread_count=threads, chunk_size=chunk_size,
-                                           request_timeout=timeout,
-                                           index=index_name,
-                                           doc_type='doc'):
+                                           request_timeout=timeout, index=index_name, doc_type='doc',
+                                           raise_on_exception=False):
             if not success: print('Doc failed', info)
 
     # Yield all fields in file + path and timestamp
@@ -91,11 +96,12 @@ class DataFile:
     def get_path(self):
         return os.path.basename(self.datafile)
 
+    def name_to_date(self):
+        file_name, _ = self.get_file_name_and_extension()
+        start_date = datetime.strptime(file_name,
+                                       '%Y-%m-%d').isoformat() + '.000Z'  # Python doesn't support military Z.
+        return start_date
+
 
 def get_timestamp():
     return datetime.utcnow()
-
-
-def name_to_date(filename):
-    start_date = datetime.strptime(filename, '%Y-%m-%d').isoformat() + '.000Z'  # Python doesn't support military Z.
-    return start_date
