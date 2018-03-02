@@ -14,6 +14,10 @@ import os
 import re
 
 
+class IndexNotEmptyError(ValueError):
+    pass
+
+
 class DataFile:
     def __init__(self, datafile):
         self.datafile = datafile
@@ -36,7 +40,7 @@ class DataFile:
             es_query = Search(using=client, index=index_name).filter('term', path=file_name)[:0]
             result = es_query.execute()
             if result.hits.total != 0:
-                raise ValueError('There are {0} documents from this file in the index'.format(result.hits.total))
+                raise IndexNotEmptyError('There are {0} documents from this file in the index'.format(result.hits.total))
         except TransportError as e:
             if e.status_code != 404:
                 raise e
