@@ -51,7 +51,7 @@ class ProfileFile(DataFile):
                     bus_station = int(row['busStation'])
                     transactions = int(row['transactions'])
                     half_hour_in_start_time = int(row['halfHourInStartTime'])
-                    half_hour_in_stop_time = int(row['halfHourInStopTime'])
+                    half_hour_in_stop_time = int(row['halfHourInStopTime']) if row['halfHourInStopTime'] is not None else row['halfHourInStopTime']
                     yield {
                         "_source": {
                             "path": path,
