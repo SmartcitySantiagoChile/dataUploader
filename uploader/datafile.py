@@ -36,7 +36,7 @@ class DataFile:
             es_query = Search(using=client, index=index_name).filter('term', path=file_name)[:0]
             result = es_query.execute()
             if result.hits.total != 0:
-                raise ValueError('There are {0} documents from this file in the index'.format(result))
+                raise ValueError('There are {0} documents from this file in the index'.format(result.hits.total))
         except TransportError as e:
             if e.status_code != 404:
                 raise e
