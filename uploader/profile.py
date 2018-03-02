@@ -5,7 +5,6 @@ from uploader.datafile import DataFile, get_timestamp
 
 import csv
 import io
-import sys
 import traceback
 
 
@@ -15,12 +14,12 @@ class ProfileFile(DataFile):
     def __init__(self, datafile):
         DataFile.__init__(self, datafile)
 
-    def makeDocs(self):
+    def make_docs(self):
         with io.open(self.datafile, "r", encoding="latin-1") as f:
             reader = csv.DictReader(f, delimiter='|')
             for row in reader:
                 try:
-                    path = self.getPath()
+                    path = self.get_path()
                     timestamp = get_timestamp()
                     operator = int(row['operator'])
                     route = row['route']
@@ -86,7 +85,6 @@ class ProfileFile(DataFile):
                     }
                 except:
                     traceback.print_exc()
-                    #print("Unexpected error:", sys.exc_info()[0])
 
-    def getHeader(self):
+    def get_header(self):
         return 'operator|route|userRoute|shapeRoute|licensePlate|authStopCode|userStopName|expeditionStartTime|expeditionEndTime|fulfillment|expeditionStopOrder|expeditionDayId|stopDistanceFromPathStart|#Subidas|#SubidasLejanas|Subidastotal|expandedBoarding|#Bajadas|#BajadasLejanas|Bajadastotal|expandedAlighting|loadProfile|busCapacity|TiempoGPSInterpolado|TiempoPrimeraTrx|TiempoGPSMasCercano|expeditionStopTime|nSubidasTmp|userStopCode|timePeriodInStartTime|timePeriodInStopTime|dayType|busStation|transactions|halfHourInStartTime|halfHourInStopTime'

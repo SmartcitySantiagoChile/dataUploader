@@ -16,7 +16,7 @@ class ShapeFile(DataFile):
     def __init__(self, datafile):
         DataFile.__init__(self, datafile)
 
-    def makeDocs(self):
+    def make_docs(self):
         # Get filename and extension
         filename, file_extension = os.path.basename(self.datafile).split(".")
         with io.open(self.datafile, "r", encoding="latin-1") as f:
@@ -25,10 +25,12 @@ class ShapeFile(DataFile):
             for route, points in groupby(reader, lambda point: point['route']):
                 points = list(points)
                 start_date = name_to_date(filename)
-                path = self.getPath()
+                path = self.get_path()
                 timestamp = get_timestamp()
-                points = [{'segmentStart': int(p['segmentStart']), 'longitude': float(p['longitude']), 'latitude': float(p['latitude'])}
-                          for p in points]
+                points = [{
+                    'segmentStart': int(p['segmentStart']),
+                    'longitude': float(p['longitude']),
+                    'latitude': float(p['latitude'])} for p in points]
                 yield {
                     "_source": {
                         "path": path,
@@ -39,5 +41,5 @@ class ShapeFile(DataFile):
                     }
                 }
 
-    def getHeader(self):
+    def get_header(self):
         return 'route|segmentStart|latitude|longitude'

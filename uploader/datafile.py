@@ -14,9 +14,9 @@ import re
 class DataFile:
     def __init__(self, datafile):
         self.datafile = datafile
-        self.mapping = self.getMapping()
+        self.mapping = self.get_mapping()
 
-    def getMapping(self):
+    def get_mapping(self):
         filename, file_extension = os.path.basename(self.datafile).split(".")
         current_dir = os.path.dirname(__file__)
         mapping_file = os.path.join(current_dir, '..', 'mappings', file_extension + '-template.json')
@@ -24,18 +24,18 @@ class DataFile:
 
     def load(self, client, index_name, chunk_size, threads, timeout):
         # The file needs to have the right header
-        self.fixHeader()
+        self.fix_header()
         # Create index with mapping. If it already exists, ignore this
         client.indices.create(index=index_name, ignore=400, body=open(self.mapping, 'r').read())
         # Send docs to elasticsearch
-        for success, info in parallel_bulk(client, self.makeDocs(), thread_count=threads, chunk_size=chunk_size,
+        for success, info in parallel_bulk(client, self.make_docs(), thread_count=threads, chunk_size=chunk_size,
                                            request_timeout=timeout,
                                            index=index_name,
                                            doc_type='doc'):
             if not success: print('Doc failed', info)
 
     # Yield all fields in file + path and timestamp
-    def makeDocs(self):
+    def make_docs(self):
         with io.open(self.datafile, "r", encoding="latin-1") as f:
             reader = csv.DictReader(f, delimiter='|')
             for row in reader:
@@ -43,7 +43,7 @@ class DataFile:
                 timestamp = datetime.now()
                 yield {"_source": dict(timestamp=timestamp, path=path, **row)}
 
-    def getHeader(self):
+    def get_header(self):
         filename, extension = os.path.basename(self.datafile).split(".")
         return {
             'general': 'date|dayType|expeditionNumber|minExpeditionTime|maxExpeditionTime|averageExpeditionTime|licensePlateNumber|GPSPointsNumber|averageTimeBetweenGPSPoints|GPSNumberWithRoute|GPSNumberWithoutRoute|transactionNumber|transactionOnBusNumber|transactionOnMetroNumber|transactionOnTrainNumber|transactionOnBusStation|smartcardNumber|transactionWithRoute|transactionWithoutRoute|stagesWithBusAlighting|stagesWithMetroAlighting|stagesWithTrainAlighting|stagesWithBusStationAlighting|tripNumber|completeTripNumber|tripsWithOneStage|tripsWithTwoStages|tripsWithThreeStages|tripsWithFourStages|tripsWithFiveOrMoreStages|tripsWithOnlyMetro|tripsThatUseMetro|tripsWithoutLastAlighting|validTripNumber|averageTimeOfTrips|averageDistanceOfTrips|averageVelocityOfTrips|tripNumberInMorningRushHour|averageTimeInMorningRushTrips|averageDistanceInMorningRushTrips|averageVelocityInMorningRushTrips|tripNumberInAfternoonRushHour|averageTimeInAfternoonRushTrips|averageDistanceInAfternoonRushTrips|averageVelocityInAfternoonRushTrips',
@@ -51,17 +51,17 @@ class DataFile:
             'od': 'date|dateType|authRouteCode|operator|userRouteCode|timePeriodInStopTime|startStopOrder|endStopOrder|authStartStopCode|authEndStopCode|userStartStopCode|userEndStopCode|startStopName|endStopName|startZone|endZone|tripNumber|tripWithoutLanding|expandedTripNumber',
         }[extension]
 
-    def headerIsOK(self):
+    def header_is_ok(self):
         # Read first line
         with io.open(self.datafile, 'r', encoding='latin-1') as f:
             header = f.readline().rstrip('\n')
         # If the header is already the one we want
-        if header == self.getHeader():
+        if header == self.get_header():
             return True
         else:
             return False
 
-    def hasHeader(self):
+    def has_header(self):
         # Read first line
         with io.open(self.datafile, 'r', encoding='latin-1') as f:
             header = f.readline().rstrip('\n')
@@ -69,26 +69,26 @@ class DataFile:
         search = re.compile(r'[^a-zA-Z|# .]').search
         return not bool(search(header))
 
-    def removeHeader(self):
+    def remove_header(self):
         # Remove first line of the file
         call(["sed", "-i", '1d', self.datafile])
 
-    def addHeader(self):
+    def add_header(self):
         # Put this on the first line
-        call(["sed", "-i", '1i ' + self.getHeader(), self.datafile])
+        call(["sed", "-i", '1i ' + self.get_header(), self.datafile])
 
-    def fixHeader(self):
+    def fix_header(self):
         # Check if the file has a header
-        if self.hasHeader():
-            if self.headerIsOK():
+        if self.has_header():
+            if self.header_is_ok():
                 pass
             else:
-                self.removeHeader()
-                self.addHeader()
+                self.remove_header()
+                self.add_header()
         else:
-            self.addHeader()
+            self.add_header()
 
-    def getPath(self):
+    def get_path(self):
         return os.path.basename(self.datafile)
 
 

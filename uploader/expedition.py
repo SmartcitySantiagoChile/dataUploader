@@ -13,18 +13,18 @@ class ExpeditionFile(DataFile):
     def __init__(self, datafile):
         DataFile.__init__(self, datafile)
 
-    def makeDocs(self):
+    def make_docs(self):
         with io.open(self.datafile, "r", encoding="latin-1") as f:
             reader = csv.DictReader(f, delimiter='|')
             for row in reader:
-                path = self.getPath()
+                path = self.get_path()
                 timestamp = get_timestamp()
                 route = row['route']
                 license_plate = row['licensePlate']
                 expedition_start_time = row['expeditionStartTime']
                 expedition_end_time = row['expeditionEndTime']
                 fulfillment = row['fulfillment']
-                period_id = row['periodId']
+                period_id = int(row['periodId'])
                 yield {
                     "_source": {
                         "path": path,
@@ -38,5 +38,5 @@ class ExpeditionFile(DataFile):
                     }
                 }
 
-    def getHeader(self):
+    def get_header(self):
         return 'route|licensePlate|a|b|expeditionStartTime|expeditionEndTime|fulfillment|c|d|e|f|g|h|periodId'
