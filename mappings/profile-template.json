@@ -128,7 +128,7 @@
           "index": false
         },
         "transactions" : { 
-          "type": "short",
+          "type": "integer",
           "index": false
         },
         "halfHourInStartTime" : { 
