@@ -11,6 +11,7 @@ from uploader.speed import SpeedFile
 from uploader.stop import StopFile
 
 import argparse
+import glob
 import os
 
 
@@ -57,7 +58,7 @@ def main():
     # Arguments and description
     parser = argparse.ArgumentParser(description='Add documents from a file to an elasticsearch index.')
 
-    parser.add_argument('file', help='data file path, e.g. /path/to/file')
+    parser.add_argument('file', nargs='*', help='data file path, e.g. /path/to/file')
     parser.add_argument('--host', default="127.0.0.1", help='elasticsearch host, default is "127.0.0.1"')
     parser.add_argument('--port', default=9200, help='port, default is 9200')
     parser.add_argument('--index', help='name of the index to create/use')
@@ -72,12 +73,16 @@ def main():
 
     # Give names to arguments
     index_name = args.index
-    datafile = args.file
+    datafiles = args.file
     chunk_size = args.chunk
     threads = args.threads
     timeout = args.timeout
 
-    upload_file(es, datafile, index_name, chunk_size, threads, timeout)
+    for datafile in datafiles:
+        matched_files = glob.glob(datafile)
+        for matched_file in matched_files:
+            print('uploading file {0}'.format(matched_file))
+            upload_file(es, matched_file, index_name, chunk_size, threads, timeout)
 
 
 if __name__ == "__main__":
