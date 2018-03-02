@@ -3,6 +3,9 @@
   "mappings": {
     "doc" : {
       "properties": {
+        "path": {
+          "type": "keyword"
+        },
         "id" : {
           "type": "long" 
         },

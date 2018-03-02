@@ -32,7 +32,7 @@ class DataFile:
         # check if exist some document in index from this file
 
         file_name, _ = self.get_file_name_and_extension()
-        es_query = Search(using=client, index=index_name).filter('term', kwargs={'path.keyword':file_name})
+        es_query = Search(using=client, index=index_name).filter('term', path=file_name)
         result = es_query.execute()
         if result.hits.total != 0:
             raise ValueError('There are {0} documents from this file in the index'.format(result))
