@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from rqworkers.uploader.datafile import DataFile, get_timestamp
+from rqworkers.dataUploader.uploader.datafile import DataFile, get_timestamp
 
 import csv
 import io
