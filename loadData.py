@@ -15,17 +15,11 @@ import glob
 import os
 
 
-def get_extension(datafile):
-    """ Get filename and extension """
-    filename, file_extension = os.path.basename(datafile).split(".")
-    return file_extension
-
-
 def upload_file(es_instance, datafile, index_name=None, chunk_size=5000, threads=4, timeout=30):
     """ upload file to elasticsearch """
 
     # Get file extension
-    file_extension = get_extension(datafile)
+    file_extension = os.path.basename(datafile).split(".")[1]
 
     # If no index name was supplied, index name is the same as file extension
     if index_name is None:
