@@ -69,8 +69,7 @@ class DataFile:
         if not self.is_zip_file:
             # we assume that zip files does not have a bad headerss
             self.fix_header()
-        a = self.make_docs()
-        a.next()
+
         # Send docs to elasticsearch
         for success, info in parallel_bulk(client, self.make_docs(), thread_count=threads, chunk_size=chunk_size,
                                            request_timeout=timeout, index=index_name, doc_type='doc',
