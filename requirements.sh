@@ -6,4 +6,4 @@ if [ $EUID != 0 ]; then
 fi
 sudo apt -y install python3-pip
 sudo -H pip3 install --upgrade pip
-sudo -H pip3 install elasticsearch
+sudo -H pip3 install -r requirements.txt

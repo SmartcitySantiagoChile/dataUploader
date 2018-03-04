@@ -3,7 +3,6 @@ from __future__ import unicode_literals
 
 from elasticsearch.helpers import parallel_bulk
 from elasticsearch_dsl import Search
-from elasticsearch.exceptions import TransportError
 
 from datetime import datetime
 from subprocess import call
@@ -21,10 +20,10 @@ class IndexNotEmptyError(ValueError):
 class DataFile:
     def __init__(self, datafile):
         self.datafile = datafile
-        self.mapping = self.get_mapping()
+        self.mapping_file = self.get_mapping_file()
 
-    def get_mapping(self):
-        filename, file_extension = os.path.basename(self.datafile).split(".")
+    def get_mapping_file(self):
+        file_extension = self.get_file_name_and_extension()[1]
         current_dir = os.path.dirname(__file__)
         mapping_file = os.path.join(current_dir, '..', 'mappings', file_extension + '-template.json')
         return mapping_file
@@ -34,26 +33,25 @@ class DataFile:
         return file_name, file_extension
 
     def load(self, client, index_name, chunk_size, threads, timeout):
-        # check if exist some document in index from this file
-        try:
-            file_name = '{0}.{1}'.format(*self.get_file_name_and_extension())
-            es_query = Search(using=client, index=index_name).filter('term', path=file_name)[:0]
-            result = es_query.execute()
-            if result.hits.total != 0:
-                raise IndexNotEmptyError(
-                    'There are {0} documents from this file in the index'.format(result.hits.total))
-        except TransportError as e:
-            if e.status_code != 404:
-                raise e
+
+        # Create index with mapping. If it already exists, ignore this
+        client.indices.create(index=index_name, ignore=400, body=open(self.mapping_file, 'r').read())
+
+        # check if it exists some document in index from this file
+        file_name = '{0}.{1}'.format(*self.get_file_name_and_extension())
+        es_query = Search(using=client, index=index_name).filter('term', path=file_name)[:0]
+        result = es_query.execute()
+        if result.hits.total != 0:
+            raise IndexNotEmptyError('There are {0} documents from this file in the index'.format(result.hits.total))
+
         # The file needs to have the right header
         self.fix_header()
-        # Create index with mapping. If it already exists, ignore this
-        client.indices.create(index=index_name, ignore=400, body=open(self.mapping, 'r').read())
         # Send docs to elasticsearch
         for success, info in parallel_bulk(client, self.make_docs(), thread_count=threads, chunk_size=chunk_size,
                                            request_timeout=timeout, index=index_name, doc_type='doc',
                                            raise_on_exception=False):
-            if not success: print('Doc failed', info)
+            if not success:
+                print('Doc failed', info)
 
     # Yield all fields in file + path and timestamp
     def make_docs(self):
