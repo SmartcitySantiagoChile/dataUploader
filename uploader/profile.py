@@ -82,7 +82,7 @@ class ProfileFile(DataFile):
                             "halfHourInStopTime": half_hour_in_stop_time
                         }
                     }
-                except:
+                except ValueError:
                     traceback.print_exc()
 
     def get_header(self):
