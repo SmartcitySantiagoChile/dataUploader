@@ -35,3 +35,25 @@ class MainTestLoadData(TestCase):
         parallel_bulk.return_value = [(True, 'info')]
         main()
 
+
+    @mock.patch('uploader.datafile.parallel_bulk')
+    @mock.patch('uploader.datafile.Search')
+    @mock.patch('loadData.argparse')
+    @mock.patch('loadData.Elasticsearch')
+    def test_load_zipped_profile_data(self, elasticsearch_mock, argparse_mock, search_mock, parallel_bulk):
+        #elasticsearch_mock
+        argparse_mock.return_value = argparse_mock
+        argparse_mock.ArgumentParser.return_value = argparse_mock
+        argparse_mock.parse_args.return_value = argparse_mock
+        file_path_pattern = 'tests/files/*.profile.zip'
+        type(argparse_mock).file = mock.PropertyMock(return_value=[file_path_pattern])
+
+        search_mock.return_value = search_mock
+        search_mock.execute.return_value = search_mock
+        search_mock.__getitem__.return_value = search_mock
+        type(search_mock).filter = mock.PropertyMock(return_value=search_mock)
+        type(search_mock).hits = mock.PropertyMock(return_value=search_mock)
+        type(search_mock).total = mock.PropertyMock(return_value=0)
+
+        parallel_bulk.return_value = [(True, 'info')]
+        main()
