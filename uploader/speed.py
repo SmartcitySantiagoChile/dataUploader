@@ -4,7 +4,6 @@ from __future__ import unicode_literals
 from uploader.datafile import DataFile, get_timestamp
 
 import csv
-import io
 
 
 class SpeedFile(DataFile):
@@ -14,7 +13,7 @@ class SpeedFile(DataFile):
         DataFile.__init__(self, datafile)
 
     def make_docs(self):
-        with io.open(self.datafile, "r", encoding="latin-1") as f:
+        with self.get_file_object(encoding="latin-1") as f:
             reader = csv.DictReader(f, delimiter='|')
             for row in reader:
                 path = self.get_path()

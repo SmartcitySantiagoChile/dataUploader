@@ -5,9 +5,7 @@ from itertools import groupby
 
 from uploader.datafile import DataFile, get_timestamp
 
-import os
 import csv
-import io
 
 
 class StopFile(DataFile):
@@ -17,9 +15,7 @@ class StopFile(DataFile):
         DataFile.__init__(self, datafile)
 
     def make_docs(self):
-        # Get filename and extension
-        filename, file_extension = os.path.basename(self.datafile).split(".")
-        with io.open(self.datafile, "r", encoding="latin-1") as f:
+        with self.get_file_object(encoding="latin-1") as f:
             reader = csv.DictReader(f, delimiter='|')
             # Group data using 'authRouteCode' as key
             for authUserOp, stops in groupby(reader, lambda r: (r['authRouteCode'], r['userRouteCode'], r['operator'])):

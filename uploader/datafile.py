@@ -11,6 +11,7 @@ import csv
 import io
 import os
 import re
+import zipfile
 
 
 class IndexNotEmptyError(ValueError):
@@ -21,16 +22,36 @@ class DataFile:
     def __init__(self, datafile):
         self.datafile = datafile
         self.mapping_file = self.get_mapping_file()
+        self.is_zip_file = zipfile.is_zipfile(datafile)
 
     def get_mapping_file(self):
-        file_extension = self.get_file_name_and_extension()[1]
+        file_extension = self.get_file_extension()
         current_dir = os.path.dirname(__file__)
         mapping_file = os.path.join(current_dir, '..', 'mappings', file_extension + '-template.json')
         return mapping_file
 
-    def get_file_name_and_extension(self):
-        file_name, file_extension = os.path.basename(self.datafile).split(".")
-        return file_name, file_extension
+    def get_file_name(self):
+        file_name = os.path.basename(self.datafile).split(".")[0]
+        return file_name
+
+    def get_file_extension(self):
+        file_extension = os.path.basename(self.datafile).split(".")[1]
+        return file_extension
+
+    def get_file_object(self, **kwargs):
+        """
+        :param kwargs: dictionary to give encoding param
+        :return: file object
+        """
+        if self.is_zip_file:
+            zip_file_obj = zipfile.ZipFile(self.datafile, 'r')
+            # it assumes that zip file has only one file
+            file_name = zip_file_obj.namelist()[0]
+            file_obj = io.TextIOWrapper(zip_file_obj.open(file_name, 'r'), **kwargs)
+        else:
+            file_obj = io.open(self.datafile, "r", **kwargs)
+
+        return file_obj
 
     def load(self, client, index_name, chunk_size, threads, timeout):
 
@@ -38,14 +59,18 @@ class DataFile:
         client.indices.create(index=index_name, ignore=400, body=open(self.mapping_file, 'r').read())
 
         # check if it exists some document in index from this file
-        file_name = '{0}.{1}'.format(*self.get_file_name_and_extension())
+        file_name = '{0}.{1}'.format(self.get_file_name(), self.get_file_extension())
         es_query = Search(using=client, index=index_name).filter('term', path=file_name)[:0]
         result = es_query.execute()
         if result.hits.total != 0:
             raise IndexNotEmptyError('There are {0} documents from this file in the index'.format(result.hits.total))
 
-        # The file needs to have the right header
-        self.fix_header()
+        # The file needs to have the right header, this is possible if file is not a zip file
+        if not self.is_zip_file:
+            # we assume that zip files does not have a bad headerss
+            self.fix_header()
+        a = self.make_docs()
+        a.next()
         # Send docs to elasticsearch
         for success, info in parallel_bulk(client, self.make_docs(), thread_count=threads, chunk_size=chunk_size,
                                            request_timeout=timeout, index=index_name, doc_type='doc',
@@ -55,7 +80,7 @@ class DataFile:
 
     # Yield all fields in file + path and timestamp
     def make_docs(self):
-        with io.open(self.datafile, "r", encoding="latin-1") as f:
+        with self.get_file_object(encoding='latin-1') as f:
             reader = csv.DictReader(f, delimiter='|')
             for row in reader:
                 path = os.path.basename(self.datafile)
@@ -111,7 +136,7 @@ class DataFile:
         return os.path.basename(self.datafile)
 
     def name_to_date(self):
-        file_name, _ = self.get_file_name_and_extension()
+        file_name = self.get_file_name()
         start_date = datetime.strptime(file_name,
                                        '%Y-%m-%d').isoformat() + '.000Z'  # Python doesn't support military Z.
         return start_date
