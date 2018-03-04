@@ -4,7 +4,6 @@ from __future__ import unicode_literals
 from rqworkers.dataUploader.uploader.datafile import DataFile, get_timestamp
 
 import csv
-import io
 import traceback
 
 
@@ -15,8 +14,8 @@ class ProfileFile(DataFile):
         DataFile.__init__(self, datafile)
 
     def make_docs(self):
-        with io.open(self.datafile, "r", encoding="latin-1") as f:
-            reader = csv.DictReader(f, delimiter='|')
+        with self.get_file_object(encoding='latin1') as f:
+            reader = csv.DictReader(f, delimiter=str('|'))
             for row in reader:
                 try:
                     path = self.get_path()

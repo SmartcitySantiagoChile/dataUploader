@@ -6,7 +6,6 @@ from itertools import groupby
 from rqworkers.dataUploader.uploader.datafile import DataFile, get_timestamp
 
 import csv
-import io
 
 
 class ShapeFile(DataFile):
@@ -16,7 +15,7 @@ class ShapeFile(DataFile):
         DataFile.__init__(self, datafile)
 
     def make_docs(self):
-        with io.open(self.datafile, "r", encoding="latin-1") as f:
+        with self.get_file_object(encoding="latin-1") as f:
             reader = csv.DictReader(f, delimiter='|')
             # Group data using 'route' as key
             for route, points in groupby(reader, lambda point: point['route']):
