@@ -5,10 +5,13 @@ from elasticsearch import Elasticsearch
 
 from uploader.datafile import DataFile
 from uploader.expedition import ExpeditionFile
+from uploader.general import GeneralFile
+from uploader.odbyroute import OdByRouteFile
 from uploader.profile import ProfileFile
 from uploader.shape import ShapeFile
 from uploader.speed import SpeedFile
 from uploader.stop import StopFile
+from uploader.travel import TravelFile
 
 import argparse
 import glob
@@ -26,16 +29,23 @@ def upload_file(es_instance, datafile, index_name=None, chunk_size=5000, threads
         index_name = file_extension
 
     # Determine file type according to the extension
-    if file_extension == 'shape':
+    if file_extension == 'expedition':
+        file_to_load = ExpeditionFile(datafile)
+    elif file_extension == 'general':
+        file_to_load = GeneralFile(datafile)
+    elif file_extension == 'odbyroute':
+        file_to_load = OdByRouteFile(datafile)
+    elif file_extension == 'profile':
+        file_to_load = ProfileFile(datafile)
+    elif file_extension == 'shape':
         file_to_load = ShapeFile(datafile)
     elif file_extension == 'speed':
         file_to_load = SpeedFile(datafile)
-    elif file_extension == 'expedition':
-        file_to_load = ExpeditionFile(datafile)
-    elif file_extension == 'profile':
-        file_to_load = ProfileFile(datafile)
     elif file_extension == 'stop':
         file_to_load = StopFile(datafile)
+    elif file_extension == 'travel':
+        file_to_load = TravelFile(datafile)
+
     else:
         file_to_load = DataFile(datafile)
 
