@@ -14,12 +14,13 @@ class StopFile(DataFile):
 
     def __init__(self, datafile):
         DataFile.__init__(self, datafile)
+        self.fieldnames = ['authRouteCode', 'userRouteCode', 'operator', 'order', 'authStopCode', 'userStopCode', 'stopName', 'latitude', 'longitude']
 
     def make_docs(self):
         with self.get_file_object(encoding="latin-1") as f:
-            reader = csv.DictReader(f, delimiter='|')
-            # skip header
-            reader.next()
+            next(f)  # skip header
+            reader = csv.DictReader(f, delimiter='|',
+                                    fieldnames=self.fieldnames)
             try:
                 # Group data using 'authRouteCode' as key
                 for authUserOp, stops in groupby(reader,
@@ -51,6 +52,3 @@ class StopFile(DataFile):
                     }
             except ValueError:
                 traceback.print_exc()
-
-    def get_header(self):
-        return 'authRouteCode|userRouteCode|operator|order|authStopCode|userStopCode|stopName|latitude|longitude'
