@@ -1,7 +1,4 @@
-import csv
-import traceback
-
-from uploader.datafile import DataFile, get_timestamp
+from uploader.datafile import DataFile
 
 
 class TravelFile(DataFile):
