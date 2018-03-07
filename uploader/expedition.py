@@ -12,34 +12,17 @@ class ExpeditionFile(DataFile):
 
     def __init__(self, datafile):
         DataFile.__init__(self, datafile)
+        self.fieldnames = ['route', 'licensePlate', 'a', 'b', 'expeditionStartTime', 'expeditionEndTime', 'fulfillment',
+                           'c', 'd', 'e', 'f', 'g', 'h', 'periodId']
 
-    def make_docs(self):
-        with self.get_file_object(encoding='latin-1') as f:
-            reader = csv.DictReader(f, delimiter='|')
-            try:
-                for row in reader:
-                    path = self.get_path()
-                    timestamp = get_timestamp()
-                    route = row['route']
-                    license_plate = row['licensePlate']
-                    expedition_start_time = row['expeditionStartTime']
-                    expedition_end_time = row['expeditionEndTime']
-                    fulfillment = row['fulfillment']
-                    period_id = int(row['periodId'])
-                    yield {
-                        "_source": {
-                            "path": path,
-                            "timestamp": timestamp,
-                            "route": route,
-                            "licensePlate": license_plate,
-                            "expeditionStartTime": expedition_start_time,
-                            "expeditionEndTime": expedition_end_time,
-                            "fulfillment": fulfillment,
-                            "periodId": period_id
-                        }
-                    }
-            except ValueError:
-                traceback.print_exc()
-
-    def get_header(self):
-        return 'route|licensePlate|a|b|expeditionStartTime|expeditionEndTime|fulfillment|c|d|e|f|g|h|periodId'
+    def row_parser(self, row, path, timestamp):
+        return {
+            "path": path,
+            "timestamp": timestamp,
+            "route": row['route'],
+            "licensePlate": row['licensePlate'],
+            "expeditionStartTime": row['expeditionStartTime'],
+            "expeditionEndTime": row['expeditionEndTime'],
+            "fulfillment": row['fulfillment'],
+            "periodId": int(row['periodId'])
+        }
