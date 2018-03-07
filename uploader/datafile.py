@@ -11,6 +11,7 @@ import csv
 import io
 import os
 import re
+import traceback
 import zipfile
 
 
@@ -77,14 +78,20 @@ class DataFile:
             if not success:
                 print('Doc failed', info)
 
+    def parser_row(self, row):
+        raise NotImplementedError()
+
     # Yield all fields in file + path and timestamp
     def make_docs(self):
-        with self.get_file_object(encoding='latin-1') as f:
-            reader = csv.DictReader(f, delimiter='|')
+        with self.get_file_object(encoding='latin1') as f:
+            reader = csv.DictReader(f, delimiter=str('|'))
+            # skip header
+            reader.next()
             for row in reader:
-                path = os.path.basename(self.datafile)
-                timestamp = datetime.now()
-                yield {"_source": dict(timestamp=timestamp, path=path, **row)}
+                try:
+                    yield self.parser_row(row)
+                except ValueError:
+                    traceback.print_exc()
 
     def get_header(self):
         filename, extension = os.path.basename(self.datafile).split(".")

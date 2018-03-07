@@ -18,6 +18,8 @@ class StopFile(DataFile):
     def make_docs(self):
         with self.get_file_object(encoding="latin-1") as f:
             reader = csv.DictReader(f, delimiter='|')
+            # skip header
+            reader.next()
             try:
                 # Group data using 'authRouteCode' as key
                 for authUserOp, stops in groupby(reader,
