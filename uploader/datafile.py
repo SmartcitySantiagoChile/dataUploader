@@ -5,12 +5,10 @@ from elasticsearch.helpers import parallel_bulk
 from elasticsearch_dsl import Search
 
 from datetime import datetime
-from subprocess import call
 
 import csv
 import io
 import os
-import re
 import traceback
 import zipfile
 
@@ -24,6 +22,7 @@ class DataFile:
         self.datafile = datafile
         self.mapping_file = self.get_mapping_file()
         self.is_zip_file = zipfile.is_zipfile(datafile)
+        self.fieldnames = []
 
     def get_mapping_file(self):
         file_extension = self.get_file_extension()
@@ -50,7 +49,7 @@ class DataFile:
             file_name = zip_file_obj.namelist()[0]
             file_obj = io.TextIOWrapper(zip_file_obj.open(file_name, 'r'), **kwargs)
         else:
-            file_obj = io.open(self.datafile, "r", **kwargs)
+            file_obj = io.open(self.datafile, 'r', **kwargs)
 
         return file_obj
 
@@ -73,28 +72,23 @@ class DataFile:
             if not success:
                 print('Doc failed', info)
 
-    def parser_row(self, row):
+    def row_parser(self, row, path, timestamp):
         raise NotImplementedError()
 
-    # Yield all fields in file + path and timestamp
     def make_docs(self):
         with self.get_file_object(encoding='latin1') as f:
-            reader = csv.DictReader(f, delimiter=str('|'))
-            # skip header
-            reader.next()
+            next(f)  # skip header
+            reader = csv.DictReader(f, delimiter='|',
+                                    fieldnames=self.fieldnames)
             for row in reader:
                 try:
-                    yield self.parser_row(row)
+                    # add path and timestamp
+                    path = self.get_path()
+                    timestamp = get_timestamp()
+                    # yield fields
+                    yield {"_source": self.row_parser(row, path, timestamp)}
                 except ValueError:
                     traceback.print_exc()
-
-    def get_header(self):
-        filename, extension = os.path.basename(self.datafile).split(".")
-        return {
-            'general': 'date|dayType|expeditionNumber|minExpeditionTime|maxExpeditionTime|averageExpeditionTime|licensePlateNumber|GPSPointsNumber|averageTimeBetweenGPSPoints|GPSNumberWithRoute|GPSNumberWithoutRoute|transactionNumber|transactionOnBusNumber|transactionOnMetroNumber|transactionOnTrainNumber|transactionOnBusStation|smartcardNumber|transactionWithRoute|transactionWithoutRoute|stagesWithBusAlighting|stagesWithMetroAlighting|stagesWithTrainAlighting|stagesWithBusStationAlighting|tripNumber|completeTripNumber|tripsWithOneStage|tripsWithTwoStages|tripsWithThreeStages|tripsWithFourStages|tripsWithFiveOrMoreStages|tripsWithOnlyMetro|tripsThatUseMetro|tripsWithoutLastAlighting|validTripNumber|averageTimeOfTrips|averageDistanceOfTrips|averageVelocityOfTrips|tripNumberInMorningRushHour|averageTimeInMorningRushTrips|averageDistanceInMorningRushTrips|averageVelocityInMorningRushTrips|tripNumberInAfternoonRushHour|averageTimeInAfternoonRushTrips|averageDistanceInAfternoonRushTrips|averageVelocityInAfternoonRushTrips',
-            'travel': 'id|tipodia|factor_expansion|n_etapas|tviaje|distancia_eucl|distancia_ruta|tiempo_subida|tiempo_bajada|mediahora_subida|mediahora_bajada|periodo_subida|periodo_bajada|tipo_transporte_1|tipo_transporte_2|tipo_transporte_3|tipo_transporte_4|srv_1|srv_2|srv_3|srv_4|paradero_subida|paradero_bajada|comuna_subida|comuna_bajada|zona_subida|zona_bajada',
-            'od': 'date|dateType|authRouteCode|operator|userRouteCode|timePeriodInStopTime|startStopOrder|endStopOrder|authStartStopCode|authEndStopCode|userStartStopCode|userEndStopCode|startStopName|endStopName|startZone|endZone|tripNumber|tripWithoutLanding|expandedTripNumber',
-        }[extension]
 
     def get_path(self):
         return os.path.basename(self.datafile)
