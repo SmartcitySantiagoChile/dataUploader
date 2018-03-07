@@ -27,7 +27,7 @@ class LoadExpeditionData(TestCase):
         type(search_mock).total = mock.PropertyMock(return_value=0)
 
     def test_check_make_docs(self):
-        file_path = os.path.join(os.path.dirname(__file__), 'files', '2016-03-14.travel')
+        file_path = os.path.join(os.path.dirname(__file__), 'files', '2016-05-23.expedition')
 
         expedition_uploader = ExpeditionFile(file_path)
         list(expedition_uploader.make_docs())
@@ -36,7 +36,7 @@ class LoadExpeditionData(TestCase):
     @mock.patch('uploader.datafile.Search')
     @mock.patch('loadData.Elasticsearch')
     def test_load_expedition_data(self, elasticsearch_mock, search_mock, parallel_bulk):
-        file_path = os.path.join(os.path.dirname(__file__), 'files', '2016-03-14.travel')
+        file_path = os.path.join(os.path.dirname(__file__), 'files', '2016-05-23.expedition')
         self.prepare_search_mock(search_mock)
         parallel_bulk.return_value = [(True, 'info')]
 
@@ -51,7 +51,7 @@ class LoadExpeditionData(TestCase):
     @mock.patch('uploader.datafile.Search')
     @mock.patch('loadData.Elasticsearch')
     def test_load_zipped_expedition_data(self, elasticsearch_mock, search_mock, parallel_bulk):
-        file_path = os.path.join(os.path.dirname(__file__), 'files', '2016-03-14.travel.zip')
+        file_path = os.path.join(os.path.dirname(__file__), 'files', '2016-05-23.expedition.zip')
         self.prepare_search_mock(search_mock)
         parallel_bulk.return_value = [(True, 'info')]
 
