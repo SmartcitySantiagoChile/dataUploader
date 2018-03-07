@@ -66,11 +66,6 @@ class DataFile:
         if result.hits.total != 0:
             raise IndexNotEmptyError('There are {0} documents from this file in the index'.format(result.hits.total))
 
-        # The file needs to have the right header, this is possible if file is not a zip file
-        if not self.is_zip_file:
-            # we assume that zip files does not have a bad headerss
-            self.fix_header()
-
         # Send docs to elasticsearch
         for success, info in parallel_bulk(client, self.make_docs(), thread_count=threads, chunk_size=chunk_size,
                                            request_timeout=timeout, index=index_name, doc_type='doc',
@@ -100,43 +95,6 @@ class DataFile:
             'travel': 'id|tipodia|factor_expansion|n_etapas|tviaje|distancia_eucl|distancia_ruta|tiempo_subida|tiempo_bajada|mediahora_subida|mediahora_bajada|periodo_subida|periodo_bajada|tipo_transporte_1|tipo_transporte_2|tipo_transporte_3|tipo_transporte_4|srv_1|srv_2|srv_3|srv_4|paradero_subida|paradero_bajada|comuna_subida|comuna_bajada|zona_subida|zona_bajada',
             'od': 'date|dateType|authRouteCode|operator|userRouteCode|timePeriodInStopTime|startStopOrder|endStopOrder|authStartStopCode|authEndStopCode|userStartStopCode|userEndStopCode|startStopName|endStopName|startZone|endZone|tripNumber|tripWithoutLanding|expandedTripNumber',
         }[extension]
-
-    def header_is_ok(self):
-        # Read first line
-        with io.open(self.datafile, 'r', encoding='latin-1') as f:
-            header = f.readline().rstrip('\n')
-        # If the header is already the one we want
-        if header == self.get_header():
-            return True
-        else:
-            return False
-
-    def has_header(self):
-        # Read first line
-        with io.open(self.datafile, 'r', encoding='latin-1') as f:
-            header = f.readline().rstrip('\n')
-        # Check it only contains letters, spaces, |'s and #'s
-        search = re.compile(r'[^a-zA-Z|# .]').search
-        return not bool(search(header))
-
-    def remove_header(self):
-        # Remove first line of the file
-        call(["sed", "-i", '1d', self.datafile])
-
-    def add_header(self):
-        # Put this on the first line
-        call(["sed", "-i", '1i ' + self.get_header(), self.datafile])
-
-    def fix_header(self):
-        # Check if the file has a header
-        if self.has_header():
-            if self.header_is_ok():
-                pass
-            else:
-                self.remove_header()
-                self.add_header()
-        else:
-            self.add_header()
 
     def get_path(self):
         return os.path.basename(self.datafile)
