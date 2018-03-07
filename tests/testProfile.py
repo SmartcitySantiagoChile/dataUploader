@@ -31,7 +31,6 @@ class LoadProfileData(TestCase):
 
         profile_uploader = ProfileFile(file_path)
         list(profile_uploader.make_docs())
-        profile_uploader.get_header()
 
     @mock.patch('uploader.datafile.parallel_bulk')
     @mock.patch('uploader.datafile.Search')
