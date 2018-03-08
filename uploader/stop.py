@@ -14,7 +14,11 @@ class StopFile(DataFile):
 
     def __init__(self, datafile):
         DataFile.__init__(self, datafile)
-        self.fieldnames = ['authRouteCode', 'userRouteCode', 'operator', 'order', 'authStopCode', 'userStopCode', 'stopName', 'latitude', 'longitude']
+        self.fieldnames = ['authRouteCode', 'userRouteCode', 'operator', 'order', 'authStopCode', 'userStopCode',
+                           'stopName', 'latitude', 'longitude']
+
+    def row_parser(self, row, path, timestamp):
+        pass
 
     def make_docs(self):
         with self.get_file_object(encoding="latin-1") as f:

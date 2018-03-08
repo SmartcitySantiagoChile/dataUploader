@@ -1,10 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from uploader.datafile import DataFile, get_timestamp
-
-import csv
-import traceback
+from uploader.datafile import DataFile
 
 
 class ExpeditionFile(DataFile):
