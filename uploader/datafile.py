@@ -20,6 +20,7 @@ class IndexNotEmptyError(ValueError):
 class DataFile:
     def __init__(self, datafile):
         self.datafile = datafile
+        self.basename = os.path.basename(self.datafile).replace('.zip', '')
         self.mapping_file = self.get_mapping_file()
         self.is_zip_file = zipfile.is_zipfile(datafile)
         self.fieldnames = []
@@ -65,8 +66,7 @@ class DataFile:
         mapping.close()
 
         # check if it exists some document in index from this file
-        file_name = '{0}.{1}'.format(self.get_file_name(), self.get_file_extension())
-        es_query = Search(using=client, index=index_name).filter('term', path=file_name)[:0]
+        es_query = Search(using=client, index=index_name).filter('term', path=self.basename)[:0]
         result = es_query.execute()
         if result.hits.total != 0:
             raise IndexNotEmptyError('There are {0} documents from this file in the index'.format(result.hits.total))
@@ -89,20 +89,18 @@ class DataFile:
             for row in reader:
                 try:
                     # add path and timestamp
-                    path = self.get_path()
+                    path = self.basename
                     timestamp = get_timestamp()
                     # yield fields
                     yield {"_source": self.row_parser(row, path, timestamp)}
                 except ValueError:
                     traceback.print_exc()
 
-    def get_path(self):
-        return os.path.basename(self.datafile)
-
     def name_to_date(self):
         file_name = self.get_file_name()
-        start_date = datetime.strptime(file_name,
-                                       '%Y-%m-%d').isoformat() + '.000Z'  # Python doesn't support military Z.
+        # Python doesn't support military Z.
+        start_date = datetime.strptime(file_name, '%Y-%m-%d').isoformat() + '.000Z'
+
         return start_date
 
 

@@ -29,7 +29,7 @@ class ShapeFile(DataFile):
                 try:
                     points = list(points)
                     start_date = self.name_to_date()
-                    path = self.get_path()
+                    path = self.basename
                     timestamp = get_timestamp()
                     points = [{
                         'segmentStart': int(p['segmentStart']),

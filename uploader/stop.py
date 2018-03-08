@@ -30,7 +30,7 @@ class StopFile(DataFile):
                 for authUserOp, stops in groupby(reader,
                                                  lambda r: (r['authRouteCode'], r['userRouteCode'], r['operator'])):
                     stops = list(stops)
-                    path = self.get_path()
+                    path = self.basename
                     timestamp = get_timestamp()
                     date = self.name_to_date()
                     stops = [
