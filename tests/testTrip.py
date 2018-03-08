@@ -3,17 +3,17 @@ from __future__ import unicode_literals
 
 from unittest import TestCase
 
-from uploader.travel import TravelFile
+from uploader.trip import TripFile
 
 import mock
 import os
 
 
-class LoadTravelData(TestCase):
+class LoadTripData(TestCase):
 
     def setUp(self):
         # default values
-        self.index_name = 'travel'
+        self.index_name = 'trip'
         self.chunk_size = 5000
         self.threads = 4
         self.timeout = 30
@@ -27,37 +27,37 @@ class LoadTravelData(TestCase):
         type(search_mock).total = mock.PropertyMock(return_value=0)
 
     def test_check_make_docs(self):
-        file_path = os.path.join(os.path.dirname(__file__), 'files', '2016-03-14.travel')
+        file_path = os.path.join(os.path.dirname(__file__), 'files', '2016-03-14.trip')
 
-        travel_uploader = TravelFile(file_path)
-        list(travel_uploader.make_docs())
+        trip_uploader = TripFile(file_path)
+        list(trip_uploader.make_docs())
 
     @mock.patch('uploader.datafile.parallel_bulk')
     @mock.patch('uploader.datafile.Search')
     @mock.patch('loadData.Elasticsearch')
-    def test_load_travel_data(self, elasticsearch_mock, search_mock, parallel_bulk):
-        file_path = os.path.join(os.path.dirname(__file__), 'files', '2016-03-14.travel')
+    def test_load_trip_data(self, elasticsearch_mock, search_mock, parallel_bulk):
+        file_path = os.path.join(os.path.dirname(__file__), 'files', '2016-03-14.trip')
         self.prepare_search_mock(search_mock)
         parallel_bulk.return_value = [(True, 'info')]
 
-        travel_uploader = TravelFile(file_path)
-        travel_uploader.load(elasticsearch_mock, self.index_name, self.chunk_size, self.threads, self.timeout)
+        trip_uploader = TripFile(file_path)
+        trip_uploader.load(elasticsearch_mock, self.index_name, self.chunk_size, self.threads, self.timeout)
 
-        list(travel_uploader.make_docs())
+        list(trip_uploader.make_docs())
 
         parallel_bulk.assert_called()
 
     @mock.patch('uploader.datafile.parallel_bulk')
     @mock.patch('uploader.datafile.Search')
     @mock.patch('loadData.Elasticsearch')
-    def test_load_zipped_travel_data(self, elasticsearch_mock, search_mock, parallel_bulk):
-        file_path = os.path.join(os.path.dirname(__file__), 'files', '2016-03-14.travel.zip')
+    def test_load_zipped_trip_data(self, elasticsearch_mock, search_mock, parallel_bulk):
+        file_path = os.path.join(os.path.dirname(__file__), 'files', '2016-03-14.trip.zip')
         self.prepare_search_mock(search_mock)
         parallel_bulk.return_value = [(True, 'info')]
 
-        travel_uploader = TravelFile(file_path)
-        travel_uploader.load(elasticsearch_mock, self.index_name, self.chunk_size, self.threads, self.timeout)
+        trip_uploader = TripFile(file_path)
+        trip_uploader.load(elasticsearch_mock, self.index_name, self.chunk_size, self.threads, self.timeout)
 
-        list(travel_uploader.make_docs())
+        list(trip_uploader.make_docs())
 
         parallel_bulk.assert_called()

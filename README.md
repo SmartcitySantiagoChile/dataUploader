@@ -51,7 +51,7 @@ Additionally, is a property is listed as boolean only ```true``` and ```false```
 
 ##### About the extensions:
 
-The extensions that this script loads are: ```expedition```, ```general```, ```od```, ```profile```, ```shape```, ```speed```, ```stop``` and ```travel```.
+The extensions that this script loads are: ```expedition```, ```general```, ```od```, ```profile```, ```shape```, ```speed```, ```stop``` and ```trip```.
 
 In order to load a file that has a different extension its mapping must be included in the mappings folder and its header must be added to ```datafile.py```. If not every column of the file is going to be loaded, if more columns need to be added or if its a nested file (meaning it has more than a line per document, like ```shape```), then a Python file that inherits from ```datafile.py``` must be created and the ```getHeader``` and ```makeDocs``` methods must be overwritten.
   
