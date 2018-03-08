@@ -45,10 +45,10 @@ class DataFile:
         :return: file object
         """
         if self.is_zip_file:
-            zip_file_obj = zipfile.ZipFile(self.datafile, 'rb')
+            zip_file_obj = zipfile.ZipFile(self.datafile, 'r')
             # it assumes that zip file has only one file
             file_name = zip_file_obj.namelist()[0]
-            file_obj = io.TextIOWrapper(zip_file_obj.open(file_name, 'rb'), **kwargs)
+            file_obj = io.TextIOWrapper(zip_file_obj.open(file_name, 'r'), **kwargs)
         else:
             file_obj = io.open(self.datafile, str('rb'), **kwargs)
 
