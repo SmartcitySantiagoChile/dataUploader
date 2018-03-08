@@ -45,12 +45,12 @@ class DataFile:
         :return: file object
         """
         if self.is_zip_file:
-            zip_file_obj = zipfile.ZipFile(self.datafile, 'r')
+            zip_file_obj = zipfile.ZipFile(self.datafile, 'rb')
             # it assumes that zip file has only one file
             file_name = zip_file_obj.namelist()[0]
-            file_obj = io.TextIOWrapper(zip_file_obj.open(file_name, 'r'), **kwargs)
+            file_obj = io.TextIOWrapper(zip_file_obj.open(file_name, 'rb'), **kwargs)
         else:
-            file_obj = io.open(self.datafile, str('r'), **kwargs)
+            file_obj = io.open(self.datafile, str('rb'), **kwargs)
 
         return file_obj
 
@@ -82,7 +82,7 @@ class DataFile:
         raise NotImplementedError()
 
     def make_docs(self):
-        with self.get_file_object(encoding='latin1') as f:
+        with self.get_file_object() as f:
             next(f)  # skip header
             delimiter = str('|')
             reader = csv.DictReader(f, delimiter=delimiter, fieldnames=self.fieldnames)
@@ -98,7 +98,7 @@ class DataFile:
 
     def name_to_date(self):
         file_name = self.get_file_name()
-        # Python doesn't support military Z.
+        # Python doesn't support Zulu time.
         start_date = datetime.strptime(file_name, '%Y-%m-%d').isoformat() + '.000Z'
 
         return start_date
