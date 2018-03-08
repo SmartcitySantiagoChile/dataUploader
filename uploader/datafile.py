@@ -49,7 +49,7 @@ class DataFile:
             file_name = zip_file_obj.namelist()[0]
             file_obj = io.TextIOWrapper(zip_file_obj.open(file_name, 'r'), **kwargs)
         else:
-            file_obj = io.open(self.datafile, 'r', **kwargs)
+            file_obj = io.open(self.datafile, str('r'), **kwargs)
 
         return file_obj
 
