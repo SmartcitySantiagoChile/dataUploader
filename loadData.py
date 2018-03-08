@@ -11,7 +11,7 @@ from uploader.profile import ProfileFile
 from uploader.shape import ShapeFile
 from uploader.speed import SpeedFile
 from uploader.stop import StopFile
-from uploader.travel import TravelFile
+from uploader.trip import TripFile
 
 import argparse
 import glob
@@ -43,8 +43,8 @@ def upload_file(es_instance, datafile, index_name=None, chunk_size=5000, threads
         file_to_load = SpeedFile(datafile)
     elif file_extension == 'stop':
         file_to_load = StopFile(datafile)
-    elif file_extension == 'travel':
-        file_to_load = TravelFile(datafile)
+    elif file_extension == 'trip':
+        file_to_load = TripFile(datafile)
 
     else:
         file_to_load = DataFile(datafile)

@@ -34,7 +34,7 @@ class Main(TestCase):
     @mock.patch('loadData.Elasticsearch')
     def test_load_file_data_(self, elasticsearch_mock, argparse_mock, search_mock, parallel_bulk):
         pattern_list = ['*.profile', '*.expedition', '*.general', '*.od', '*.shape', '*.speed',
-                        '*.stop', '*.travel', ]
+                        '*.stop', '*.trip', ]
         for pattern in pattern_list:
             file_path_pattern = os.path.join(os.path.dirname(__file__), 'files', pattern)
             self.set_argparse_mock(argparse_mock, file_path_pattern)
@@ -50,7 +50,7 @@ class Main(TestCase):
     def test_load_zipped_file_data(self, elasticsearch_mock, argparse_mock, search_mock, parallel_bulk):
         # elasticsearch_mock
         pattern_list = ['*.profile.zip', '*.expedition.zip', '*.general.zip', '*.od.zip', '*.shape.zip', '*.speed.zip',
-                        '*.stop.zip', '*.travel.zip', ]
+                        '*.stop.zip', '*.trip.zip', ]
         for pattern in pattern_list:
             file_path_pattern = os.path.join(os.path.dirname(__file__), 'files', pattern)
 

@@ -1,8 +1,8 @@
 from uploader.datafile import DataFile
 
 
-class TravelFile(DataFile):
-    """ Class that represents a travel file. """
+class TripFile(DataFile):
+    """ Class that represents a trip file. """
 
     def __init__(self, datafile):
         DataFile.__init__(self, datafile)
