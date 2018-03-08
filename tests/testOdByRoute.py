@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from unittest import TestCase
 
-from uploader.odbyroute import OdByRouteFile
+from rqworkers.dataUploader.uploader.odbyroute import OdByRouteFile
 
 import mock
 import os

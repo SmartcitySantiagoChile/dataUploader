@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from unittest import TestCase
 
-from uploader.general import GeneralFile
+from rqworkers.dataUploader.uploader.general import GeneralFile
 
 import mock
 import os

@@ -1,4 +1,4 @@
-from uploader.datafile import DataFile
+from rqworkers.dataUploader.uploader.datafile import DataFile
 
 
 class OdByRouteFile(DataFile):
