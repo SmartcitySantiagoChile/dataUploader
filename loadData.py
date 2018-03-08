@@ -11,7 +11,7 @@ from rqworkers.dataUploader.uploader.profile import ProfileFile
 from rqworkers.dataUploader.uploader.shape import ShapeFile
 from rqworkers.dataUploader.uploader.speed import SpeedFile
 from rqworkers.dataUploader.uploader.stop import StopFile
-from rqworkers.dataUploader.uploader.travel import TripFile
+from rqworkers.dataUploader.uploader.trip import TripFile
 
 import argparse
 import glob
