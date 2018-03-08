@@ -40,9 +40,6 @@
         "userRoute": {
           "type": "keyword"
         },
-        "shapeRoute": {
-          "type": "keyword"
-        },
         "licensePlate": { 
           "type": "keyword",
           "index": false
@@ -110,7 +107,7 @@
           "index": false
         },
         "busCapacity" : { 
-          "type": "integer",
+          "type": "short",
           "index": false
         },
         "expeditionStopTime" : { 
@@ -118,13 +115,13 @@
           "index": false
         },
         "timePeriodInStartTime": {
-          "type": "keyword"
+          "type": "byte"
         },
         "timePeriodInStopTime": {
-          "type": "keyword"
+          "type": "byte"
         },
         "dayType": {
-          "type": "keyword"
+          "type": "byte"
         },
         "busStation": {
           "type": "byte",
@@ -135,10 +132,10 @@
           "index": false
         },
         "halfHourInStartTime" : { 
-          "type": "short"
+          "type": "byte"
         },
         "halfHourInStopTime" : { 
-          "type": "short"
+          "type": "byte"
         }
       }
     }
