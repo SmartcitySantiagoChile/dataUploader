@@ -9,7 +9,7 @@ class ProfileFile(DataFile):
 
     def __init__(self, datafile):
         DataFile.__init__(self, datafile)
-        self.fieldnames = ['operator', 'route', 'userRoute', 'shapeRoute', 'licensePlate', 'authStopCode',
+        self.fieldnames = ['operator', 'route', 'userRoute', 'licensePlate', 'authStopCode',
                            'userStopName', 'expeditionStartTime', 'expeditionEndTime', 'fulfillment',
                            'expeditionStopOrder', 'expeditionDayId', 'stopDistanceFromPathStart', '#Subidas',
                            '#SubidasLejanas', 'Subidastotal', 'expandedBoarding', '#Bajadas', '#BajadasLejanas',
@@ -30,7 +30,6 @@ class ProfileFile(DataFile):
             "operator": int(row['operator']),
             "route": row['route'],
             "userRoute": row['userRoute'],
-            "shapeRoute": row['shapeRoute'],
             "licensePlate": row['licensePlate'],
             "authStopCode": row['authStopCode'],
             "userStopName": row['userStopName'],
