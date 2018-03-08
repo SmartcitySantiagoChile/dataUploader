@@ -84,8 +84,8 @@ class DataFile:
     def make_docs(self):
         with self.get_file_object(encoding='latin1') as f:
             next(f)  # skip header
-            reader = csv.DictReader(f, delimiter='|',
-                                    fieldnames=self.fieldnames)
+            delimiter = str('|')
+            reader = csv.DictReader(f, delimiter=delimiter, fieldnames=self.fieldnames)
             for row in reader:
                 try:
                     # add path and timestamp
