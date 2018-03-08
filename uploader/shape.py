@@ -14,16 +14,22 @@ class ShapeFile(DataFile):
 
     def __init__(self, datafile):
         DataFile.__init__(self, datafile)
+        self.fieldnames = ['route', 'segmentStart', 'latitude', 'longitude']
+
+    def row_parser(self, row, path, timestamp):
+        pass
 
     def make_docs(self):
         with self.get_file_object(encoding="latin-1") as f:
-            reader = csv.DictReader(f, delimiter='|')
-            try:
-                # Group data using 'route' as key
-                for route, points in groupby(reader, lambda point: point['route']):
+            next(f)  # skip header
+            delimiter = str('|')
+            reader = csv.DictReader(f, delimiter=delimiter, fieldnames=self.fieldnames)
+            # Group data using 'route' as key
+            for route, points in groupby(reader, lambda point: point['route']):
+                try:
                     points = list(points)
                     start_date = self.name_to_date()
-                    path = self.get_path()
+                    path = self.basename
                     timestamp = get_timestamp()
                     points = [{
                         'segmentStart': int(p['segmentStart']),
@@ -38,8 +44,5 @@ class ShapeFile(DataFile):
                             "points": points
                         }
                     }
-            except ValueError:
-                traceback.print_exc()
-
-    def get_header(self):
-        return 'route|segmentStart|latitude|longitude'
+                except ValueError:
+                    traceback.print_exc()
