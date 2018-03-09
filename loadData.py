@@ -12,7 +12,7 @@ from uploader.speed import SpeedFile
 from uploader.stop import StopFile
 from uploader.trip import TripFile
 
-from .exceptions import UnrecognizedFileExtensionError
+from errors import UnrecognizedFileExtensionError
 
 import argparse
 import glob
