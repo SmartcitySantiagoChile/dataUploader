@@ -6,15 +6,13 @@ from elasticsearch_dsl import Search
 
 from datetime import datetime
 
+from errors import IndexNotEmptyError
+
 import csv
 import io
 import os
 import traceback
 import zipfile
-
-
-class IndexNotEmptyError(ValueError):
-    pass
 
 
 class DataFile:

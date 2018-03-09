@@ -4,3 +4,7 @@ from __future__ import unicode_literals
 
 class UnrecognizedFileExtensionError(Exception):
     pass
+
+
+class IndexNotEmptyError(ValueError):
+    pass

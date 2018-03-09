@@ -12,7 +12,7 @@ from rqworkers.dataUploader.uploader.speed import SpeedFile
 from rqworkers.dataUploader.uploader.stop import StopFile
 from rqworkers.dataUploader.uploader.trip import TripFile
 
-from rqworkers.dataUploader.exceptions import UnrecognizedFileExtensionError
+from rqworkers.dataUploader.errors import UnrecognizedFileExtensionError
 
 import argparse
 import glob
