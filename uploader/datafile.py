@@ -22,7 +22,6 @@ class DataFile:
         self.datafile = datafile
         self.basename = os.path.basename(self.datafile).replace('.zip', '')
         self.mapping_file = self.get_mapping_file()
-        self.is_zip_file = zipfile.is_zipfile(datafile)
         self.fieldnames = []
 
     def get_mapping_file(self):
@@ -44,7 +43,7 @@ class DataFile:
         :param kwargs: dictionary to give encoding param
         :return: file object
         """
-        if self.is_zip_file:
+        if zipfile.is_zipfile(self.datafile):
             zip_file_obj = zipfile.ZipFile(self.datafile, 'r')
             # it assumes that zip file has only one file
             file_name = zip_file_obj.namelist()[0]
