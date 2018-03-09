@@ -25,10 +25,11 @@ class StopFile(DataFile):
             next(f)  # skip header
             delimiter = str('|')
             reader = csv.DictReader(f, delimiter=delimiter, fieldnames=self.fieldnames)
-            try:
-                # Group data using 'authRouteCode' as key
-                for authUserOp, stops in groupby(reader,
-                                                 lambda r: (r['authRouteCode'], r['userRouteCode'], r['operator'])):
+
+            # Group data using 'authRouteCode' as key
+            for authUserOp, stops in groupby(reader,
+                                             lambda r: (r['authRouteCode'], r['userRouteCode'], r['operator'])):
+                try:
                     stops = list(stops)
                     path = self.basename
                     timestamp = get_timestamp()
@@ -54,5 +55,5 @@ class StopFile(DataFile):
                             "stops": stops
                         }
                     }
-            except ValueError:
-                traceback.print_exc()
+                except ValueError:
+                    traceback.print_exc()
