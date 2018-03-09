@@ -20,7 +20,7 @@ class ShapeFile(DataFile):
         pass
 
     def make_docs(self):
-        with self.get_file_object(encoding="latin-1") as f:
+        with self.get_file_object() as f:
             next(f)  # skip header
             delimiter = str('|')
             reader = csv.DictReader(f, delimiter=delimiter, fieldnames=self.fieldnames)
