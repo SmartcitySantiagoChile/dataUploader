@@ -3,7 +3,6 @@ from __future__ import unicode_literals
 
 from elasticsearch import Elasticsearch
 
-from uploader.datafile import DataFile
 from uploader.expedition import ExpeditionFile
 from uploader.general import GeneralFile
 from uploader.odbyroute import OdByRouteFile
@@ -12,6 +11,8 @@ from uploader.shape import ShapeFile
 from uploader.speed import SpeedFile
 from uploader.stop import StopFile
 from uploader.trip import TripFile
+
+from .exceptions import UnrecognizedFileExtensionError
 
 import argparse
 import glob
@@ -45,9 +46,8 @@ def upload_file(es_instance, datafile, index_name=None, chunk_size=5000, threads
         file_to_load = StopFile(datafile)
     elif file_extension == 'trip':
         file_to_load = TripFile(datafile)
-
     else:
-        file_to_load = DataFile(datafile)
+        raise UnrecognizedFileExtensionError(datafile)
 
     # Load file to elasticsearch
     file_to_load.load(es_instance, index_name, chunk_size, threads, timeout)
