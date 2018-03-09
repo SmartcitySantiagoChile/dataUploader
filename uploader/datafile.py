@@ -45,7 +45,7 @@ class DataFile:
             zip_file_obj = zipfile.ZipFile(self.datafile, 'r')
             # it assumes that zip file has only one file
             file_name = zip_file_obj.namelist()[0]
-            file_obj = io.TextIOWrapper(zip_file_obj.open(file_name, 'r'), **kwargs)
+            file_obj = zip_file_obj.open(file_name, 'rU')
         else:
             file_obj = io.open(self.datafile, str('rb'), **kwargs)
 
