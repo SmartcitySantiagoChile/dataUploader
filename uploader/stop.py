@@ -41,7 +41,7 @@ class StopFile(DataFile):
                             'latitude': float(p['latitude']),
                             'authStopCode': p['authStopCode'],
                             'userStopCode': p['userStopCode'],
-                            'stopName': p['stopName']
+                            'stopName': unicode(p['stopName'], 'latin-1'),
                         } for p in stops
                     ]
                     yield {
