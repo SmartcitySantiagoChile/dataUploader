@@ -36,18 +36,17 @@ class DataFile:
         file_extension = os.path.basename(self.datafile).split(".")[1]
         return file_extension
 
-    def get_file_object(self, **kwargs):
+    def get_file_object(self):
         """
-        :param kwargs: dictionary to give encoding param
         :return: file object
         """
         if zipfile.is_zipfile(self.datafile):
             zip_file_obj = zipfile.ZipFile(self.datafile, 'r')
             # it assumes that zip file has only one file
             file_name = zip_file_obj.namelist()[0]
-            file_obj = io.TextIOWrapper(zip_file_obj.open(file_name, 'r'), **kwargs)
+            file_obj = zip_file_obj.open(file_name, 'rU')
         else:
-            file_obj = io.open(self.datafile, str('rb'), **kwargs)
+            file_obj = io.open(self.datafile, str('rb'))
 
         return file_obj
 
