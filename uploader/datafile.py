@@ -18,7 +18,7 @@ import zipfile
 class DataFile:
     def __init__(self, datafile):
         self.datafile = datafile
-        self.basename = os.path.basename(self.datafile).replace('.zip', '')
+        self.basename = os.path.basename(self.datafile)
         self.mapping_file = self.get_mapping_file()
         self.fieldnames = []
 
