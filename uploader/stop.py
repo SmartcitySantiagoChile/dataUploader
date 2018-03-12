@@ -30,7 +30,7 @@ class StopFile(DataFile):
             for authUserOp, stops in groupby(reader,
                                              lambda r: (r['authRouteCode'], r['userRouteCode'], r['operator'])):
                 # skip if authority operator code is an hyphen
-                if authUserOp == str('-'):
+                if authUserOp[0] == str('-'):
                     continue
                 try:
                     path = self.basename
