@@ -29,8 +29,10 @@ class StopFile(DataFile):
             # Group data using 'authRouteCode' as key
             for authUserOp, stops in groupby(reader,
                                              lambda r: (r['authRouteCode'], r['userRouteCode'], r['operator'])):
+                # skip if authority operator code is an hyphen
+                if authUserOp == str('-'):
+                    continue
                 try:
-                    stops = list(stops)
                     path = self.basename
                     timestamp = get_timestamp()
                     date = self.name_to_date()
@@ -41,7 +43,7 @@ class StopFile(DataFile):
                             'latitude': float(p['latitude']),
                             'authStopCode': p['authStopCode'],
                             'userStopCode': p['userStopCode'],
-                            'stopName': unicode(p['stopName'], 'latin-1'),
+                            'stopName': p['stopName'].decode('latin-1'),
                         } for p in stops
                     ]
                     yield {
