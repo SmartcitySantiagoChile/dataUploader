@@ -32,7 +32,7 @@ class ProfileFile(DataFile):
             "userRoute": row['userRoute'],
             "licensePlate": row['licensePlate'],
             "authStopCode": row['authStopCode'],
-            "userStopName": row['userStopName'],
+            "userStopName": row['userStopName'].decode('latin1'),
             "expeditionStartTime": row['expeditionStartTime'],
             "expeditionEndTime": row['expeditionEndTime'],
             "fulfillment": row['fulfillment'],
