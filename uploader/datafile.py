@@ -53,13 +53,9 @@ class DataFile:
     def load(self, client, index_name, chunk_size, threads, timeout):
 
         # Open and store mapping
-        mapping = open(self.mapping_file, 'r')
-
-        # Create index with mapping. If it already exists, ignore this
-        client.indices.create(index=index_name, ignore=400, body=mapping.read())
-
-        # Close mapping file
-        mapping.close()
+        with open(self.mapping_file, 'r') as mapping:
+            # Create index with mapping. If it already exists, ignore this
+            client.indices.create(index=index_name, ignore=400, body=mapping.read())
 
         # check if it exists some document in index from this file
         es_query = Search(using=client, index=index_name).filter('term', path=self.basename)[:0]
