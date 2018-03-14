@@ -21,9 +21,11 @@ class ProfileFile(DataFile):
     def row_parser(self, row, path, timestamp):
         expedition_stop_time = row['expeditionStopTime']
         time_period_in_stop_time = row['timePeriodInStopTime']
+        half_hour_in_stop_time = row['halfHourInStopTime']
         if expedition_stop_time == '-':
             expedition_stop_time = "0"
             time_period_in_stop_time = -1
+            half_hour_in_stop_time = -1
         return {
             "path": path,
             "timestamp": timestamp,
@@ -51,6 +53,5 @@ class ProfileFile(DataFile):
             "busStation": int(row['busStation']),
             "transactions": int(row['transactions']),
             "halfHourInStartTime": int(row['halfHourInStartTime']),
-            "halfHourInStopTime": int(row['halfHourInStopTime']) if row['halfHourInStopTime'] is not None else row[
-                'halfHourInStopTime']
+            "halfHourInStopTime": int(half_hour_in_stop_time)
         }
