@@ -50,7 +50,7 @@ class StopFile(DataFile):
                         "_source": {
                             "path": path,
                             "timestamp": timestamp,
-                            "date": date,
+                            "startDate": date,
                             "authRouteCode": authUserOp[0],
                             "userRouteCode": authUserOp[1],
                             "operator": int(authUserOp[2]),
