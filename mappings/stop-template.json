@@ -9,18 +9,18 @@
         "path": {
           "type": "keyword"
         },
-        "authRouteCode" : { 
+        "authRouteCode" : {
           "type": "keyword"
         },
-        "userRouteCode" : { 
+        "userRouteCode": {
           "type": "keyword"
         },
-        "operator": { 
+        "operator": {
           "type": "integer"
         },
         "stops": {
           "properties": {
-            "order" : { 
+            "order": {
               "type": "integer"
             },
             "longitude": {
@@ -29,13 +29,13 @@
             "latitude": {
               "type": "float"
             },
-            "authStopCode" : { 
+            "authStopCode": {
               "type": "keyword"
             },
-            "userStopCode" : { 
+            "userStopCode": {
               "type": "keyword"
             },
-            "stopName" : { 
+            "stopName": {
               "type": "text"
             }
           }
