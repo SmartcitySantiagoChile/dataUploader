@@ -20,7 +20,7 @@ class SpeedFile(DataFile):
             "merged": merged,
             "authRouteCode": row['authRouteCode'],
             "userRouteCode": row['userRouteCode'],
-            "operator": row['operator'],
+            "operator": int(row['operator']),
             "section": int(row['section']),
             "date": row['date'],
             "periodId": int(row['periodId']),
