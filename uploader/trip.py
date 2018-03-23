@@ -11,37 +11,53 @@ class TripFile(DataFile):
                            'periodo_subida', 'periodo_bajada', 'tipo_transporte_1', 'tipo_transporte_2',
                            'tipo_transporte_3', 'tipo_transporte_4', 'srv_1', 'srv_2', 'srv_3', 'srv_4',
                            'paradero_subida', 'paradero_bajada', 'comuna_subida', 'comuna_bajada', 'zona_subida',
-                           'zona_bajada']
+                           'zona_bajada', 'modos', 'tiempo_subida_1', 'tiempo_bajada_1', 'tiempo_subida_2',
+                           'tiempo_bajada_2', 'tiempo_subida_3', 'tiempo_bajada_3', 'tiempo_subida_4',
+                           'tiempo_bajada_4', 'zona_subida_1', 'zona_bajada_1', 'zona_subida_2', 'zona_bajada_2',
+                           'zona_subida_3', 'zona_bajada_3', 'zona_subida_4', 'zona_bajada_4', 'parada_subida_1',
+                           'parada_subida_2', 'parada_subida_3', 'parada_subida_4', 'parada_bajada_1',
+                           'parada_bajada_2', 'parada_bajada_3', 'parada_bajada_4', 'mediahora_bajada_1',
+                           'mediahora_bajada_2', 'mediahora_bajada_3', 'mediahora_bajada_4', 'periodo_bajada_1',
+                           'periodo_bajada_2', 'periodo_bajada_3', 'periodo_bajada_4']
 
     def row_parser(self, row, path, timestamp):
-        return {
-            "path": path,
-            "timestamp": timestamp,
-            "id": int(row['id']),
-            "tipodia": int(row['tipodia']),
-            "factor_expansion": float(row['factor_expansion']),
-            "n_etapas": int(row['n_etapas']),
-            "tviaje": float(row['tviaje']),
-            "distancia_eucl": float(row['distancia_eucl']),
-            "distancia_ruta": float(row['distancia_ruta']),
-            "tiempo_subida": row['tiempo_subida'],
-            "tiempo_bajada": row['tiempo_bajada'],
-            "mediahora_subida": int(row['mediahora_subida']),
-            "mediahora_bajada": int(row['mediahora_bajada']),
-            "periodo_subida": int(row['periodo_subida']),
-            "periodo_bajada": int(row['periodo_bajada']),
-            "tipo_transporte_1": int(row['tipo_transporte_1']),
-            "tipo_transporte_2": int(row['tipo_transporte_2']),
-            "tipo_transporte_3": int(row['tipo_transporte_3']),
-            "tipo_transporte_4": int(row['tipo_transporte_4']),
-            "srv_1": row['srv_1'],
-            "srv_2": row['srv_2'],
-            "srv_3": row['srv_3'],
-            "srv_4": row['srv_4'],
-            "paradero_subida": row['paradero_subida'],
-            "paradero_bajada": row['paradero_bajada'],
-            "comuna_subida": int(row['comuna_subida']),
-            "comuna_bajada": int(row['comuna_bajada']),
-            "zona_subida": int(row['zona_subida']),
-            "zona_bajada": int(row['zona_bajada'])
-        }
+        row['id'] = int(row['id'])
+        row['tipodia'] = int(row['tipodia']),
+        row['factor_expansion'] = float(row['factor_expansion']),
+        row['n_etapas'] = int(row['n_etapas']),
+        row['tviaje'] = float(row['tviaje']),
+        row['distancia_eucl'] = float(row['distancia_eucl']),
+        row['distancia_ruta'] = float(row['distancia_ruta']),
+        row['tiempo_subida'] = row['tiempo_subida'],
+        row['tiempo_bajada'] = row['tiempo_bajada'],
+        row['mediahora_subida'] = int(row['mediahora_subida']),
+        row['mediahora_bajada'] = int(row['mediahora_bajada']),
+        row['periodo_subida'] = int(row['periodo_subida']),
+        row['periodo_bajada'] = int(row['periodo_bajada']),
+        row['tipo_transporte_1'] = int(row['tipo_transporte_1']),
+        row['tipo_transporte_2'] = int(row['tipo_transporte_2']),
+        row['tipo_transporte_3'] = int(row['tipo_transporte_3']),
+        row['tipo_transporte_4'] = int(row['tipo_transporte_4']),
+        row['comuna_subida'] = int(row['comuna_subida']),
+        row['comuna_bajada'] = int(row['comuna_bajada']),
+        row['zona_subida'] = int(row['zona_subida']),
+        row['zona_bajada'] = int(row['zona_bajada']),
+        row['modos'] = int(row['modos'])
+        row['zona_subida_1'] = int(row['zona_subida_1']) if row['zona_subida_1'].isdigit() else -1
+        row['zona_bajada_1'] = int(row['zona_bajada_1']) if row['zona_bajada_1'].isdigit() else -1
+        row['zona_subida_2'] = int(row['zona_subida_2']) if row['zona_subida_2'].isdigit() else -1
+        row['zona_bajada_2'] = int(row['zona_bajada_2']) if row['zona_bajada_2'].isdigit() else -1
+        row['zona_subida_3'] = int(row['zona_subida_3']) if row['zona_subida_3'].isdigit() else -1
+        row['zona_bajada_3'] = int(row['zona_bajada_3']) if row['zona_bajada_3'].isdigit() else -1
+        row['zona_subida_4'] = int(row['zona_subida_4']) if row['zona_subida_4'].isdigit() else -1
+        row['zona_bajada_4'] = int(row['zona_bajada_4']) if row['zona_bajada_4'].isdigit() else -1
+        row['mediahora_bajada_1'] = int(row['mediahora_bajada_1']) if row['mediahora_bajada_1'].isdigit() else -1
+        row['mediahora_bajada_2'] = int(row['mediahora_bajada_2']) if row['mediahora_bajada_2'].isdigit() else -1
+        row['mediahora_bajada_3'] = int(row['mediahora_bajada_3']) if row['mediahora_bajada_3'].isdigit() else -1
+        row['mediahora_bajada_4'] = int(row['mediahora_bajada_4']) if row['mediahora_bajada_4'].isdigit() else -1
+        row['periodo_bajada_1'] = int(row['periodo_bajada_1']) if row['periodo_bajada_1'].isdigit() else -1
+        row['periodo_bajada_2'] = int(row['periodo_bajada_2']) if row['periodo_bajada_2'].isdigit() else -1
+        row['periodo_bajada_3'] = int(row['periodo_bajada_3']) if row['periodo_bajada_3'].isdigit() else -1
+        row['periodo_bajada_4'] = int(row['periodo_bajada_4']) if row['periodo_bajada_4'].isdigit() else -1
+
+        return row
