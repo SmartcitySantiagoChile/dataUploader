@@ -1,91 +1,200 @@
 {
   "settings": {},
   "mappings": {
-    "doc" : {
+    "doc": {
       "properties": {
         "path": {
           "type": "keyword"
         },
-        "id" : {
-          "type": "long" 
+        "id": {
+          "type": "long"
         },
-        "tipodia" : {
-          "type": "byte" 
+        "tipodia": {
+          "type": "byte"
         },
-        "factor_expansion" : {
-          "type": "half_float" 
+        "factor_expansion": {
+          "type": "half_float"
         },
-        "n_etapas" : {
-          "type": "byte" 
+        "n_etapas": {
+          "type": "byte"
         },
-        "tviaje" : {
-          "type": "float" 
+        "tviaje": {
+          "type": "float"
         },
-        "distancia_eucl" : {
-          "type": "float" 
+        "distancia_eucl": {
+          "type": "float"
         },
-        "distancia_ruta" : {
-          "type": "float" 
+        "distancia_ruta": {
+          "type": "float"
         },
-        "tiempo_subida" : {
-          "type" : "date",
-          "format" : "yyyy-MM-dd HH:mm:ss"},
-        "tiempo_bajada" : {
-          "type" : "date",
-          "format" : "yyyy-MM-dd HH:mm:ss"},
-        "mediahora_subida" : {
-          "type": "byte" 
+        "tiempo_subida": {
+          "type": "date",
+          "format": "yyyy-MM-dd HH:mm:ss"
         },
-        "mediahora_bajada" : {
-          "type": "byte" 
+        "tiempo_bajada": {
+          "type": "date",
+          "format": "yyyy-MM-dd HH:mm:ss"
         },
-        "periodo_subida" : {
-          "type": "byte" 
+        "mediahora_subida": {
+          "type": "byte"
         },
-        "periodo_bajada" : {
-          "type": "byte" 
+        "mediahora_bajada": {
+          "type": "byte"
         },
-        "tipo_transporte_1" : {
-          "type": "byte" 
+        "periodo_subida": {
+          "type": "byte"
         },
-        "tipo_transporte_2" : {
-          "type": "byte" 
+        "periodo_bajada": {
+          "type": "byte"
         },
-        "tipo_transporte_3" : {
-          "type": "byte" 
+        "tipo_transporte_1": {
+          "type": "byte"
         },
-        "tipo_transporte_4" : {
-          "type": "byte" 
+        "tipo_transporte_2": {
+          "type": "byte"
         },
-        "srv_1" : {
-          "type": "keyword" 
+        "tipo_transporte_3": {
+          "type": "byte"
         },
-        "srv_2" : {
-          "type": "keyword" 
+        "tipo_transporte_4": {
+          "type": "byte"
         },
-        "srv_3" : {
-          "type": "keyword" 
+        "srv_1": {
+          "type": "keyword"
         },
-        "srv_4" : {
-          "type": "keyword" 
+        "srv_2": {
+          "type": "keyword"
         },
-        "paradero_subida" : {
-          "type": "keyword" 
+        "srv_3": {
+          "type": "keyword"
         },
-        "paradero_bajada" : {
-          "type": "keyword" 
+        "srv_4": {
+          "type": "keyword"
         },
-        "comuna_subida" : {
-          "type": "integer" 
+        "paradero_subida": {
+          "type": "keyword"
         },
-        "comuna_bajada" : {
-          "type": "integer" 
+        "paradero_bajada": {
+          "type": "keyword"
         },
-        "zona_subida" : {
-          "type": "short" 
+        "comuna_subida": {
+          "type": "byte"
         },
-        "zona_bajada" : {
-          "type": "short" 
+        "comuna_bajada": {
+          "type": "byte"
+        },
+        "zona_subida": {
+          "type": "short"
+        },
+        "zona_bajada": {
+          "type": "short"
+        },
+        "modos": {
+          "type": "byte"
+        },
+        "tiempo_subida_1": {
+          "type": "date",
+          "format": "yyyy-MM-dd HH:mm:ss"
+        },
+        "tiempo_bajada_1": {
+          "type": "date",
+          "format": "yyyy-MM-dd HH:mm:ss"
+        },
+        "tiempo_subida_2": {
+          "type": "date",
+          "format": "yyyy-MM-dd HH:mm:ss"
+        },
+        "tiempo_bajada_2": {
+          "type": "date",
+          "format": "yyyy-MM-dd HH:mm:ss"
+        },
+        "tiempo_subida_3": {
+          "type": "date",
+          "format": "yyyy-MM-dd HH:mm:ss"
+        },
+        "tiempo_bajada_3": {
+          "type": "date",
+          "format": "yyyy-MM-dd HH:mm:ss"
+        },
+        "tiempo_subida_4": {
+          "type": "date",
+          "format": "yyyy-MM-dd HH:mm:ss"
+        },
+        "tiempo_bajada_4": {
+          "type": "date",
+          "format": "yyyy-MM-dd HH:mm:ss"
+        },
+        "zona_subida_1": {
+          "type": "short"
+        },
+        "zona_bajada_1": {
+          "type": "short"
+        },
+        "zona_subida_2": {
+          "type": "short"
+        },
+        "zona_bajada_2": {
+          "type": "short"
+        },
+        "zona_subida_3": {
+          "type": "short"
+        },
+        "zona_bajada_3": {
+          "type": "short"
+        },
+        "zona_subida_4": {
+          "type": "short"
+        },
+        "zona_bajada_4": {
+          "type": "short"
+        },
+        "parada_subida_1": {
+          "type": "short"
+        },
+        "parada_subida_2": {
+          "type": "keyword"
+        },
+        "parada_subida_3": {
+          "type": "keyword"
+        },
+        "parada_subida_4": {
+          "type": "keyword"
+        },
+        "parada_bajada_1": {
+          "type": "keyword"
+        },
+        "parada_bajada_2": {
+          "type": "keyword"
+        },
+        "parada_bajada_3": {
+          "type": "keyword"
+        },
+        "parada_bajada_4": {
+          "type": "keyword"
+        },
+        "mediahora_bajada_1": {
+          "type": "byte"
+        },
+        "mediahora_bajada_2": {
+          "type": "byte"
+        },
+        "mediahora_bajada_3": {
+          "type": "byte"
+        },
+        "mediahora_bajada_4": {
+          "type": "byte"
+        },
+        "periodo_bajada_1": {
+          "type": "byte"
+        },
+        "periodo_bajada_2": {
+          "type": "byte"
+        },
+        "periodo_bajada_3": {
+          "type": "byte"
+        },
+        "periodo_bajada_4": {
+          "type": "byte"
         }
       }
     }
