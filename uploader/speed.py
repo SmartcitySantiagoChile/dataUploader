@@ -9,16 +9,18 @@ class SpeedFile(DataFile):
 
     def __init__(self, datafile):
         DataFile.__init__(self, datafile)
-        self.fieldnames = ['route', 'section', 'date', 'periodId', 'dayType', 'totalDistance',
-                           'totalTime', 'speed', 'nObs', 'nInvalidObs']
+        self.fieldnames = ['authRouteCode', 'section', 'date', 'periodId', 'dayType', 'totalDistance',
+                           'totalTime', 'speed', 'nObs', 'nInvalidObs', 'operator', 'userRouteCode']
 
     def row_parser(self, row, path, timestamp):
-        merged = str(row['route'] + '-' + row['section'] + '-' + row['periodId'])
+        merged = str(row['authRouteCode'] + '-' + row['section'] + '-' + row['periodId'])
         return {
             "path": path,
             "timestamp": timestamp,
             "merged": merged,
-            "route": row['route'],
+            "authRouteCode": row['authRouteCode'],
+            "userRouteCode": row['userRouteCode'],
+            "operator": row['operator'],
             "section": int(row['section']),
             "date": row['date'],
             "periodId": int(row['periodId']),

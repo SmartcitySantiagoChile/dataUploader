@@ -14,7 +14,7 @@ class ShapeFile(DataFile):
 
     def __init__(self, datafile):
         DataFile.__init__(self, datafile)
-        self.fieldnames = ['route', 'segmentStart', 'latitude', 'longitude']
+        self.fieldnames = ['authRouteCode', 'segmentStart', 'latitude', 'longitude', 'operator', 'userRouteCode']
 
     def row_parser(self, row, path, timestamp):
         pass
@@ -25,7 +25,8 @@ class ShapeFile(DataFile):
             delimiter = str('|')
             reader = csv.DictReader(f, delimiter=delimiter, fieldnames=self.fieldnames)
             # Group data using 'route' as key
-            for route, points in groupby(reader, lambda point: point['route']):
+            for identifier, points in groupby(reader, lambda point: (point['authRouteCode'], point['userRouteCode'],
+                                                                        point['operator'])):
                 try:
                     points = list(points)
                     start_date = self.name_to_date()
@@ -39,7 +40,9 @@ class ShapeFile(DataFile):
                         "_source": {
                             "path": path,
                             "timestamp": timestamp,
-                            "route": route,
+                            "authRouteCode": identifier[0],
+                            "userRouteCode": identifier[1],
+                            "operator": identifier[2],
                             "startDate": start_date,
                             "points": points
                         }
