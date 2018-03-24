@@ -19,6 +19,7 @@ class TripFile(DataFile):
                            'parada_bajada_2', 'parada_bajada_3', 'parada_bajada_4', 'mediahora_bajada_1',
                            'mediahora_bajada_2', 'mediahora_bajada_3', 'mediahora_bajada_4', 'periodo_bajada_1',
                            'periodo_bajada_2', 'periodo_bajada_3', 'periodo_bajada_4']
+        self.null_date = "1970-01-01 00:00:00"
 
     def row_parser(self, row, path, timestamp):
         row['id'] = int(row['id'])
@@ -43,6 +44,14 @@ class TripFile(DataFile):
         row['zona_subida'] = int(row['zona_subida']),
         row['zona_bajada'] = int(row['zona_bajada']),
         row['modos'] = int(row['modos'])
+        row['tiempo_subida_1'] = row['tiempo_subida_1'] if row['tiempo_subida_1'] != '-' else self.null_date
+        row['tiempo_bajada_1'] = row['tiempo_bajada_1'] if row['tiempo_bajada_1'] != '-' else self.null_date
+        row['tiempo_subida_2'] = row['tiempo_subida_2'] if row['tiempo_subida_2'] != '-' else self.null_date
+        row['tiempo_bajada_2'] = row['tiempo_bajada_2'] if row['tiempo_bajada_2'] != '-' else self.null_date
+        row['tiempo_subida_3'] = row['tiempo_subida_3'] if row['tiempo_subida_3'] != '-' else self.null_date
+        row['tiempo_bajada_3'] = row['tiempo_bajada_3'] if row['tiempo_bajada_3'] != '-' else self.null_date
+        row['tiempo_subida_4'] = row['tiempo_subida_4'] if row['tiempo_subida_4'] != '-' else self.null_date
+        row['tiempo_bajada_4'] = row['tiempo_bajada_4'] if row['tiempo_bajada_4'] != '-' else self.null_date
         row['zona_subida_1'] = int(row['zona_subida_1']) if row['zona_subida_1'].isdigit() else -1
         row['zona_bajada_1'] = int(row['zona_bajada_1']) if row['zona_bajada_1'].isdigit() else -1
         row['zona_subida_2'] = int(row['zona_subida_2']) if row['zona_subida_2'].isdigit() else -1
