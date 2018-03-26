@@ -149,7 +149,7 @@
           "type": "short"
         },
         "parada_subida_1": {
-          "type": "short"
+          "type": "keyword"
         },
         "parada_subida_2": {
           "type": "keyword"
