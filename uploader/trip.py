@@ -22,6 +22,8 @@ class TripFile(DataFile):
         self.null_date = "1970-01-01 00:00:00"
 
     def row_parser(self, row, path, timestamp):
+        row["path"] = path
+        row["timestamp"] = timestamp
         row['id'] = int(row['id'])
         row['tipodia'] = int(row['tipodia'])
         row['factor_expansion'] = float(row['factor_expansion'])
