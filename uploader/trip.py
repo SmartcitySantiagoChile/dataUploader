@@ -21,6 +21,8 @@ class TripFile(DataFile):
                            'periodo_bajada_2', 'periodo_bajada_3', 'periodo_bajada_4']
 
     def row_parser(self, row, path, timestamp):
+        row["path"] = path
+        row["timestamp"] = timestamp
         row['id'] = int(row['id'])
         row['tipodia'] = int(row['tipodia'])
         row['factor_expansion'] = float(row['factor_expansion'])
