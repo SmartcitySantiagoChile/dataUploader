@@ -71,4 +71,6 @@ class TripFile(DataFile):
         row['periodo_bajada_3'] = int(row['periodo_bajada_3']) if row['periodo_bajada_3'].isdigit() else -1
         row['periodo_bajada_4'] = int(row['periodo_bajada_4']) if row['periodo_bajada_4'].isdigit() else -1
 
+        row.pop(None)
+
         return row
