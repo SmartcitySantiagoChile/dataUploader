@@ -10,6 +10,7 @@ from uploader.profile import ProfileFile
 from uploader.shape import ShapeFile
 from uploader.speed import SpeedFile
 from uploader.stop import StopFile
+from uploader.stopbyroute import StopByRouteFile
 from uploader.trip import TripFile
 
 from errors import UnrecognizedFileExtensionError
@@ -44,6 +45,7 @@ def upload_file(es_instance, datafile, index_name=None, chunk_size=5000, threads
         file_to_load = SpeedFile(datafile)
     elif file_extension == 'stop':
         file_to_load = StopFile(datafile)
+        StopByRouteFile(datafile).load(es_instance, 'stopbyroute', chunk_size, threads, timeout)
     elif file_extension == 'trip':
         file_to_load = TripFile(datafile)
     else:

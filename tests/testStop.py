@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 from unittest import TestCase
 
 from uploader.stop import StopFile
+from uploader.stopbyroute import StopByRouteFile
 
 import mock
 import os
@@ -43,7 +44,11 @@ class LoadStopData(TestCase):
         stop_uploader = StopFile(file_path)
         stop_uploader.load(elasticsearch_mock, self.index_name, self.chunk_size, self.threads, self.timeout)
 
+        stop_uploader2 = StopByRouteFile(file_path)
+        stop_uploader2.load(elasticsearch_mock, 'stopbyroute', self.chunk_size, self.threads, self.timeout)
+
         list(stop_uploader.make_docs())
+        list(stop_uploader2.make_docs())
 
         parallel_bulk.assert_called()
 
@@ -58,6 +63,10 @@ class LoadStopData(TestCase):
         stop_uploader = StopFile(file_path)
         stop_uploader.load(elasticsearch_mock, self.index_name, self.chunk_size, self.threads, self.timeout)
 
+        stop_uploader2 = StopByRouteFile(file_path)
+        stop_uploader2.load(elasticsearch_mock, 'stopbyroute', self.chunk_size, self.threads, self.timeout)
+
         list(stop_uploader.make_docs())
+        list(stop_uploader2.make_docs())
 
         parallel_bulk.assert_called()
