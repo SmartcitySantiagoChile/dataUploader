@@ -45,7 +45,8 @@ def upload_file(es_instance, datafile, index_name=None, chunk_size=5000, threads
         file_to_load = SpeedFile(datafile)
     elif file_extension == 'stop':
         file_to_load = StopFile(datafile)
-        StopByRouteFile(datafile).load(es_instance, 'stopbyroute', chunk_size, threads, timeout)
+    elif file_extension == 'stopbyroute':
+        file_to_load = StopByRouteFile(datafile)
     elif file_extension == 'trip':
         file_to_load = TripFile(datafile)
     else:
