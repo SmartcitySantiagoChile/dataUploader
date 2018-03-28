@@ -22,27 +22,29 @@ class TripFile(DataFile):
         self.null_date = "1970-01-01 00:00:00"
 
     def row_parser(self, row, path, timestamp):
+        row["path"] = path
+        row["timestamp"] = timestamp
         row['id'] = int(row['id'])
-        row['tipodia'] = int(row['tipodia']),
-        row['factor_expansion'] = float(row['factor_expansion']),
-        row['n_etapas'] = int(row['n_etapas']),
-        row['tviaje'] = float(row['tviaje']),
-        row['distancia_eucl'] = float(row['distancia_eucl']),
-        row['distancia_ruta'] = float(row['distancia_ruta']),
-        row['tiempo_subida'] = row['tiempo_subida'],
-        row['tiempo_bajada'] = row['tiempo_bajada'],
-        row['mediahora_subida'] = int(row['mediahora_subida']),
-        row['mediahora_bajada'] = int(row['mediahora_bajada']),
-        row['periodo_subida'] = int(row['periodo_subida']),
-        row['periodo_bajada'] = int(row['periodo_bajada']),
-        row['tipo_transporte_1'] = int(row['tipo_transporte_1']),
-        row['tipo_transporte_2'] = int(row['tipo_transporte_2']),
-        row['tipo_transporte_3'] = int(row['tipo_transporte_3']),
-        row['tipo_transporte_4'] = int(row['tipo_transporte_4']),
-        row['comuna_subida'] = int(row['comuna_subida']),
-        row['comuna_bajada'] = int(row['comuna_bajada']),
-        row['zona_subida'] = int(row['zona_subida']),
-        row['zona_bajada'] = int(row['zona_bajada']),
+        row['tipodia'] = int(row['tipodia'])
+        row['factor_expansion'] = float(row['factor_expansion'])
+        row['n_etapas'] = int(row['n_etapas'])
+        row['tviaje'] = float(row['tviaje'])
+        row['distancia_eucl'] = float(row['distancia_eucl'])
+        row['distancia_ruta'] = float(row['distancia_ruta'])
+        row['tiempo_subida'] = row['tiempo_subida']
+        row['tiempo_bajada'] = row['tiempo_bajada']
+        row['mediahora_subida'] = int(row['mediahora_subida'])
+        row['mediahora_bajada'] = int(row['mediahora_bajada'])
+        row['periodo_subida'] = int(row['periodo_subida'])
+        row['periodo_bajada'] = int(row['periodo_bajada'])
+        row['tipo_transporte_1'] = int(row['tipo_transporte_1'])
+        row['tipo_transporte_2'] = int(row['tipo_transporte_2'])
+        row['tipo_transporte_3'] = int(row['tipo_transporte_3'])
+        row['tipo_transporte_4'] = int(row['tipo_transporte_4'])
+        row['comuna_subida'] = int(row['comuna_subida'])
+        row['comuna_bajada'] = int(row['comuna_bajada'])
+        row['zona_subida'] = int(row['zona_subida'])
+        row['zona_bajada'] = int(row['zona_bajada'])
         row['modos'] = int(row['modos'])
         row['tiempo_subida_1'] = row['tiempo_subida_1'] if row['tiempo_subida_1'] != '-' else self.null_date
         row['tiempo_bajada_1'] = row['tiempo_bajada_1'] if row['tiempo_bajada_1'] != '-' else self.null_date
@@ -68,5 +70,7 @@ class TripFile(DataFile):
         row['periodo_bajada_2'] = int(row['periodo_bajada_2']) if row['periodo_bajada_2'].isdigit() else -1
         row['periodo_bajada_3'] = int(row['periodo_bajada_3']) if row['periodo_bajada_3'].isdigit() else -1
         row['periodo_bajada_4'] = int(row['periodo_bajada_4']) if row['periodo_bajada_4'].isdigit() else -1
+
+        row.pop(None)
 
         return row
