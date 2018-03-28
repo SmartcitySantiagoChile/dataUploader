@@ -6,7 +6,7 @@ from elasticsearch_dsl import Search
 
 from datetime import datetime
 
-from errors import IndexNotEmptyError
+from errors import IndexNotEmptyError, StopDocumentExist
 
 import csv
 import io
@@ -85,6 +85,8 @@ class DataFile:
                     timestamp = get_timestamp()
                     # yield fields
                     yield {"_source": self.row_parser(row, path, timestamp)}
+                except StopDocumentExist:
+                    pass
                 except ValueError:
                     traceback.print_exc()
 
