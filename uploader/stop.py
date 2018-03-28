@@ -20,13 +20,14 @@ class StopFile(DataFile):
             raise StopDocumentExist('Stop {0} exists'.format(row['userStopCode']))
 
         self.uploaded_stops.append(row['userStopCode'])
+
         return {
             'path': path,
             'timestamp': timestamp,
             'startDate': self.name_to_date(),
             'authCode': row['authStopCode'],
             'userCode': row['userStopCode'],
-            'name': row['stopName'],
-            'latitude': row['latitude'],
-            'longitude': row['longitude'],
+            'name': row['stopName'].decode('latin-1'),
+            'latitude': float(row['latitude']),
+            'longitude': float(row['longitude'])
         }

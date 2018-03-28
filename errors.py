@@ -10,5 +10,5 @@ class IndexNotEmptyError(ValueError):
     pass
 
 
-class StopDocumentExist(Exception):
+class StopDocumentExist(ValueError):
     pass
