@@ -1,7 +1,37 @@
 {
   "settings": {
     "max_result_window": 10000,
-    "index.mapping.ignore_malformed": false
+    "index.mapping.ignore_malformed": false,
+    "index": {
+      "analysis": {
+        "analyzer": {
+          "autocomplete_analyzer": {
+            "type": "custom",
+            "tokenizer": "lowercase",
+            "filter": [
+              "asciifolding",
+              "title_ngram"
+            ]
+          },
+          "autocomplete_analyzer_for_code": {
+            "type": "custom",
+            "tokenizer": "whitespace",
+            "filter": [
+              "lowercase",
+              "asciifolding",
+              "title_ngram"
+            ]
+          }
+        },
+        "filter": {
+          "title_ngram": {
+            "type": "nGram",
+            "min_gram": 3,
+            "max_gram": 5
+          }
+        }
+      }
+    }
   },
   "mappings": {
     "doc": {
@@ -9,34 +39,39 @@
         "path": {
           "type": "keyword"
         },
-        "authRouteCode" : {
-          "type": "keyword"
+        "startDate": {
+          "type": "date"
         },
-        "userRouteCode": {
-          "type": "keyword"
+        "longitude": {
+          "type": "float"
         },
-        "operator": {
-          "type": "integer"
+        "latitude": {
+          "type": "float"
         },
-        "stops": {
-          "properties": {
-            "order": {
-              "type": "integer"
-            },
-            "longitude": {
-              "type": "float"
-            },
-            "latitude": {
-              "type": "float"
-            },
-            "authStopCode": {
+        "authCode": {
+          "type": "text",
+          "analyzer": "autocomplete_analyzer_for_code",
+          "fields": {
+            "raw": {
               "type": "keyword"
-            },
-            "userStopCode": {
+            }
+          }
+        },
+        "userCode": {
+          "type": "text",
+          "analyzer": "autocomplete_analyzer_for_code",
+          "fields": {
+            "raw": {
               "type": "keyword"
-            },
-            "stopName": {
-              "type": "text"
+            }
+          }
+        },
+        "name": {
+          "type": "text",
+          "analyzer": "autocomplete_analyzer",
+          "fields": {
+            "raw": {
+              "type": "keyword"
             }
           }
         }

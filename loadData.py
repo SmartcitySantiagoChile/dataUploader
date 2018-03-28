@@ -10,6 +10,7 @@ from rqworkers.dataUploader.uploader.profile import ProfileFile
 from rqworkers.dataUploader.uploader.shape import ShapeFile
 from rqworkers.dataUploader.uploader.speed import SpeedFile
 from rqworkers.dataUploader.uploader.stop import StopFile
+from rqworkers.dataUploader.uploader.stopbyroute import StopByRouteFile
 from rqworkers.dataUploader.uploader.trip import TripFile
 
 from rqworkers.dataUploader.errors import UnrecognizedFileExtensionError
@@ -44,6 +45,7 @@ def upload_file(es_instance, datafile, index_name=None, chunk_size=5000, threads
         file_to_load = SpeedFile(datafile)
     elif file_extension == 'stop':
         file_to_load = StopFile(datafile)
+        StopByRouteFile(datafile).load(es_instance, 'stopbyroute', chunk_size, threads, timeout)
     elif file_extension == 'trip':
         file_to_load = TripFile(datafile)
     else:

@@ -44,6 +44,9 @@
         },
         "nInvalidObs": { 
           "type": "short"
+        },
+        "isEndSection": {
+          "type": "byte"
         }
       }
     }
