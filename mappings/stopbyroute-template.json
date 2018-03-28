@@ -18,6 +18,9 @@
         "operator": {
           "type": "integer"
         },
+        "startDate": {
+          "type": "date"
+        },
         "stops": {
           "properties": {
             "order": {
