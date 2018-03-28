@@ -8,3 +8,7 @@ class UnrecognizedFileExtensionError(Exception):
 
 class IndexNotEmptyError(ValueError):
     pass
+
+
+class StopDocumentExist(Exception):
+    pass

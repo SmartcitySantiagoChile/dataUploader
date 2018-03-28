@@ -3,6 +3,8 @@ from __future__ import unicode_literals
 
 from rqworkers.dataUploader.uploader.datafile import DataFile
 
+from errors import StopDocumentExist
+
 
 class StopFile(DataFile):
     """ Class that represents a stop file. """
@@ -15,7 +17,7 @@ class StopFile(DataFile):
 
     def row_parser(self, row, path, timestamp):
         if row['userStopCode'] in self.uploaded_stops or row['userStopCode'] == '-':
-            raise ValueError("Stop exists")
+            raise StopDocumentExist('Stop {0} exists'.format(row['userStopCode']))
 
         self.uploaded_stops.append(row['userStopCode'])
         return {
