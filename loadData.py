@@ -24,36 +24,32 @@ def upload_file(es_instance, datafile, index_name=None, chunk_size=5000, threads
     """ upload file to elasticsearch """
 
     # Get file extension
-    file_extension = os.path.basename(datafile).split(".")[1]
-
-    # If no index name was supplied, index name is the same as file extension
-    if index_name is None:
-        index_name = file_extension
-
+    index_name = os.path.basename(datafile).split(".")[1] if index_name is None else index_name
+    
     # Determine file type according to the extension
-    if file_extension == 'expedition':
-        file_to_load = ExpeditionFile(datafile)
-    elif file_extension == 'general':
-        file_to_load = GeneralFile(datafile)
-    elif file_extension == 'odbyroute':
-        file_to_load = OdByRouteFile(datafile)
-    elif file_extension == 'profile':
-        file_to_load = ProfileFile(datafile)
-    elif file_extension == 'shape':
-        file_to_load = ShapeFile(datafile)
-    elif file_extension == 'speed':
-        file_to_load = SpeedFile(datafile)
-    elif file_extension == 'stop':
-        file_to_load = StopFile(datafile)
-    elif file_extension == 'stopbyroute':
-        file_to_load = StopByRouteFile(datafile)
-    elif file_extension == 'trip':
-        file_to_load = TripFile(datafile)
+    if index_name == 'expedition':
+        uploader = ExpeditionFile(datafile)
+    elif index_name == 'general':
+        uploader = GeneralFile(datafile)
+    elif index_name == 'odbyroute':
+        uploader = OdByRouteFile(datafile)
+    elif index_name == 'profile':
+        uploader = ProfileFile(datafile)
+    elif index_name == 'shape':
+        uploader = ShapeFile(datafile)
+    elif index_name == 'speed':
+        uploader = SpeedFile(datafile)
+    elif index_name == 'stop':
+        uploader = StopFile(datafile)
+    elif index_name == 'stopbyroute':
+        uploader = StopByRouteFile(datafile)
+    elif index_name == 'trip':
+        uploader = TripFile(datafile)
     else:
         raise UnrecognizedFileExtensionError(datafile)
 
     # Load file to elasticsearch
-    file_to_load.load(es_instance, index_name, chunk_size, threads, timeout)
+    uploader.load(es_instance, index_name, chunk_size, threads, timeout)
 
 
 def main():
