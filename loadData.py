@@ -3,6 +3,15 @@ from __future__ import unicode_literals
 
 from elasticsearch import Elasticsearch
 
+import os
+import sys
+import argparse
+import glob
+
+# add path so we can use function through command line
+new_path = os.path.join(os.path.dirname(__file__), '..', '..')
+sys.path.append(new_path)
+
 from rqworkers.dataUploader.uploader.expedition import ExpeditionFile
 from rqworkers.dataUploader.uploader.general import GeneralFile
 from rqworkers.dataUploader.uploader.odbyroute import OdByRouteFile
@@ -14,10 +23,6 @@ from rqworkers.dataUploader.uploader.stopbyroute import StopByRouteFile
 from rqworkers.dataUploader.uploader.trip import TripFile
 
 from rqworkers.dataUploader.errors import UnrecognizedFileExtensionError
-
-import argparse
-import glob
-import os
 
 
 def upload_file(es_instance, datafile, index_name=None, chunk_size=5000, threads=4, timeout=30):
