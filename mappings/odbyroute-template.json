@@ -11,7 +11,7 @@
         "date": { 
           "type": "date"
         },
-        "dateType" : { 
+        "dayType" : {
           "type": "keyword"
         },
         "authRouteCode" : { 
