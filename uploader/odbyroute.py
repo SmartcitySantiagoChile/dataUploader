@@ -6,7 +6,7 @@ class OdByRouteFile(DataFile):
 
     def __init__(self, datafile):
         DataFile.__init__(self, datafile)
-        self.fieldnames = ['date', 'dateType', 'authRouteCode', 'operator', 'userRouteCode', 'timePeriodInStopTime',
+        self.fieldnames = ['date', 'dayType', 'authRouteCode', 'operator', 'userRouteCode', 'timePeriodInStopTime',
                            'startStopOrder', 'endStopOrder', 'authStartStopCode', 'authEndStopCode',
                            'userStartStopCode', 'userEndStopCode', 'startStopName', 'endStopName', 'startZone',
                            'endZone', 'tripNumber', 'tripWithoutLanding', 'expandedTripNumber']
@@ -16,7 +16,7 @@ class OdByRouteFile(DataFile):
             "path": path,
             "timestamp": timestamp,
             "date": row['date'],
-            "dateType": row['dateType'],
+            "dayType": row['dayType'],
             "authRouteCode": row['authRouteCode'],
             "operator": int(row['operator']),
             "userRouteCode": row['userRouteCode'],
