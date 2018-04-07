@@ -124,8 +124,7 @@
           "type": "byte"
         },
         "busStation": {
-          "type": "byte",
-          "index": false
+          "type": "byte"
         },
         "transactions" : { 
           "type": "integer",
