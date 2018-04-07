@@ -19,22 +19,16 @@ class DataFile:
     def __init__(self, datafile):
         self.datafile = datafile
         self.basename = os.path.basename(self.datafile)
-        self.mapping_file = self.get_mapping_file()
         self.fieldnames = []
 
-    def get_mapping_file(self):
-        file_extension = self.get_file_extension()
+    def get_mapping_file(self, index_name):
         current_dir = os.path.dirname(__file__)
-        mapping_file = os.path.join(current_dir, '..', 'mappings', file_extension + '-template.json')
+        mapping_file = os.path.join(current_dir, '..', 'mappings', '{0}-template.json'.format(index_name))
         return mapping_file
 
     def get_file_name(self):
         file_name = os.path.basename(self.datafile).split(".")[0]
         return file_name
-
-    def get_file_extension(self):
-        file_extension = os.path.basename(self.datafile).split(".")[1]
-        return file_extension
 
     def get_file_object(self):
         """
@@ -53,7 +47,7 @@ class DataFile:
     def load(self, client, index_name, chunk_size, threads, timeout):
 
         # Open and store mapping
-        with open(self.mapping_file, 'r') as mapping:
+        with open(self.get_mapping_file(index_name), 'r') as mapping:
             # Create index with mapping. If it already exists, ignore this
             client.indices.create(index=index_name, ignore=400, body=mapping.read())
 
