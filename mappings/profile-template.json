@@ -135,6 +135,9 @@
         },
         "halfHourInStopTime" : { 
           "type": "byte"
+        },
+        "valid" : {
+          "type": "byte"
         }
       }
     }
