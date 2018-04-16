@@ -13,7 +13,7 @@ from uploader.stop import StopFile
 from uploader.stopbyroute import StopByRouteFile
 from uploader.trip import TripFile
 
-from errors import UnrecognizedFileExtensionError
+from errors import UnrecognizedFileExtensionError, IndexNotEmptyError
 
 import argparse
 import glob
@@ -85,7 +85,11 @@ def main():
         matched_files = glob.glob(datafile)
         for matched_file in matched_files:
             print('uploading file {0}'.format(matched_file))
-            upload_file(es, matched_file, index_name, chunk_size, threads, timeout)
+            try:
+                upload_file(es, matched_file, index_name, chunk_size, threads, timeout)
+            except IndexNotEmptyError as e:
+                # ignore it and continue uploading files
+                print('Error: {0}'.format(e))
 
 
 if __name__ == "__main__":
