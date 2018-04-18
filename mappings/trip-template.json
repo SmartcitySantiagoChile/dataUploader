@@ -6,9 +6,6 @@
         "path": {
           "type": "keyword"
         },
-        "id": {
-          "type": "long"
-        },
         "tipodia": {
           "type": "byte"
         },

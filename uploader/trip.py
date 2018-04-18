@@ -6,7 +6,7 @@ class TripFile(DataFile):
 
     def __init__(self, datafile):
         DataFile.__init__(self, datafile)
-        self.fieldnames = ['id', 'tipodia', 'factor_expansion', 'n_etapas', 'tviaje', 'distancia_eucl',
+        self.fieldnames = ['tipodia', 'factor_expansion', 'n_etapas', 'tviaje', 'distancia_eucl',
                            'distancia_ruta', 'tiempo_subida', 'tiempo_bajada', 'mediahora_subida', 'mediahora_bajada',
                            'periodo_subida', 'periodo_bajada', 'tipo_transporte_1', 'tipo_transporte_2',
                            'tipo_transporte_3', 'tipo_transporte_4', 'srv_1', 'srv_2', 'srv_3', 'srv_4',
@@ -24,7 +24,6 @@ class TripFile(DataFile):
     def row_parser(self, row, path, timestamp):
         row["path"] = path
         row["timestamp"] = timestamp
-        row['id'] = int(row['id'])
         row['tipodia'] = int(row['tipodia'])
         row['factor_expansion'] = float(row['factor_expansion'])
         row['n_etapas'] = int(row['n_etapas'])

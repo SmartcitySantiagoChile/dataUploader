@@ -16,7 +16,7 @@ class ProfileFile(DataFile):
                            'Bajadastotal', 'expandedAlighting', 'loadProfile', 'busCapacity', 'TiempoGPSInterpolado',
                            'TiempoPrimeraTrx', 'TiempoGPSMasCercano', 'expeditionStopTime', 'nSubidasTmp',
                            'userStopCode', 'timePeriodInStartTime', 'timePeriodInStopTime', 'dayType', 'busStation',
-                           'transactions', 'halfHourInStartTime', 'halfHourInStopTime']
+                           'transactions', 'halfHourInStartTime', 'halfHourInStopTime', 'valid']
 
     def row_parser(self, row, path, timestamp):
         expedition_stop_time = row['expeditionStopTime']
@@ -53,5 +53,6 @@ class ProfileFile(DataFile):
             "busStation": int(row['busStation']),
             "transactions": int(row['transactions']),
             "halfHourInStartTime": int(row['halfHourInStartTime']),
-            "halfHourInStopTime": int(half_hour_in_stop_time)
+            "halfHourInStopTime": int(half_hour_in_stop_time),
+            "valid": int(row['valid'])
         }

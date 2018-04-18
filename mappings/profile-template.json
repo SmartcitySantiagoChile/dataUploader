@@ -124,8 +124,7 @@
           "type": "byte"
         },
         "busStation": {
-          "type": "byte",
-          "index": false
+          "type": "byte"
         },
         "transactions" : { 
           "type": "integer",
@@ -135,6 +134,9 @@
           "type": "byte"
         },
         "halfHourInStopTime" : { 
+          "type": "byte"
+        },
+        "valid" : {
           "type": "byte"
         }
       }
