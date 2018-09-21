@@ -36,28 +36,16 @@ class LoadSpeedData(TestCase):
     @mock.patch('uploader.datafile.Search')
     @mock.patch('loadData.Elasticsearch')
     def test_load_speed_data(self, elasticsearch_mock, search_mock, parallel_bulk):
-        file_path = os.path.join(os.path.dirname(__file__), 'files', '2017-04-03.speed')
-        self.prepare_search_mock(search_mock)
-        parallel_bulk.return_value = [(True, 'info')]
 
-        speed_uploader = SpeedFile(file_path)
-        speed_uploader.load(elasticsearch_mock, self.index_name, self.chunk_size, self.threads, self.timeout)
+        file_name_list = ['2017-04-03.speed', '2017-04-03.speed.gz', '2017-04-03.speed.zip']
+        for file_name in file_name_list:
+            file_path = os.path.join(os.path.dirname(__file__), 'files', file_name)
+            self.prepare_search_mock(search_mock)
+            parallel_bulk.return_value = [(True, 'info')]
 
-        list(speed_uploader.make_docs())
+            speed_uploader = SpeedFile(file_path)
+            speed_uploader.load(elasticsearch_mock, self.index_name, self.chunk_size, self.threads, self.timeout)
 
-        parallel_bulk.assert_called()
+            list(speed_uploader.make_docs())
 
-    @mock.patch('uploader.datafile.parallel_bulk')
-    @mock.patch('uploader.datafile.Search')
-    @mock.patch('loadData.Elasticsearch')
-    def test_load_zipped_speed_data(self, elasticsearch_mock, search_mock, parallel_bulk):
-        file_path = os.path.join(os.path.dirname(__file__), 'files', '2017-04-03.speed.zip')
-        self.prepare_search_mock(search_mock)
-        parallel_bulk.return_value = [(True, 'info')]
-
-        speed_uploader = SpeedFile(file_path)
-        speed_uploader.load(elasticsearch_mock, self.index_name, self.chunk_size, self.threads, self.timeout)
-
-        list(speed_uploader.make_docs())
-
-        parallel_bulk.assert_called()
+            parallel_bulk.assert_called()

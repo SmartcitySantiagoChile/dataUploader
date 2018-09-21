@@ -36,28 +36,15 @@ class LoadShapeData(TestCase):
     @mock.patch('uploader.datafile.Search')
     @mock.patch('loadData.Elasticsearch')
     def test_load_shape_data(self, elasticsearch_mock, search_mock, parallel_bulk):
-        file_path = os.path.join(os.path.dirname(__file__), 'files', '2017-04-03.shape')
-        self.prepare_search_mock(search_mock)
-        parallel_bulk.return_value = [(True, 'info')]
+        file_name_list = ['2017-04-03.shape', '2017-04-03.shape.gz', '2017-04-03.shape.zip']
+        for file_name in file_name_list:
+            file_path = os.path.join(os.path.dirname(__file__), 'files', file_name)
+            self.prepare_search_mock(search_mock)
+            parallel_bulk.return_value = [(True, 'info')]
 
-        shape_uploader = ShapeFile(file_path)
-        shape_uploader.load(elasticsearch_mock, self.index_name, self.chunk_size, self.threads, self.timeout)
+            shape_uploader = ShapeFile(file_path)
+            shape_uploader.load(elasticsearch_mock, self.index_name, self.chunk_size, self.threads, self.timeout)
 
-        list(shape_uploader.make_docs())
+            list(shape_uploader.make_docs())
 
-        parallel_bulk.assert_called()
-
-    @mock.patch('uploader.datafile.parallel_bulk')
-    @mock.patch('uploader.datafile.Search')
-    @mock.patch('loadData.Elasticsearch')
-    def test_load_zipped_shape_data(self, elasticsearch_mock, search_mock, parallel_bulk):
-        file_path = os.path.join(os.path.dirname(__file__), 'files', '2017-04-03.shape.zip')
-        self.prepare_search_mock(search_mock)
-        parallel_bulk.return_value = [(True, 'info')]
-
-        shape_uploader = ShapeFile(file_path)
-        shape_uploader.load(elasticsearch_mock, self.index_name, self.chunk_size, self.threads, self.timeout)
-
-        list(shape_uploader.make_docs())
-
-        parallel_bulk.assert_called()
+            parallel_bulk.assert_called()
