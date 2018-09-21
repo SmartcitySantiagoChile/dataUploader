@@ -36,28 +36,16 @@ class LoadGeneralData(TestCase):
     @mock.patch('uploader.datafile.Search')
     @mock.patch('loadData.Elasticsearch')
     def test_load_general_data(self, elasticsearch_mock, search_mock, parallel_bulk):
-        file_path = os.path.join(os.path.dirname(__file__), 'files', '2017-08-30.general')
-        self.prepare_search_mock(search_mock)
-        parallel_bulk.return_value = [(True, 'info')]
 
-        general_uploader = GeneralFile(file_path)
-        general_uploader.load(elasticsearch_mock, self.index_name, self.chunk_size, self.threads, self.timeout)
+        file_name_list = ['2017-08-30.general', '2017-08-30.general.gz', '2017-08-30.general.zip']
+        for file_name in file_name_list:
+            file_path = os.path.join(os.path.dirname(__file__), 'files', file_name)
+            self.prepare_search_mock(search_mock)
+            parallel_bulk.return_value = [(True, 'info')]
 
-        list(general_uploader.make_docs())
+            general_uploader = GeneralFile(file_path)
+            general_uploader.load(elasticsearch_mock, self.index_name, self.chunk_size, self.threads, self.timeout)
 
-        parallel_bulk.assert_called()
+            list(general_uploader.make_docs())
 
-    @mock.patch('uploader.datafile.parallel_bulk')
-    @mock.patch('uploader.datafile.Search')
-    @mock.patch('loadData.Elasticsearch')
-    def test_load_zipped_general_data(self, elasticsearch_mock, search_mock, parallel_bulk):
-        file_path = os.path.join(os.path.dirname(__file__), 'files', '2017-08-30.general.zip')
-        self.prepare_search_mock(search_mock)
-        parallel_bulk.return_value = [(True, 'info')]
-
-        general_uploader = GeneralFile(file_path)
-        general_uploader.load(elasticsearch_mock, self.index_name, self.chunk_size, self.threads, self.timeout)
-
-        list(general_uploader.make_docs())
-
-        parallel_bulk.assert_called()
+            parallel_bulk.assert_called()

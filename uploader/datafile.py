@@ -13,6 +13,16 @@ import io
 import os
 import traceback
 import zipfile
+import gzip
+
+
+def is_gzipfile(file_path):
+    with gzip.open(file_path) as file_obj:
+        try:
+            file_obj.read(1)
+            return True
+        except IOError:
+            return False
 
 
 class DataFile:
@@ -39,6 +49,8 @@ class DataFile:
             # it assumes that zip file has only one file
             file_name = zip_file_obj.namelist()[0]
             file_obj = zip_file_obj.open(file_name, 'rU')
+        elif is_gzipfile(self.datafile):
+            file_obj = gzip.open(self.datafile, 'rb')
         else:
             file_obj = io.open(self.datafile, str('rb'))
 
