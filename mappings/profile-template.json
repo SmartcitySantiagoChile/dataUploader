@@ -2,17 +2,26 @@
   "settings": {
     "max_result_window": 15000,
     "index": {
-      "analysis" : {
+      "number_of_shards": 16,
+      "number_of_replicas": 1,
+      "analysis": {
         "analyzer": {
           "autocomplete_analyzer": {
             "type": "custom",
             "tokenizer": "lowercase",
-            "filter": ["asciifolding", "title_ngram"]
+            "filter": [
+              "asciifolding",
+              "title_ngram"
+            ]
           },
           "autocomplete_analyzer_for_code": {
             "type": "custom",
             "tokenizer": "whitespace",
-            "filter": ["lowercase", "asciifolding", "title_ngram"]
+            "filter": [
+              "lowercase",
+              "asciifolding",
+              "title_ngram"
+            ]
           }
         },
         "filter": {
@@ -40,11 +49,11 @@
         "userRoute": {
           "type": "keyword"
         },
-        "licensePlate": { 
+        "licensePlate": {
           "type": "keyword",
           "index": false
         },
-        "authStopCode" : { 
+        "authStopCode": {
           "type": "text",
           "analyzer": "autocomplete_analyzer_for_code",
           "fields": {
@@ -62,7 +71,7 @@
             }
           }
         },
-        "userStopName": { 
+        "userStopName": {
           "type": "text",
           "analyzer": "autocomplete_analyzer",
           "fields": {
@@ -71,46 +80,46 @@
             }
           }
         },
-        "expeditionStartTime": { 
+        "expeditionStartTime": {
           "type": "date",
-          "format" : "yyyy-MM-dd HH:mm:ss"
+          "format": "yyyy-MM-dd HH:mm:ss"
         },
-        "expeditionEndTime": { 
+        "expeditionEndTime": {
           "type": "date",
-          "format" : "yyyy-MM-dd HH:mm:ss"
+          "format": "yyyy-MM-dd HH:mm:ss"
         },
-        "fulfillment" : { 
+        "fulfillment": {
           "type": "keyword"
         },
         "expeditionStopOrder": {
           "type": "short",
           "index": false
         },
-        "expeditionDayId" : { 
+        "expeditionDayId": {
           "type": "integer",
           "index": false
         },
-        "stopDistanceFromPathStart" : { 
+        "stopDistanceFromPathStart": {
           "type": "half_float",
           "index": false
         },
-        "expandedBoarding" : { 
+        "expandedBoarding": {
           "type": "half_float",
           "index": false
         },
-        "expandedAlighting": { 
+        "expandedAlighting": {
           "type": "half_float",
           "index": false
         },
-        "loadProfile": { 
+        "loadProfile": {
           "type": "half_float",
           "index": false
         },
-        "busCapacity" : { 
+        "busCapacity": {
           "type": "short",
           "index": false
         },
-        "expeditionStopTime" : { 
+        "expeditionStopTime": {
           "type": "text",
           "index": false
         },
@@ -126,17 +135,17 @@
         "busStation": {
           "type": "byte"
         },
-        "transactions" : { 
+        "transactions": {
           "type": "integer",
           "index": false
         },
-        "halfHourInStartTime" : { 
+        "halfHourInStartTime": {
           "type": "byte"
         },
-        "halfHourInStopTime" : { 
+        "halfHourInStopTime": {
           "type": "byte"
         },
-        "notValid" : {
+        "notValid": {
           "type": "byte"
         }
       }

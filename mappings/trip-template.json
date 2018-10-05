@@ -1,5 +1,10 @@
 {
-  "settings": {},
+  "settings": {
+    "index": {
+      "number_of_shards": 23,
+      "number_of_replicas": 1
+    }
+  },
   "mappings": {
     "doc": {
       "properties": {

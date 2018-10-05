@@ -1,5 +1,9 @@
 {
   "settings": {
+    "index": {
+      "number_of_shards": 1,
+      "number_of_replicas": 1
+    },
     "max_result_window": 10000
   },
   "mappings": {
@@ -11,10 +15,10 @@
         "date": {
           "type": "date"
         },
-        "dayType": { 
+        "dayType": {
           "type": "keyword"
         },
-        "expeditionNumber" : { 
+        "expeditionNumber": {
           "type": "integer"
         },
         "minExpeditionTime": {
@@ -23,124 +27,124 @@
         "maxExpeditionTime": {
           "type": "float"
         },
-        "averageExpeditionTime": { 
+        "averageExpeditionTime": {
           "type": "float"
         },
-        "licensePlateNumber": { 
+        "licensePlateNumber": {
           "type": "integer"
         },
-        "GPSPointsNumber": { 
+        "GPSPointsNumber": {
           "type": "integer"
         },
-        "averageTimeBetweenGPSPoints": { 
+        "averageTimeBetweenGPSPoints": {
           "type": "float"
         },
-        "GPSNumberWithRoute": { 
+        "GPSNumberWithRoute": {
           "type": "integer"
         },
-        "GPSNumberWithoutRoute": { 
+        "GPSNumberWithoutRoute": {
           "type": "integer"
         },
-        "transactionNumber": { 
+        "transactionNumber": {
           "type": "integer"
         },
-        "transactionOnBusNumber": { 
+        "transactionOnBusNumber": {
           "type": "integer"
         },
-        "transactionOnMetroNumber": { 
+        "transactionOnMetroNumber": {
           "type": "integer"
         },
-        "transactionOnTrainNumber": { 
+        "transactionOnTrainNumber": {
           "type": "integer"
         },
-        "transactionOnBusStation": { 
+        "transactionOnBusStation": {
           "type": "integer"
         },
-        "smartcardNumber": { 
+        "smartcardNumber": {
           "type": "integer"
         },
-        "transactionWithRoute": { 
+        "transactionWithRoute": {
           "type": "integer"
         },
-        "transactionWithoutRoute": { 
+        "transactionWithoutRoute": {
           "type": "integer"
         },
-        "stagesWithBusAlighting": { 
+        "stagesWithBusAlighting": {
           "type": "integer"
         },
-        "stagesWithMetroAlighting": { 
+        "stagesWithMetroAlighting": {
           "type": "integer"
         },
-        "stagesWithTrainAlighting": { 
+        "stagesWithTrainAlighting": {
           "type": "integer"
         },
-        "stagesWithBusStationAlighting": { 
+        "stagesWithBusStationAlighting": {
           "type": "integer"
         },
-        "tripNumber": { 
+        "tripNumber": {
           "type": "integer"
         },
-        "completeTripNumber": { 
+        "completeTripNumber": {
           "type": "integer"
         },
-        "tripsWithOneStage": { 
+        "tripsWithOneStage": {
           "type": "integer"
         },
-        "tripsWithTwoStages": { 
+        "tripsWithTwoStages": {
           "type": "integer"
         },
-        "tripsWithThreeStages": { 
+        "tripsWithThreeStages": {
           "type": "integer"
         },
-        "tripsWithFourStages": { 
+        "tripsWithFourStages": {
           "type": "integer"
         },
-        "tripsWithFiveOrMoreStages": { 
+        "tripsWithFiveOrMoreStages": {
           "type": "integer"
         },
-        "tripsWithOnlyMetro": { 
+        "tripsWithOnlyMetro": {
           "type": "integer"
         },
-        "tripsThatUseMetro": { 
+        "tripsThatUseMetro": {
           "type": "integer"
         },
-        "tripsWithoutLastAlighting": { 
+        "tripsWithoutLastAlighting": {
           "type": "integer"
         },
-        "validTripNumber": { 
+        "validTripNumber": {
           "type": "float"
         },
-        "averageTimeOfTrips": { 
+        "averageTimeOfTrips": {
           "type": "float"
         },
-        "averageDistanceOfTrips": { 
+        "averageDistanceOfTrips": {
           "type": "float"
         },
-        "averageVelocityOfTrips": { 
+        "averageVelocityOfTrips": {
           "type": "float"
         },
-        "tripNumberInMorningRushHour": { 
+        "tripNumberInMorningRushHour": {
           "type": "float"
         },
-        "averageTimeInMorningRushTrips": { 
+        "averageTimeInMorningRushTrips": {
           "type": "float"
         },
-        "averageDistanceInMorningRushTrips": { 
+        "averageDistanceInMorningRushTrips": {
           "type": "float"
         },
-        "averageVelocityInMorningRushTrips": { 
+        "averageVelocityInMorningRushTrips": {
           "type": "float"
         },
-        "tripNumberInAfternoonRushHour": { 
+        "tripNumberInAfternoonRushHour": {
           "type": "float"
         },
-        "averageTimeInAfternoonRushTrips": { 
+        "averageTimeInAfternoonRushTrips": {
           "type": "float"
         },
-        "averageDistanceInAfternoonRushTrips": { 
+        "averageDistanceInAfternoonRushTrips": {
           "type": "float"
         },
-        "averageVelocityInAfternoonRushTrips": { 
+        "averageVelocityInAfternoonRushTrips": {
           "type": "float"
         }
       }

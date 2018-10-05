@@ -1,6 +1,10 @@
 {
   "settings": {
-    "max_result_window": 10000
+    "max_result_window": 10000,
+    "index": {
+      "number_of_shards": 3,
+      "number_of_replicas": 1
+    }
   },
   "mappings": {
     "doc": {
@@ -8,61 +12,61 @@
         "path": {
           "type": "keyword"
         },
-        "date": { 
+        "date": {
           "type": "date"
         },
-        "dayType" : {
+        "dayType": {
           "type": "keyword"
         },
-        "authRouteCode" : { 
+        "authRouteCode": {
           "type": "keyword"
         },
-        "operator": { 
+        "operator": {
           "type": "integer"
         },
-        "userRouteCode" : { 
+        "userRouteCode": {
           "type": "keyword"
         },
-        "timePeriodInStopTime" : { 
+        "timePeriodInStopTime": {
           "type": "keyword"
         },
-        "startStopOrder": { 
+        "startStopOrder": {
           "type": "integer"
         },
-        "endStopOrder": { 
+        "endStopOrder": {
           "type": "integer"
         },
-        "authStartStopCode" : { 
+        "authStartStopCode": {
           "type": "keyword"
         },
-        "authEndStopCode" : { 
+        "authEndStopCode": {
           "type": "keyword"
         },
-        "userStartStopCode" : { 
+        "userStartStopCode": {
           "type": "keyword"
         },
-        "userEndStopCode" : { 
+        "userEndStopCode": {
           "type": "keyword"
         },
-        "startStopName" : { 
+        "startStopName": {
           "type": "keyword"
         },
-        "endStopName" : { 
+        "endStopName": {
           "type": "keyword"
         },
-        "startZone" : { 
+        "startZone": {
           "type": "integer"
         },
-        "endZone" : { 
+        "endZone": {
           "type": "integer"
         },
-        "tripNumber" : { 
+        "tripNumber": {
           "type": "integer"
         },
-        "tripWithoutLanding" : { 
+        "tripWithoutLanding": {
           "type": "integer"
         },
-        "expandedTripNumber" : { 
+        "expandedTripNumber": {
           "type": "float"
         }
       }

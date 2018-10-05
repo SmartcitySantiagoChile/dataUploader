@@ -1,7 +1,11 @@
 {
   "settings": {
     "max_result_window": 10000,
-    "index.mapping.ignore_malformed": false
+    "index.mapping.ignore_malformed": false,
+    "index": {
+      "number_of_shards": 1,
+      "number_of_replicas": 1
+    }
   },
   "mappings": {
     "doc": {
@@ -9,7 +13,7 @@
         "path": {
           "type": "keyword"
         },
-        "authRouteCode" : {
+        "authRouteCode": {
           "type": "keyword"
         },
         "userRouteCode": {
