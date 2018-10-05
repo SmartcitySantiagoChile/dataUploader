@@ -1,27 +1,32 @@
 {
-  "settings": {},
+  "settings": {
+    "index": {
+      "number_of_shards": 2,
+      "number_of_replicas": 1
+    }
+  },
   "mappings": {
     "doc": {
       "properties": {
         "path": {
           "type": "keyword"
         },
-        "authRouteCode" : {
+        "authRouteCode": {
           "type": "keyword"
         },
-        "userRouteCode" : {
+        "userRouteCode": {
           "type": "keyword"
         },
-        "operator" : {
+        "operator": {
           "type": "byte"
         },
-        "merged" : { 
+        "merged": {
           "type": "keyword"
         },
         "section": {
           "type": "short"
         },
-        "date" : { 
+        "date": {
           "type": "date"
         },
         "periodId": {
@@ -30,19 +35,19 @@
         "dayType": {
           "type": "byte"
         },
-        "speed" : { 
+        "speed": {
           "type": "half_float"
         },
-        "totalDistance": { 
+        "totalDistance": {
           "type": "half_float"
         },
-        "totalTime" : { 
+        "totalTime": {
           "type": "half_float"
         },
         "nObs": {
           "type": "short"
         },
-        "nInvalidObs": { 
+        "nInvalidObs": {
           "type": "short"
         },
         "isEndSection": {

@@ -1,21 +1,26 @@
 {
-  "settings": {},
+  "settings": {
+    "index": {
+      "number_of_shards": 1,
+      "number_of_replicas": 1
+    }
+  },
   "mappings": {
     "doc": {
       "properties": {
         "path": {
           "type": "keyword"
         },
-        "authRouteCode" : {
+        "authRouteCode": {
           "type": "keyword"
         },
-        "userRouteCode" : {
+        "userRouteCode": {
           "type": "keyword"
         },
-        "operator" : {
+        "operator": {
           "type": "byte"
         },
-        "startDate" : { 
+        "startDate": {
           "type": "date"
         },
         "points": {
