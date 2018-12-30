@@ -148,188 +148,158 @@
         "transactionInAfternoonRushHour":{
           "type": "float"
         },
-        "":{
-          "type": ""
+        "alightingNumber":{
+          "type": "integer"
         },
-        "":{
-          "type": ""
+        "alightingNumberInMorningRushHour":{
+          "type": "integer"
         },
-        "":{
-          "type": ""
+        "alightingNumberInAfternoonRushHour":{
+          "type": "integer"
         },
-        "":{
-          "type": ""
+        "stopsNumberWithTypeE":{
+          "type": "integer"
         },
-        "":{
-          "type": ""
+        "stopsNumberWithTypeT":{
+          "type": "integer"
         },
-        "":{
-          "type": ""
+        "stopsNumberWithTypeL":{
+          "type": "integer"
         },
-        "":{
-          "type": ""
+        "stopsNumberWithTypeI":{
+          "type": "integer"
         },
-        "":{
-          "type": ""
+        "transactionNumberInStopsWithTypeE":{
+          "type": "integer"
         },
-        "":{
-          "type": ""
+        "transactionNumberInStopsWithTypeT":{
+          "type": "integer"
         },
-        "":{
-          "type": ""
+        "transactionNumberInStopsWithTypeL":{
+          "type": "integer"
         },
-        "":{
-          "type": ""
+        "transactionNumberInStopsWithTypeI":{
+          "type": "integer"
         },
-        "":{
-          "type": ""
+        "firstStopWithMoreValidations":{
+          "type": "keyword"
         },
-        "":{
-          "type": ""
+        "secondStopWithMoreValidations":{
+          "type": "keyword"
         },
-        "":{
-          "type": ""
+        "thirdStopWithMoreValidations":{
+          "type": "keyword"
         },
-        "":{
-          "type": ""
+        "fourthStopWithMoreValidations":{
+          "type": "keyword"
         },
-        "":{
-          "type": ""
+        "fifthStopWithMoreValidations":{
+          "type": "keyword"
         },
-        "":{
-          "type": ""
+        "sixthStopWithMoreValidations":{
+          "type": "keyword"
         },
-        "":{
-          "type": ""
+        "seventhStopWithMoreValidations":{
+          "type": "keyword"
         },
-        "":{
-          "type": ""
+        "eighthStopWithMoreValidations":{
+          "type": "keyword"
         },
-        "":{
-          "type": ""
+        "ninethStopWithMoreValidations":{
+          "type": "keyword"
         },
-        "":{
-          "type": ""
+        "tenthStopWithMoreValidations":{
+          "type": "keyword"
         },
-        "":{
-          "type": ""
+        "transactionNumberInFirstStopWithMoreValidations":{
+          "type": "integer"
         },
-        "":{
-          "type": ""
+        "transactionNumberInSecondStopWithMoreValidations":{
+          "type": "integer"
         },
-        "":{
-          "type": ""
+        "transactionNumberInThirdStopWithMoreValidations":{
+          "type": "integer"
         },
-        "":{
-          "type": ""
+        "transactionNumberInFourthStopWithMoreValidations":{
+          "type": "integer"
         },
-        "":{
-          "type": ""
+        "transactionNumberInFifthStopWithMoreValidations":{
+          "type": "integer"
         },
-        "":{
-          "type": ""
+        "transactionNumberInSixthStopWithMoreValidations":{
+          "type": "integer"
         },
-        "":{
-          "type": ""
+        "transactionNumberInSeventhStopWithMoreValidations":{
+          "type": "integer"
         },
-        "":{
-          "type": ""
+        "transactionNumberInEighthStopWithMoreValidations":{
+          "type": "integer"
         },
-        "":{
-          "type": ""
+        "transactionNumberInNinethStopWithMoreValidations":{
+          "type": "integer"
         },
-        "":{
-          "type": ""
+        "transactionNumberInTenthStopWithMoreValidations":{
+          "type": "integer"
         },
-        "":{
-          "type": ""
+        "firstBusStopWithMoreValidations":{
+          "type": "keyword"
         },
-        "":{
-          "type": ""
+        "secondBusStopWithMoreValidations":{
+          "type": "keyword"
         },
-        "":{
-          "type": ""
+        "thirdBusStopWithMoreValidations":{
+          "type": "keyword"
         },
-        "":{
-          "type": ""
+        "fourthBusStopWithMoreValidations":{
+          "type": "keyword"
         },
-        "":{
-          "type": ""
+        "fifthBusStopWithMoreValidations":{
+          "type": "keyword"
         },
-        "":{
-          "type": ""
+        "sixthBusStopWithMoreValidations":{
+          "type": "keyword"
         },
-        "":{
-          "type": ""
+        "seventhBusStopWithMoreValidations":{
+          "type": "keyword"
         },
-        "":{
-          "type": ""
+        "eighthBusStopWithMoreValidations":{
+          "type": "keyword"
         },
-        "":{
-          "type": ""
+        "ninethBusStopWithMoreValidations":{
+          "type": "keyword"
         },
-        "":{
-          "type": ""
+        "tenthBusStopWithMoreValidations":{
+          "type": "keyword"
         },
-        "":{
-          "type": ""
+        "transactionNumberInFirstBusStopWithMoreValidations":{
+          "type": "integer"
         },
-        "":{
-          "type": ""
+        "transactionNumberInSecondBusStopWithMoreValidations":{
+          "type": "integer"
         },
-        "":{
-          "type": ""
+        "transactionNumberInThirdBusStopWithMoreValidations":{
+          "type": "integer"
         },
-        "":{
-          "type": ""
+        "transactionNumberInFourthBusStopWithMoreValidations":{
+          "type": "integer"
         },
-        "":{
-          "type": ""
+        "transactionNumberInFifthBusStopWithMoreValidations":{
+          "type": "integer"
         },
-        "":{
-          "type": ""
+        "transactionNumberInSixthBusStopWithMoreValidations":{
+          "type": "integer"
         },
-        "":{
-          "type": ""
+        "transactionNumberInSeventhBusStopWithMoreValidations":{
+          "type": "integer"
         },
-        "":{
-          "type": ""
+        "transactionNumberInEighthBusStopWithMoreValidations":{
+          "type": "integer"
         },
-        "":{
-          "type": ""
+        "transactionNumberInNinethBusStopWithMoreValidations":{
+          "type": "integer"
         },
-        "":{
-          "type": ""
-        },
-        "":{
-          "type": ""
-        },
-        "":{
-          "type": ""
-        },
-        "":{
-          "type": ""
-        },
-        "":{
-          "type": ""
-        },
-        "":{
-          "type": ""
-        },
-        "":{
-          "type": ""
-        },
-        "":{
-          "type": ""
-        },
-        "":{
-          "type": ""
-        },
-        "":{
-          "type": ""
-        },
-        "":{
-          "type": ""
+        "transactionNumberInTenthBusStopWithMoreValidations":{
+          "type": "integer"
         }
       }
     }
