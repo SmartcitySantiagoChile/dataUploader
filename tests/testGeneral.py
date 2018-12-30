@@ -37,7 +37,7 @@ class LoadGeneralData(TestCase):
     @mock.patch('loadData.Elasticsearch')
     def test_load_general_data(self, elasticsearch_mock, search_mock, parallel_bulk):
 
-        file_name_list = ['2018-10-01.general', '2018-10-01.general.zip']#, '2018-10-01.general.gz']
+        file_name_list = ['2018-10-01.general', '2018-10-01.general.zip', '2018-10-01.general.gz']
         for file_name in file_name_list:
             file_path = os.path.join(os.path.dirname(__file__), 'files', file_name)
             self.prepare_search_mock(search_mock)

@@ -20,7 +20,40 @@ class GeneralFile(DataFile):
                            'averageTimeInMorningRushTrips', 'averageDistanceInMorningRushTrips',
                            'averageVelocityInMorningRushTrips', 'tripNumberInAfternoonRushHour',
                            'averageTimeInAfternoonRushTrips', 'averageDistanceInAfternoonRushTrips',
-                           'averageVelocityInAfternoonRushTrips']
+                           'averageVelocityInAfternoonRushTrips', "transactionInMorningRushHour",
+                           "transactionInAfternoonRushHour", "alightingNumber", "alightingNumberInMorningRushHour",
+                           "alightingNumberInAfternoonRushHour", "stopsNumberWithTypeE", "stopsNumberWithTypeT",
+                           "stopsNumberWithTypeL", "stopsNumberWithTypeI", "transactionNumberInStopsWithTypeE",
+                           "transactionNumberInStopsWithTypeT", "transactionNumberInStopsWithTypeL",
+                           "transactionNumberInStopsWithTypeI", "firstStopWithMoreValidations",
+                           "secondStopWithMoreValidations", "thirdStopWithMoreValidations",
+                           "fourthStopWithMoreValidations", "fifthStopWithMoreValidations",
+                           "sixthStopWithMoreValidations", "seventhStopWithMoreValidations",
+                           "eighthStopWithMoreValidations", "ninethStopWithMoreValidations",
+                           "tenthStopWithMoreValidations", "transactionNumberInFirstStopWithMoreValidations",
+                           "transactionNumberInSecondStopWithMoreValidations",
+                           "transactionNumberInThirdStopWithMoreValidations",
+                           "transactionNumberInFourthStopWithMoreValidations",
+                           "transactionNumberInFifthStopWithMoreValidations",
+                           "transactionNumberInSixthStopWithMoreValidations",
+                           "transactionNumberInSeventhStopWithMoreValidations",
+                           "transactionNumberInEighthStopWithMoreValidations",
+                           "transactionNumberInNinethStopWithMoreValidations",
+                           "transactionNumberInTenthStopWithMoreValidations", "firstBusStopWithMoreValidations",
+                           "secondBusStopWithMoreValidations", "thirdBusStopWithMoreValidations",
+                           "fourthBusStopWithMoreValidations", "fifthBusStopWithMoreValidations",
+                           "sixthBusStopWithMoreValidations", "seventhBusStopWithMoreValidations",
+                           "eighthBusStopWithMoreValidations", "ninethBusStopWithMoreValidations",
+                           "tenthBusStopWithMoreValidations", "transactionNumberInFirstBusStopWithMoreValidations",
+                           "transactionNumberInSecondBusStopWithMoreValidations",
+                           "transactionNumberInThirdBusStopWithMoreValidations",
+                           "transactionNumberInFourthBusStopWithMoreValidations",
+                           "transactionNumberInFifthBusStopWithMoreValidations",
+                           "transactionNumberInSixthBusStopWithMoreValidations",
+                           "transactionNumberInSeventhBusStopWithMoreValidations",
+                           "transactionNumberInEighthBusStopWithMoreValidations",
+                           "transactionNumberInNinethBusStopWithMoreValidations",
+                           "transactionNumberInTenthBusStopWithMoreValidations"]
 
     def row_parser(self, row, path, timestamp):
         return {
@@ -68,5 +101,78 @@ class GeneralFile(DataFile):
             "tripNumberInAfternoonRushHour": float(row['tripNumberInAfternoonRushHour']),
             "averageTimeInAfternoonRushTrips": float(row['averageTimeInAfternoonRushTrips']),
             "averageDistanceInAfternoonRushTrips": float(row['averageDistanceInAfternoonRushTrips']),
-            "averageVelocityInAfternoonRushTrips": float(row['averageVelocityInAfternoonRushTrips'])
+            "averageVelocityInAfternoonRushTrips": float(row['averageVelocityInAfternoonRushTrips']),
+            "transactionInMorningRushHour": float(row['transactionInMorningRushHour']),
+            "transactionInAfternoonRushHour": float(row['transactionInAfternoonRushHour']),
+            "alightingNumber": float(row['alightingNumber']),
+            "alightingNumberInMorningRushHour": float(row['alightingNumberInMorningRushHour']),
+            "alightingNumberInAfternoonRushHour": float(row['alightingNumberInAfternoonRushHour']),
+            "stopsNumberWithTypeE": float(row['stopsNumberWithTypeE']),
+            "stopsNumberWithTypeT": float(row['stopsNumberWithTypeT']),
+            "stopsNumberWithTypeL": float(row['stopsNumberWithTypeL']),
+            "stopsNumberWithTypeI": float(row['stopsNumberWithTypeI']),
+            "transactionNumberInStopsWithTypeE": float(row['transactionNumberInStopsWithTypeE']),
+            "transactionNumberInStopsWithTypeT": float(row['transactionNumberInStopsWithTypeT']),
+            "transactionNumberInStopsWithTypeL": float(row['transactionNumberInStopsWithTypeL']),
+            "transactionNumberInStopsWithTypeI": float(row['transactionNumberInStopsWithTypeI']),
+            "firstStopWithMoreValidations": float(row['firstStopWithMoreValidations']),
+            "secondStopWithMoreValidations": float(row['secondStopWithMoreValidations']),
+            "thirdStopWithMoreValidations": float(row['thirdStopWithMoreValidations']),
+            "fourthStopWithMoreValidations": float(row['fourthStopWithMoreValidations']),
+            "fifthStopWithMoreValidations": float(row['fifthStopWithMoreValidations']),
+            "sixthStopWithMoreValidations": float(row['sixthStopWithMoreValidations']),
+            "seventhStopWithMoreValidations": float(row['seventhStopWithMoreValidations']),
+            "eighthStopWithMoreValidations": float(row['eighthStopWithMoreValidations']),
+            "ninethStopWithMoreValidations": float(row['ninethStopWithMoreValidations']),
+            "tenthStopWithMoreValidations": float(row['tenthStopWithMoreValidations']),
+            "transactionNumberInFirstStopWithMoreValidations": float(
+                row['transactionNumberInFirstStopWithMoreValidations']),
+            "transactionNumberInSecondStopWithMoreValidations": float(
+                row['transactionNumberInSecondStopWithMoreValidations']),
+            "transactionNumberInThirdStopWithMoreValidations": float(
+                row['transactionNumberInThirdStopWithMoreValidations']),
+            "transactionNumberInFourthStopWithMoreValidations": float(
+                row['transactionNumberInFourthStopWithMoreValidations']),
+            "transactionNumberInFifthStopWithMoreValidations": float(
+                row['transactionNumberInFifthStopWithMoreValidations']),
+            "transactionNumberInSixthStopWithMoreValidations": float(
+                row['transactionNumberInSixthStopWithMoreValidations']),
+            "transactionNumberInSeventhStopWithMoreValidations": float(
+                row['transactionNumberInSeventhStopWithMoreValidations']),
+            "transactionNumberInEighthStopWithMoreValidations": float(
+                row['transactionNumberInEighthStopWithMoreValidations']),
+            "transactionNumberInNinethStopWithMoreValidations": float(
+                row['transactionNumberInNinethStopWithMoreValidations']),
+            "transactionNumberInTenthStopWithMoreValidations": float(
+                row['transactionNumberInTenthStopWithMoreValidations']),
+            "firstBusStopWithMoreValidations": float(row['firstBusStopWithMoreValidations']),
+            "secondBusStopWithMoreValidations": float(row['secondBusStopWithMoreValidations']),
+            "thirdBusStopWithMoreValidations": float(row['thirdBusStopWithMoreValidations']),
+            "fourthBusStopWithMoreValidations": float(row['fourthBusStopWithMoreValidations']),
+            "fifthBusStopWithMoreValidations": float(row['fifthBusStopWithMoreValidations']),
+            "sixthBusStopWithMoreValidations": float(row['sixthBusStopWithMoreValidations']),
+            "seventhBusStopWithMoreValidations": float(row['seventhBusStopWithMoreValidations']),
+            "eighthBusStopWithMoreValidations": float(row['eighthBusStopWithMoreValidations']),
+            "ninethBusStopWithMoreValidations": float(row['ninethBusStopWithMoreValidations']),
+            "tenthBusStopWithMoreValidations": float(row['tenthBusStopWithMoreValidations']),
+            "transactionNumberInFirstBusStopWithMoreValidations": float(
+                row['transactionNumberInFirstBusStopWithMoreValidations']),
+            "transactionNumberInSecondBusStopWithMoreValidations": float(
+                row['transactionNumberInSecondBusStopWithMoreValidations']),
+            "transactionNumberInThirdBusStopWithMoreValidations": float(
+                row['transactionNumberInThirdBusStopWithMoreValidations']),
+            "transactionNumberInFourthBusStopWithMoreValidations": float(
+                row['transactionNumberInFourthBusStopWithMoreValidations']),
+            "transactionNumberInFifthBusStopWithMoreValidations": float(
+                row['transactionNumberInFifthBusStopWithMoreValidations']),
+            "transactionNumberInSixthBusStopWithMoreValidations": float(
+                row['transactionNumberInSixthBusStopWithMoreValidations']),
+            "transactionNumberInSeventhBusStopWithMoreValidations": float(
+                row['transactionNumberInSeventhBusStopWithMoreValidations']),
+            "transactionNumberInEighthBusStopWithMoreValidations": float(
+                row['transactionNumberInEighthBusStopWithMoreValidations']),
+            "transactionNumberInNinethBusStopWithMoreValidations": float(
+                row['transactionNumberInNinethBusStopWithMoreValidations']),
+            "transactionNumberInTenthBusStopWithMoreValidations": float(
+                row['transactionNumberInTenthBusStopWithMoreValidations'])
         }
