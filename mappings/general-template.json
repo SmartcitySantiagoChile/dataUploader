@@ -18,6 +18,9 @@
         "dayType": {
           "type": "keyword"
         },
+        "version": {
+          "type": "keyword"
+        },
         "expeditionNumber": {
           "type": "integer"
         },

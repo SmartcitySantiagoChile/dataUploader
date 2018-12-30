@@ -6,7 +6,7 @@ class GeneralFile(DataFile):
 
     def __init__(self, datafile):
         DataFile.__init__(self, datafile)
-        self.fieldnames = ['date', 'dayType', 'expeditionNumber', 'minExpeditionTime', 'maxExpeditionTime',
+        self.fieldnames = ['date', 'dayType', 'version', 'expeditionNumber', 'minExpeditionTime', 'maxExpeditionTime',
                            'averageExpeditionTime', 'licensePlateNumber', 'GPSPointsNumber',
                            'averageTimeBetweenGPSPoints', 'GPSNumberWithRoute', 'GPSNumberWithoutRoute',
                            'transactionNumber', 'transactionOnBusNumber', 'transactionOnMetroNumber',
@@ -61,6 +61,7 @@ class GeneralFile(DataFile):
             "timestamp": timestamp,
             "date": row['date'],
             "dayType": row['dayType'],
+            "version": row['version'],
             "expeditionNumber": int(row['expeditionNumber']),
             "minExpeditionTime": float(row['minExpeditionTime']),
             "maxExpeditionTime": float(row['maxExpeditionTime']),
