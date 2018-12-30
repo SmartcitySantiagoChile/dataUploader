@@ -49,16 +49,16 @@
           "type": "integer"
         },
         "transactionOnBusNumber": {
-          "type": "integer"
+          "type": "float"
         },
         "transactionOnMetroNumber": {
-          "type": "integer"
+          "type": "float"
         },
         "transactionOnTrainNumber": {
-          "type": "integer"
+          "type": "float"
         },
         "transactionOnBusStation": {
-          "type": "integer"
+          "type": "float"
         },
         "smartcardNumber": {
           "type": "integer"
@@ -70,48 +70,42 @@
           "type": "integer"
         },
         "stagesWithBusAlighting": {
-          "type": "integer"
+          "type": "float"
         },
         "stagesWithMetroAlighting": {
-          "type": "integer"
+          "type": "float"
         },
         "stagesWithTrainAlighting": {
-          "type": "integer"
+          "type": "float"
         },
         "stagesWithBusStationAlighting": {
-          "type": "integer"
+          "type": "float"
         },
         "tripNumber": {
           "type": "integer"
         },
-        "completeTripNumber": {
-          "type": "integer"
-        },
         "tripsWithOneStage": {
-          "type": "integer"
+          "type": "float"
         },
         "tripsWithTwoStages": {
-          "type": "integer"
+          "type": "float"
         },
         "tripsWithThreeStages": {
-          "type": "integer"
+          "type": "float"
         },
         "tripsWithFourStages": {
-          "type": "integer"
+          "type": "float"
         },
         "tripsWithFiveOrMoreStages": {
-          "type": "integer"
+          "type": "float"
         },
         "tripsWithOnlyMetro": {
-          "type": "integer"
+          "type": "float"
         },
         "tripsThatUseMetro": {
-          "type": "integer"
+          "type": "float"
         },
         "tripsWithoutLastAlighting": {
-          "type": "integer"
-        },
-        "validTripNumber": {
           "type": "float"
         },
         "averageTimeOfTrips": {
@@ -146,6 +140,165 @@
         },
         "averageVelocityInAfternoonRushTrips": {
           "type": "float"
+        },
+        "transactionInMorningRushHour":{
+          "type": "float"
+        },
+        "transactionInAfternoonRushHour":{
+          "type": "float"
+        },
+        "alightingNumber":{
+          "type": "integer"
+        },
+        "alightingNumberInMorningRushHour":{
+          "type": "integer"
+        },
+        "alightingNumberInAfternoonRushHour":{
+          "type": "integer"
+        },
+        "stopsNumberWithTypeE":{
+          "type": "integer"
+        },
+        "stopsNumberWithTypeT":{
+          "type": "integer"
+        },
+        "stopsNumberWithTypeL":{
+          "type": "integer"
+        },
+        "stopsNumberWithTypeI":{
+          "type": "integer"
+        },
+        "transactionNumberInStopsWithTypeE":{
+          "type": "integer"
+        },
+        "transactionNumberInStopsWithTypeT":{
+          "type": "integer"
+        },
+        "transactionNumberInStopsWithTypeL":{
+          "type": "integer"
+        },
+        "transactionNumberInStopsWithTypeI":{
+          "type": "integer"
+        },
+        "firstStopWithMoreValidations":{
+          "type": "keyword"
+        },
+        "secondStopWithMoreValidations":{
+          "type": "keyword"
+        },
+        "thirdStopWithMoreValidations":{
+          "type": "keyword"
+        },
+        "fourthStopWithMoreValidations":{
+          "type": "keyword"
+        },
+        "fifthStopWithMoreValidations":{
+          "type": "keyword"
+        },
+        "sixthStopWithMoreValidations":{
+          "type": "keyword"
+        },
+        "seventhStopWithMoreValidations":{
+          "type": "keyword"
+        },
+        "eighthStopWithMoreValidations":{
+          "type": "keyword"
+        },
+        "ninethStopWithMoreValidations":{
+          "type": "keyword"
+        },
+        "tenthStopWithMoreValidations":{
+          "type": "keyword"
+        },
+        "transactionNumberInFirstStopWithMoreValidations":{
+          "type": "integer"
+        },
+        "transactionNumberInSecondStopWithMoreValidations":{
+          "type": "integer"
+        },
+        "transactionNumberInThirdStopWithMoreValidations":{
+          "type": "integer"
+        },
+        "transactionNumberInFourthStopWithMoreValidations":{
+          "type": "integer"
+        },
+        "transactionNumberInFifthStopWithMoreValidations":{
+          "type": "integer"
+        },
+        "transactionNumberInSixthStopWithMoreValidations":{
+          "type": "integer"
+        },
+        "transactionNumberInSeventhStopWithMoreValidations":{
+          "type": "integer"
+        },
+        "transactionNumberInEighthStopWithMoreValidations":{
+          "type": "integer"
+        },
+        "transactionNumberInNinethStopWithMoreValidations":{
+          "type": "integer"
+        },
+        "transactionNumberInTenthStopWithMoreValidations":{
+          "type": "integer"
+        },
+        "firstBusStopWithMoreValidations":{
+          "type": "keyword"
+        },
+        "secondBusStopWithMoreValidations":{
+          "type": "keyword"
+        },
+        "thirdBusStopWithMoreValidations":{
+          "type": "keyword"
+        },
+        "fourthBusStopWithMoreValidations":{
+          "type": "keyword"
+        },
+        "fifthBusStopWithMoreValidations":{
+          "type": "keyword"
+        },
+        "sixthBusStopWithMoreValidations":{
+          "type": "keyword"
+        },
+        "seventhBusStopWithMoreValidations":{
+          "type": "keyword"
+        },
+        "eighthBusStopWithMoreValidations":{
+          "type": "keyword"
+        },
+        "ninethBusStopWithMoreValidations":{
+          "type": "keyword"
+        },
+        "tenthBusStopWithMoreValidations":{
+          "type": "keyword"
+        },
+        "transactionNumberInFirstBusStopWithMoreValidations":{
+          "type": "integer"
+        },
+        "transactionNumberInSecondBusStopWithMoreValidations":{
+          "type": "integer"
+        },
+        "transactionNumberInThirdBusStopWithMoreValidations":{
+          "type": "integer"
+        },
+        "transactionNumberInFourthBusStopWithMoreValidations":{
+          "type": "integer"
+        },
+        "transactionNumberInFifthBusStopWithMoreValidations":{
+          "type": "integer"
+        },
+        "transactionNumberInSixthBusStopWithMoreValidations":{
+          "type": "integer"
+        },
+        "transactionNumberInSeventhBusStopWithMoreValidations":{
+          "type": "integer"
+        },
+        "transactionNumberInEighthBusStopWithMoreValidations":{
+          "type": "integer"
+        },
+        "transactionNumberInNinethBusStopWithMoreValidations":{
+          "type": "integer"
+        },
+        "transactionNumberInTenthBusStopWithMoreValidations":{
+          "type": "integer"
         }
       }
     }
