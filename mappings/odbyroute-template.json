@@ -16,7 +16,7 @@
           "type": "date"
         },
         "dayType": {
-          "type": "keyword"
+          "type": "byte"
         },
         "authRouteCode": {
           "type": "keyword"
@@ -28,7 +28,7 @@
           "type": "keyword"
         },
         "timePeriodInStopTime": {
-          "type": "keyword"
+          "type": "byte"
         },
         "startStopOrder": {
           "type": "integer"

@@ -27,7 +27,7 @@ class LoadOdByRouteData(TestCase):
         type(search_mock).total = mock.PropertyMock(return_value=0)
 
     def test_check_make_docs(self):
-        file_path = os.path.join(os.path.dirname(__file__), 'files', '2017-07-31.odbyroute')
+        file_path = os.path.join(os.path.dirname(__file__), 'files', '2017-05-08.odbyroute')
 
         odbyroute_uploader = OdByRouteFile(file_path)
         list(odbyroute_uploader.make_docs())
@@ -37,7 +37,7 @@ class LoadOdByRouteData(TestCase):
     @mock.patch('loadData.Elasticsearch')
     def test_load_odbyroute_data(self, elasticsearch_mock, search_mock, parallel_bulk):
 
-        file_name_list = ['2017-07-31.odbyroute', '2017-07-31.odbyroute.gz', '2017-07-31.odbyroute.zip']
+        file_name_list = ['2017-05-08.odbyroute', '2017-05-08.odbyroute.gz', '2017-05-08.odbyroute.zip']
         for file_name in file_name_list:
             file_path = os.path.join(os.path.dirname(__file__), 'files', file_name)
             self.prepare_search_mock(search_mock)
