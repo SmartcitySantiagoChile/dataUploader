@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from elasticsearch import Elasticsearch
-
-import os
-import sys
 import argparse
 import glob
+import os
+import sys
+
+from elasticsearch import Elasticsearch
 
 # add path so we can use function through command line
 new_path = os.path.join(os.path.dirname(__file__), '..', '..')
@@ -30,7 +30,7 @@ def upload_file(es_instance, datafile, index_name=None, chunk_size=5000, threads
 
     # Get file extension
     index_name = os.path.basename(datafile).split(".")[1] if index_name is None else index_name
-    
+
     # Determine file type according to the extension
     if index_name == 'expedition':
         uploader = ExpeditionFile(datafile)
