@@ -10,7 +10,7 @@ import zipfile
 from datetime import datetime
 
 from elasticsearch.helpers import parallel_bulk
-from elasticsearch_dsl import Search
+from elasticsearch_dsl import Search, Index
 
 from errors import IndexNotEmptyError, StopDocumentExist
 
@@ -69,7 +69,7 @@ class DataFile:
             raise IndexNotEmptyError('There are {0} documents from this file in the index'.format(result.hits.total))
 
         # disable refresh
-        client.index(index_name).put_settings(body={'index.refresh_interval': -1})
+        Index(index_name, using=client).put_settings(body={'index.refresh_interval': -1})
 
         # Send docs to elasticsearch
         for success, info in parallel_bulk(client, self.make_docs(), thread_count=threads, chunk_size=chunk_size,
@@ -79,7 +79,7 @@ class DataFile:
                 print('Doc failed', info)
 
         # enable refresh
-        client.index(index_name).put_settings(body={'index.refresh_interval': '1s'})
+        Index(index_name, using=client).put_settings(body={'index.refresh_interval': '1s'})
 
     def row_parser(self, row, path, timestamp):
         raise NotImplementedError()
