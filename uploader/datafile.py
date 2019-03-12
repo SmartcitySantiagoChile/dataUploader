@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from elasticsearch.helpers import parallel_bulk
-from elasticsearch_dsl import Search, Index
+from elasticsearch_dsl import Search
 
 from datetime import datetime
 
@@ -69,18 +69,12 @@ class DataFile:
         if result.hits.total != 0:
             raise IndexNotEmptyError('There are {0} documents from this file in the index'.format(result.hits.total))
 
-        # disable refresh
-        Index(index_name, using=client).put_settings(body={'index.refresh_interval': -1})
-
         # Send docs to elasticsearch
         for success, info in parallel_bulk(client, self.make_docs(), thread_count=threads, chunk_size=chunk_size,
                                            request_timeout=timeout, index=index_name, doc_type='doc',
                                            raise_on_exception=False):
             if not success:
                 print('Doc failed', info)
-
-        # enable refresh
-        Index(index_name, using=client).put_settings(body={'index.refresh_interval': '1s'})
 
     def row_parser(self, row, path, timestamp):
         raise NotImplementedError()
