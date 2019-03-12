@@ -82,7 +82,8 @@ def main():
     timeout = args.timeout
 
     # disable refresh
-    Index(index_name, using=es).put_settings(body={'index.refresh_interval': -1})
+    if index_name is not None:
+        Index(index_name, using=es).put_settings(body={'index.refresh_interval': -1})
 
     for datafile in datafiles:
         matched_files = glob.glob(datafile)
@@ -95,7 +96,8 @@ def main():
                 print('Error: {0}'.format(e))
 
     # enable refresh
-    Index(index_name, using=es).put_settings(body={'index.refresh_interval': '1s'})
+    if index_name is not None:
+        Index(index_name, using=es).put_settings(body={'index.refresh_interval': '1s'})
 
 
 if __name__ == "__main__":
