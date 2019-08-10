@@ -1,8 +1,14 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from elasticsearch import Elasticsearch
+import argparse
+import glob
+import os
 
+from elasticsearch import Elasticsearch
+from elasticsearch_dsl import Index
+
+from errors import UnrecognizedFileExtensionError, IndexNotEmptyError
 from uploader.expedition import ExpeditionFile
 from uploader.general import GeneralFile
 from uploader.odbyroute import OdByRouteFile
@@ -13,19 +19,13 @@ from uploader.stop import StopFile
 from uploader.stopbyroute import StopByRouteFile
 from uploader.trip import TripFile
 
-from errors import UnrecognizedFileExtensionError, IndexNotEmptyError
-
-import argparse
-import glob
-import os
-
 
 def upload_file(es_instance, datafile, index_name=None, chunk_size=5000, threads=4, timeout=30):
     """ upload file to elasticsearch """
 
     # Get file extension
     index_name = os.path.basename(datafile).split(".")[1] if index_name is None else index_name
-    
+
     # Determine file type according to the extension
     if index_name == 'expedition':
         uploader = ExpeditionFile(datafile)
@@ -81,6 +81,9 @@ def main():
     threads = args.threads
     timeout = args.timeout
 
+    # disable refresh
+    Index(index_name, using=es).put_settings(body={'index.refresh_interval': -1})
+
     for datafile in datafiles:
         matched_files = glob.glob(datafile)
         for matched_file in matched_files:
@@ -90,6 +93,9 @@ def main():
             except IndexNotEmptyError as e:
                 # ignore it and continue uploading files
                 print('Error: {0}'.format(e))
+
+    # enable refresh
+    Index(index_name, using=es).put_settings(body={'index.refresh_interval': '1s'})
 
 
 if __name__ == "__main__":

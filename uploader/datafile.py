@@ -1,19 +1,18 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from elasticsearch.helpers import parallel_bulk
-from elasticsearch_dsl import Search
-
-from datetime import datetime
-
-from errors import IndexNotEmptyError, StopDocumentExist
-
 import csv
+import gzip
 import io
 import os
 import traceback
 import zipfile
-import gzip
+from datetime import datetime
+
+from elasticsearch.helpers import parallel_bulk
+from elasticsearch_dsl import Search
+
+from errors import IndexNotEmptyError, StopDocumentExist
 
 
 def is_gzipfile(file_path):
