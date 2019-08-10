@@ -13,7 +13,7 @@ from elasticsearch_dsl import Index
 new_path = os.path.join(os.path.dirname(__file__), '..', '..')
 sys.path.append(new_path)
 
-from uploader.busstationdistribution import BusStationDistributionFile
+from rqworkers.dataUploader.uploader.busstationdistribution import BusStationDistributionFile
 from rqworkers.dataUploader.uploader.expedition import ExpeditionFile
 from rqworkers.dataUploader.uploader.general import GeneralFile
 from rqworkers.dataUploader.uploader.odbyroute import OdByRouteFile
