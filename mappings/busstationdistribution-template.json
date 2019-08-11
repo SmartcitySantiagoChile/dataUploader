@@ -27,7 +27,7 @@
           "type": "keyword"
         },
         "busStationName": {
-          "type": "text",
+          "type": "keyword",
           "index": false
         },
         "operator": {
