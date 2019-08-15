@@ -27,5 +27,5 @@ class BusStationDistributionFile(DataFile):
             "subtraction": float(row['subtraction']),
             "neutral": float(row['neutral']),
             "factor": float(row['factor']),
-            "routes": float(row['routes'])
+            "routes": row['routes']
         }
