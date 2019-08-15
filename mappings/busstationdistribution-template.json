@@ -27,8 +27,7 @@
           "type": "keyword"
         },
         "busStationName": {
-          "type": "keyword",
-          "index": false
+          "type": "keyword"
         },
         "operator": {
           "type": "byte"
@@ -44,6 +43,12 @@
         },
         "neutral": {
           "type": "float"
+        },
+        "factor": {
+          "type": "float"
+        },
+        "routes": {
+          "type": "keyword"
         }
       }
     }

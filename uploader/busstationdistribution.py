@@ -10,7 +10,7 @@ class BusStationDistributionFile(DataFile):
     def __init__(self, datafile):
         DataFile.__init__(self, datafile)
         self.fieldnames = ['date', 'dayType', 'assignation', 'busStationId', 'busStationName', 'operator', 'total',
-                           'sum', 'subtraction', 'neutral']
+                           'sum', 'subtraction', 'neutral', 'assignation2', 'diff', 'factor', 'routes']
 
     def row_parser(self, row, path, timestamp):
         return {
@@ -25,5 +25,7 @@ class BusStationDistributionFile(DataFile):
             "total": float(row['total']),
             "sum": float(row['sum']),
             "subtraction": float(row['subtraction']),
-            "neutral": float(row['neutral'])
+            "neutral": float(row['neutral']),
+            "factor": float(row['factor']),
+            "routes": float(row['routes'])
         }
