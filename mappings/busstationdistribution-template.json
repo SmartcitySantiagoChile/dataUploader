@@ -1,0 +1,56 @@
+{
+  "settings": {
+    "max_result_window": 10000,
+    "index.mapping.ignore_malformed": false,
+    "index": {
+      "number_of_shards": 1,
+      "number_of_replicas": 1
+    }
+  },
+  "mappings": {
+    "doc": {
+      "properties": {
+        "path": {
+          "type": "keyword"
+        },
+        "date": {
+          "type": "date",
+          "format": "yyyy-MM-dd"
+        },
+        "dayType": {
+          "type": "byte"
+        },
+        "assignation": {
+          "type": "keyword"
+        },
+        "busStationId": {
+          "type": "keyword"
+        },
+        "busStationName": {
+          "type": "keyword"
+        },
+        "operator": {
+          "type": "byte"
+        },
+        "total": {
+          "type": "float"
+        },
+        "sum": {
+          "type": "float"
+        },
+        "subtraction": {
+          "type": "float"
+        },
+        "neutral": {
+          "type": "float"
+        },
+        "factor": {
+          "type": "float"
+        },
+        "routes": {
+          "type": "keyword"
+        }
+      }
+    }
+  }
+}
