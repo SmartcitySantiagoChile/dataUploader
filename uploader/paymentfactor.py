@@ -10,7 +10,7 @@ class PaymentFactorFile(DataFile):
     def __init__(self, datafile):
         DataFile.__init__(self, datafile)
         self.fieldnames = ['date', 'dayType', 'assignation', 'busStationId', 'busStationName', 'operator', 'total',
-                           'sum', 'subtraction', 'neutral', 'assignation2', 'diff', 'factor', 'routes']
+                           'sum', 'subtraction', 'neutral', 'factor', 'routes', 'transactions', 'validatorId']
 
     def row_parser(self, row, path, timestamp):
         return {
@@ -27,5 +27,7 @@ class PaymentFactorFile(DataFile):
             "subtraction": float(row['subtraction']),
             "neutral": float(row['neutral']),
             "factor": float(row['factor']),
-            "routes": row['routes']
+            "routes": row['routes'],
+            "transactions": row['transactions'],
+            "validatorId": row['validatorId']
         }
