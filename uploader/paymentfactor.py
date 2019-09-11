@@ -4,8 +4,8 @@ from __future__ import unicode_literals
 from uploader.datafile import DataFile
 
 
-class BusStationDistributionFile(DataFile):
-    """ Class that represents a busstationdistribution file. """
+class PaymentFactorFile(DataFile):
+    """ Class that represents a payment factor file. """
 
     def __init__(self, datafile):
         DataFile.__init__(self, datafile)

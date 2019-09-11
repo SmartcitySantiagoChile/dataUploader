@@ -9,7 +9,7 @@ from elasticsearch import Elasticsearch
 from elasticsearch_dsl import Index
 
 from errors import UnrecognizedFileExtensionError, IndexNotEmptyError
-from uploader.busstationdistribution import BusStationDistributionFile
+from uploader.paymentfactor import PaymentFactorFile
 from uploader.expedition import ExpeditionFile
 from uploader.general import GeneralFile
 from uploader.odbyroute import OdByRouteFile
@@ -46,8 +46,8 @@ def upload_file(es_instance, datafile, index_name=None, chunk_size=5000, threads
         uploader = StopByRouteFile(datafile)
     elif index_name == 'trip':
         uploader = TripFile(datafile)
-    elif index_name == 'busstationdistribution':
-        uploader = BusStationDistributionFile(datafile)
+    elif index_name == 'paymentfactor':
+        uploader = PaymentFactorFile(datafile)
     else:
         raise UnrecognizedFileExtensionError(datafile)
 
