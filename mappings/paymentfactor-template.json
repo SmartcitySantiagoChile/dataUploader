@@ -48,7 +48,16 @@
           "type": "float"
         },
         "routes": {
-          "type": "keyword"
+          "type": "text",
+          "index": false
+        },
+        "transactions": {
+          "type": "text",
+          "index": false
+        },
+        "validatorId": {
+          "type": "text",
+          "index": false
         }
       }
     }
