@@ -13,7 +13,7 @@ from elasticsearch_dsl import Index
 new_path = os.path.join(os.path.dirname(__file__), '..', '..')
 sys.path.append(new_path)
 
-from rqworkers.dataUploader.uploader.busstationdistribution import BusStationDistributionFile
+from rqworkers.dataUploader.uploader.paymentfactor import PaymentFactorFile
 from rqworkers.dataUploader.uploader.expedition import ExpeditionFile
 from rqworkers.dataUploader.uploader.general import GeneralFile
 from rqworkers.dataUploader.uploader.odbyroute import OdByRouteFile
@@ -52,8 +52,8 @@ def upload_file(es_instance, datafile, index_name=None, chunk_size=5000, threads
         uploader = StopByRouteFile(datafile)
     elif index_name == 'trip':
         uploader = TripFile(datafile)
-    elif index_name == 'busstationdistribution':
-        uploader = BusStationDistributionFile(datafile)
+    elif index_name == 'paymentfactor':
+        uploader = PaymentFactorFile(datafile)
     else:
         raise UnrecognizedFileExtensionError(datafile)
 
