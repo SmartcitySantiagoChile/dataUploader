@@ -9,6 +9,7 @@ from elasticsearch import Elasticsearch
 from elasticsearch_dsl import Index
 
 from errors import UnrecognizedFileExtensionError, IndexNotEmptyError
+from uploader.bip import BipFile
 from uploader.paymentfactor import PaymentFactorFile
 from uploader.expedition import ExpeditionFile
 from uploader.general import GeneralFile
@@ -48,6 +49,8 @@ def upload_file(es_instance, datafile, index_name=None, chunk_size=5000, threads
         uploader = TripFile(datafile)
     elif index_name == 'paymentfactor':
         uploader = PaymentFactorFile(datafile)
+    elif index_name == 'bip':
+        uploader = BipFile(datafile)
     else:
         raise UnrecognizedFileExtensionError(datafile)
 
