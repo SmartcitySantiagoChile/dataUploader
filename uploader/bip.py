@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from uploader.datafile import DataFile
+from rqworkers.dataUploader.uploader.datafile import DataFile
+
 
 
 class BipFile(DataFile):
