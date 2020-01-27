@@ -1,19 +1,19 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+import os
 from unittest import TestCase
 
-from uploader.paymentfactor import PaymentFactorFile
-
 import mock
-import os
+
+from uploader.bip import BipFile
 
 
-class LoadProfileData(TestCase):
+class LoadBipData(TestCase):
 
     def setUp(self):
         # default values
-        self.index_name = 'paymentfactor'
+        self.index_name = 'bip'
         self.chunk_size = 5000
         self.threads = 4
         self.timeout = 30
@@ -27,26 +27,26 @@ class LoadProfileData(TestCase):
         type(search_mock).total = mock.PropertyMock(return_value=0)
 
     def test_check_make_docs(self):
-        file_path = os.path.join(os.path.dirname(__file__), 'files', '2019-08-10.paymentfactor')
+        file_path = os.path.join(os.path.dirname(__file__), 'files', '2019-10-07.bip')
 
-        profile_uploader = PaymentFactorFile(file_path)
-        list(profile_uploader.make_docs())
+        bip_uploader = BipFile(file_path)
+        list(bip_uploader.make_docs())
 
     @mock.patch('uploader.datafile.parallel_bulk')
     @mock.patch('uploader.datafile.Search')
     @mock.patch('loadData.Elasticsearch')
     def test_load_data(self, elasticsearch_mock, search_mock, parallel_bulk):
-        file_name_list = ['2019-08-10.paymentfactor', '2019-08-10.paymentfactor.gz',
-                          '2019-08-10.paymentfactor.zip']
+        file_name_list = ['2019-10-07.bip', '2019-10-07.bip.gz',
+                          '2019-10-07.bip.zip']
         for file_name in file_name_list:
             file_path = os.path.join(os.path.dirname(__file__), 'files', file_name)
             self.prepare_search_mock(search_mock)
             parallel_bulk.return_value = [(True, 'info')]
 
-            paymentfactor_uploader = PaymentFactorFile(file_path)
-            paymentfactor_uploader.load(elasticsearch_mock, self.index_name, self.chunk_size, self.threads,
+            bip_uploader = BipFile(file_path)
+            bip_uploader.load(elasticsearch_mock, self.index_name, self.chunk_size, self.threads,
                                         self.timeout)
 
-            list(paymentfactor_uploader.make_docs())
+            list(bip_uploader.make_docs())
 
             parallel_bulk.assert_called()
