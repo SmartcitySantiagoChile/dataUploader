@@ -1,0 +1,65 @@
+{
+  "settings": {
+    "max_result_window": 15000,
+    "index": {
+      "number_of_shards": 16,
+      "number_of_replicas": 1,
+      "analysis": {
+        "analyzer": {
+          "autocomplete_analyzer": {
+            "type": "custom",
+            "tokenizer": "lowercase",
+            "filter": [
+              "asciifolding",
+              "title_ngram"
+            ]
+          },
+          "autocomplete_analyzer_for_code": {
+            "type": "custom",
+            "tokenizer": "whitespace",
+            "filter": [
+              "lowercase",
+              "asciifolding",
+              "title_ngram"
+            ]
+          }
+        },
+        "filter": {
+          "title_ngram": {
+            "type": "nGram",
+            "min_gram": 3,
+            "max_gram": 5
+          }
+        }
+      }
+    }
+  },
+  "mappings": {
+    "doc": {
+      "properties": {
+        "path": {
+          "type": "keyword"
+        },
+        "bipNumber": {
+          "type": "keyword"
+        },
+        "validationTime": {
+          "type": "date",
+          "format": "yyyy-MM-dd HH:mm:ss"
+        },
+        "source": {
+          "type": "keyword"
+        },
+        "operator": {
+          "type": "byte"
+        },
+        "route": {
+          "type": "keyword"
+        },
+        "userRoute": {
+          "type": "keyword"
+        }
+      }
+    }
+  }
+}
