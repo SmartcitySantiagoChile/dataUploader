@@ -20,6 +20,6 @@ class BipFile(DataFile):
             "route": row['route'],
             "userRoute": row['userRoute'],
             "validationTime": row['validationTime'],
-            "source": row['source'],
+            "source": row['source'].decode('latin1'),
             "bipNumber": row['bipNumber']
         }
