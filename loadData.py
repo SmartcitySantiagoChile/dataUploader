@@ -4,22 +4,27 @@ from __future__ import unicode_literals
 import argparse
 import glob
 import os
+import sys
 
 from elasticsearch import Elasticsearch
 from elasticsearch_dsl import Index
 
+# add path so we can use function through command line
+new_path = os.path.join(os.path.dirname(__file__), '..', '..')
+sys.path.append(new_path)
+
 from errors import UnrecognizedFileExtensionError, IndexNotEmptyError
-from uploader.bip import BipFile
-from uploader.paymentfactor import PaymentFactorFile
-from uploader.expedition import ExpeditionFile
-from uploader.general import GeneralFile
-from uploader.odbyroute import OdByRouteFile
-from uploader.profile import ProfileFile
-from uploader.shape import ShapeFile
-from uploader.speed import SpeedFile
-from uploader.stop import StopFile
-from uploader.stopbyroute import StopByRouteFile
-from uploader.trip import TripFile
+from rqworkers.dataUploader.uploader.bip import BipFile
+from rqworkers.dataUploader.uploader.paymentfactor import PaymentFactorFile
+from rqworkers.dataUploader.uploader.expedition import ExpeditionFile
+from rqworkers.dataUploader.uploader.general import GeneralFile
+from rqworkers.dataUploader.uploader.odbyroute import OdByRouteFile
+from rqworkers.dataUploader.uploader.profile import ProfileFile
+from rqworkers.dataUploader.uploader.shape import ShapeFile
+from rqworkers.dataUploader.uploader.speed import SpeedFile
+from rqworkers.dataUploader.uploader.stop import StopFile
+from rqworkers.dataUploader.uploader.stopbyroute import StopByRouteFile
+from rqworkers.dataUploader.uploader.trip import TripFile
 
 
 def upload_file(es_instance, datafile, index_name=None, chunk_size=5000, threads=4, timeout=30):
