@@ -2,11 +2,10 @@
 from __future__ import unicode_literals
 
 import os
-from dataUploader.unittest import TestCase
+from unittest import TestCase
 
 import mock
-
-from uploader.bip import BipFile
+from dataUploader.uploader.bip import BipFile
 
 
 class LoadBipData(TestCase):
