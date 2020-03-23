@@ -6,7 +6,7 @@ from elasticsearch_dsl import Search
 
 from datetime import datetime
 
-from rqworkers.dataUploader.errors import IndexNotEmptyError, StopDocumentExist
+from dataUploader.errors import IndexNotEmptyError, StopDocumentExist
 
 import csv
 import io

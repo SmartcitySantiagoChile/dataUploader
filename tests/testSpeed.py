@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from unittest import TestCase
 
-from rqworkers.dataUploader.uploader.speed import SpeedFile
+from dataUploader.uploader.speed import SpeedFile
 
 import mock
 import os

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from rqworkers.dataUploader.uploader.datafile import DataFile
+from dataUploader.uploader.datafile import DataFile
 
 
 class PaymentFactorFile(DataFile):

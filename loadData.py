@@ -13,18 +13,18 @@ from elasticsearch_dsl import Index
 new_path = os.path.join(os.path.dirname(__file__), '..', '..')
 sys.path.append(new_path)
 
-from errors import UnrecognizedFileExtensionError, IndexNotEmptyError
-from rqworkers.dataUploader.uploader.bip import BipFile
-from rqworkers.dataUploader.uploader.paymentfactor import PaymentFactorFile
-from rqworkers.dataUploader.uploader.expedition import ExpeditionFile
-from rqworkers.dataUploader.uploader.general import GeneralFile
-from rqworkers.dataUploader.uploader.odbyroute import OdByRouteFile
-from rqworkers.dataUploader.uploader.profile import ProfileFile
-from rqworkers.dataUploader.uploader.shape import ShapeFile
-from rqworkers.dataUploader.uploader.speed import SpeedFile
-from rqworkers.dataUploader.uploader.stop import StopFile
-from rqworkers.dataUploader.uploader.stopbyroute import StopByRouteFile
-from rqworkers.dataUploader.uploader.trip import TripFile
+from dataUploader.errors import UnrecognizedFileExtensionError, IndexNotEmptyError
+from dataUploader.uploader.bip import BipFile
+from dataUploader.uploader.paymentfactor import PaymentFactorFile
+from dataUploader.uploader.expedition import ExpeditionFile
+from dataUploader.uploader.general import GeneralFile
+from dataUploader.uploader.odbyroute import OdByRouteFile
+from dataUploader.uploader.profile import ProfileFile
+from dataUploader.uploader.shape import ShapeFile
+from dataUploader.uploader.speed import SpeedFile
+from dataUploader.uploader.stop import StopFile
+from dataUploader.uploader.stopbyroute import StopByRouteFile
+from dataUploader.uploader.trip import TripFile
 
 
 def upload_file(es_instance, datafile, index_name=None, chunk_size=5000, threads=4, timeout=30):

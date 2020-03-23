@@ -3,8 +3,8 @@ from __future__ import unicode_literals
 
 from unittest import TestCase
 
-from rqworkers.dataUploader.uploader.stop import StopFile
-from rqworkers.dataUploader.uploader.stopbyroute import StopByRouteFile
+from dataUploader.uploader.stop import StopFile
+from dataUploader.uploader.stopbyroute import StopByRouteFile
 
 import mock
 import os

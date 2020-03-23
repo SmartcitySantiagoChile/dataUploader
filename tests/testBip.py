@@ -6,7 +6,7 @@ from unittest import TestCase
 
 import mock
 
-from rqworkers.dataUploader.uploader.bip import BipFile
+from dataUploader.uploader.bip import BipFile
 
 
 class LoadBipData(TestCase):
