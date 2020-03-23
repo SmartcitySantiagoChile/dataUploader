@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from unittest import TestCase
 
-from uploader.paymentfactor import PaymentFactorFile
+from dataUploader.uploader.paymentfactor import PaymentFactorFile
 
 import mock
 import os
