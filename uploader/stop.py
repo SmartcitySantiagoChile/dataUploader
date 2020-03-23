@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from dataUploader.uploader.datafile import DataFile
 
-from errors import StopDocumentExist
+from dataUploader.errors import StopDocumentExist
 
 
 class StopFile(DataFile):
