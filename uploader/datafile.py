@@ -12,7 +12,7 @@ from datetime import datetime
 from elasticsearch.helpers import parallel_bulk
 from elasticsearch_dsl import Search
 
-from errors import IndexNotEmptyError, StopDocumentExist
+from dataUploader.errors import IndexNotEmptyError, StopDocumentExist
 
 
 def is_gzipfile(file_path):
