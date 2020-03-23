@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from unittest import TestCase
 
-from loadData import main
+from dataUploader.loadData import main
 
 import mock
 import os
