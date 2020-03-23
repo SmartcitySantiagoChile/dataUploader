@@ -5,7 +5,7 @@ import os
 from unittest import TestCase
 
 import mock
-from dataUploader.uploader.bip import BipFile
+from uploader.bip import BipFile
 
 
 class LoadBipData(TestCase):
@@ -31,9 +31,9 @@ class LoadBipData(TestCase):
         bip_uploader = BipFile(file_path)
         list(bip_uploader.make_docs())
 
-    @mock.patch('dataUploader.uploader.datafile.parallel_bulk')
-    @mock.patch('dataUploader.uploader.datafile.Search')
-    @mock.patch('dataUploader.loadData.Elasticsearch')
+    @mock.patch('uploader.datafile.parallel_bulk')
+    @mock.patch('uploader.datafile.Search')
+    @mock.patch('loadData.Elasticsearch')
     def test_load_data(self, elasticsearch_mock, search_mock, parallel_bulk):
         file_name_list = ['2019-10-07.bip', '2019-10-07.bip.gz',
                           '2019-10-07.bip.zip']
