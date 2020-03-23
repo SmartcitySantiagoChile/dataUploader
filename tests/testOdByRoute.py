@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from unittest import TestCase
 
-from uploader.odbyroute import OdByRouteFile
+from dataUploader.uploader.odbyroute import OdByRouteFile
 
 import mock
 import os
@@ -32,9 +32,9 @@ class LoadOdByRouteData(TestCase):
         odbyroute_uploader = OdByRouteFile(file_path)
         list(odbyroute_uploader.make_docs())
 
-    @mock.patch('uploader.datafile.parallel_bulk')
-    @mock.patch('uploader.datafile.Search')
-    @mock.patch('loadData.Elasticsearch')
+    @mock.patch('dataUploader.uploader.datafile.parallel_bulk')
+    @mock.patch('dataUploader.uploader.datafile.Search')
+    @mock.patch('dataUploader.loadData.Elasticsearch')
     def test_load_odbyroute_data(self, elasticsearch_mock, search_mock, parallel_bulk):
 
         file_name_list = ['2017-05-08.odbyroute', '2017-05-08.odbyroute.gz', '2017-05-08.odbyroute.zip']

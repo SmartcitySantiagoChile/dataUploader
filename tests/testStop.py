@@ -3,8 +3,8 @@ from __future__ import unicode_literals
 
 from unittest import TestCase
 
-from uploader.stop import StopFile
-from uploader.stopbyroute import StopByRouteFile
+from dataUploader.uploader.stop import StopFile
+from dataUploader.uploader.stopbyroute import StopByRouteFile
 
 import mock
 import os
@@ -33,9 +33,9 @@ class LoadStopData(TestCase):
         stop_uploader = StopFile(file_path)
         list(stop_uploader.make_docs())
 
-    @mock.patch('uploader.datafile.parallel_bulk')
-    @mock.patch('uploader.datafile.Search')
-    @mock.patch('loadData.Elasticsearch')
+    @mock.patch('dataUploader.uploader.datafile.parallel_bulk')
+    @mock.patch('dataUploader.uploader.datafile.Search')
+    @mock.patch('dataUploader.loadData.Elasticsearch')
     def test_load_stop_data(self, elasticsearch_mock, search_mock, parallel_bulk):
         file_name_list = ['2017-07-31.stop', '2017-07-31.stop.gz', '2017-07-31.stop.zip']
         for file_name in file_name_list:
