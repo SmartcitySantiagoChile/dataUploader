@@ -52,7 +52,7 @@ class DataFile:
         elif is_gzipfile(self.datafile):
             file_obj = gzip.open(self.datafile, 'rb')
         else:
-            file_obj = io.open(self.datafile, str('rb'))
+            file_obj = io.open(self.datafile, str('r'), encoding='latin-1')
 
         return file_obj
 
