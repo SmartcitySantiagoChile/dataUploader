@@ -20,7 +20,7 @@ class PaymentFactorFile(DataFile):
             "dayType": int(row['dayType']),
             "assignation": row['assignation'],
             "busStationId": row['busStationId'],
-            "busStationName": row['busStationName'],
+            "busStationName": row['busStationName'].decode('latin1'),
             "operator": int(row['operator']),
             "total": float(row['total']),
             "sum": float(row['sum']),
