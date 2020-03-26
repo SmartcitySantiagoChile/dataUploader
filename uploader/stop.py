@@ -27,7 +27,7 @@ class StopFile(DataFile):
             'startDate': self.name_to_date(),
             'authCode': row['authStopCode'],
             'userCode': row['userStopCode'],
-            'name': row['stopName'].decode('latin-1'),
+            'name': row['stopName'],
             'latitude': float(row['latitude']),
             'longitude': float(row['longitude'])
         }

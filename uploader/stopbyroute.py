@@ -43,7 +43,7 @@ class StopByRouteFile(DataFile):
                             'latitude': float(p['latitude']),
                             'authStopCode': p['authStopCode'],
                             'userStopCode': p['userStopCode'],
-                            'stopName': p['stopName'].decode('latin-1'),
+                            'stopName': p['stopName'],
                         } for p in stops
                     ]
                     yield {
