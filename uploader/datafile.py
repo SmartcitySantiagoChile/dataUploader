@@ -85,7 +85,7 @@ class DataFile:
             try:
                 next(f)  # skip header
             except StopIteration:
-                print("Error: file ", f.filename, "is empty.")
+                print("Error: file ", f.name, "is empty.")
             delimiter = str('|')
             reader = csv.DictReader(f, delimiter=delimiter, fieldnames=self.fieldnames)
             for row in reader:
