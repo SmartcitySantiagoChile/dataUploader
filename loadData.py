@@ -10,7 +10,7 @@ from elasticsearch import Elasticsearch
 from elasticsearch_dsl import Index
 
 # add path so we can use function through command line
-new_path = os.path.join(os.path.dirname(__file__), '..', '..')
+new_path = os.path.join(os.path.dirname(__file__), '..')
 sys.path.append(new_path)
 
 from dataUploader.errors import UnrecognizedFileExtensionError, IndexNotEmptyError
