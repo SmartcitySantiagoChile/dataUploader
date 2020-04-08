@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/SmartcitySantiagoChile/dataUploader.svg?branch=master)](https://travis-ci.com/SmartcitySantiagoChile/dataUploader)
+
 ## dataUploader
 Python script to upload files to Elasticsearch
 
