@@ -44,14 +44,15 @@ class DataFile:
         :return: file object
         """
         if zipfile.is_zipfile(self.datafile):
-            zip_file_obj = zipfile.ZipFile(self.datafile, 'r')
+            zip_file_obj = zipfile.ZipFile(self.datafile)
             # it assumes that zip file has only one file
             file_name = zip_file_obj.namelist()[0]
-            file_obj = zip_file_obj.open(file_name, 'rU')
+            file_obj_0 = zip_file_obj.open(file_name, 'r')
+            file_obj = io.TextIOWrapper(file_obj_0, encoding='latin-1')
         elif is_gzipfile(self.datafile):
-            file_obj = gzip.open(self.datafile, 'rb')
+            file_obj = gzip.open(self.datafile, str('rt'), encoding='latin-1')
         else:
-            file_obj = io.open(self.datafile, str('rb'))
+            file_obj = io.open(self.datafile, str('r'), encoding='latin-1')
 
         return file_obj
 
