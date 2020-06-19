@@ -7,6 +7,7 @@ from unittest import TestCase
 import mock
 from uploader.opdata import OPDataFile
 
+
 class LoadOPData(TestCase):
 
     def setUp(self):
@@ -41,9 +42,8 @@ class LoadOPData(TestCase):
 
             opdata_uploader = OPDataFile(file_path)
             opdata_uploader.load(elasticsearch_mock, self.index_name, self.chunk_size, self.threads,
-                                        self.timeout)
+                                 self.timeout)
 
             list(opdata_uploader.make_docs())
 
             parallel_bulk.assert_called()
-

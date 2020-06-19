@@ -17,9 +17,6 @@ class StopByRouteFile(DataFile):
         self.fieldnames = ['authRouteCode', 'userRouteCode', 'operator', 'order', 'authStopCode', 'userStopCode',
                            'stopName', 'latitude', 'longitude']
 
-    def row_parser(self, row, path, timestamp):
-        pass
-
     def make_docs(self):
         with self.get_file_object() as f:
             next(f)  # skip header
