@@ -34,7 +34,7 @@ class LoadOPData(TestCase):
     @mock.patch('uploader.datafile.Search')
     @mock.patch('loadData.Elasticsearch')
     def test_load_data(self, elasticsearch_mock, search_mock, parallel_bulk):
-        file_name_list = ['2020-03-05.podata']
+        file_name_list = ['2020-03-05.opdata', '2020-03-05.opdata.gz', '2020-03-05.opdata.zip']
         for file_name in file_name_list:
             file_path = os.path.join(os.path.dirname(__file__), 'files', file_name)
             self.prepare_search_mock(search_mock)
