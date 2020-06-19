@@ -13,19 +13,19 @@ from elasticsearch_dsl import Index
 new_path = os.path.join(os.path.dirname(__file__), '..')
 sys.path.append(new_path)
 
-from dataUploader.errors import UnrecognizedFileExtensionError, IndexNotEmptyError
-from dataUploader.uploader.bip import BipFile
-from dataUploader.uploader.paymentfactor import PaymentFactorFile
-from dataUploader.uploader.expedition import ExpeditionFile
-from dataUploader.uploader.general import GeneralFile
-from dataUploader.uploader.odbyroute import OdByRouteFile
-from dataUploader.uploader.profile import ProfileFile
-from dataUploader.uploader.shape import ShapeFile
-from dataUploader.uploader.speed import SpeedFile
-from dataUploader.uploader.stop import StopFile
-from dataUploader.uploader.stopbyroute import StopByRouteFile
-from dataUploader.uploader.trip import TripFile
-from dataUploader.uploader.opdata import OPDataFile
+from errors import UnrecognizedFileExtensionError, IndexNotEmptyError
+from uploader.bip import BipFile
+from uploader.paymentfactor import PaymentFactorFile
+from uploader.expedition import ExpeditionFile
+from uploader.general import GeneralFile
+from uploader.odbyroute import OdByRouteFile
+from uploader.profile import ProfileFile
+from uploader.shape import ShapeFile
+from uploader.speed import SpeedFile
+from uploader.stop import StopFile
+from uploader.stopbyroute import StopByRouteFile
+from uploader.trip import TripFile
+from uploader.opdata import OPDataFile
 
 
 def upload_file(es_instance, datafile, index_name=None, chunk_size=5000, threads=4, timeout=30):

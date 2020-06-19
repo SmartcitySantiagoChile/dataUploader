@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from itertools import groupby
 
-from dataUploader.uploader.datafile import DataFile, get_timestamp
+from uploader.datafile import DataFile, get_timestamp
 
 import csv
 import traceback

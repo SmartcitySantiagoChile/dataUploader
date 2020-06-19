@@ -5,7 +5,7 @@ import csv
 import traceback
 from itertools import groupby
 
-from dataUploader.uploader.datafile import DataFile, get_timestamp
+from uploader.datafile import DataFile, get_timestamp
 
 
 class OPDataFile(DataFile):

@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from dataUploader.uploader.datafile import DataFile
+from uploader.datafile import DataFile
 
-from dataUploader.errors import StopDocumentExist
+from errors import StopDocumentExist
 
 
 class StopFile(DataFile):

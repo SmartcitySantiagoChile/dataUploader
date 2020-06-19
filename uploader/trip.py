@@ -1,4 +1,4 @@
-from dataUploader.uploader.datafile import DataFile
+from uploader.datafile import DataFile
 
 
 class TripFile(DataFile):
