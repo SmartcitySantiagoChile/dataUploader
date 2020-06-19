@@ -26,7 +26,7 @@ class LoadOPData(TestCase):
         type(search_mock).total = mock.PropertyMock(return_value=0)
 
     def test_check_make_docs(self):
-        file_path = os.path.join(os.path.dirname(__file__), 'files', '2020-03-05.podata')
+        file_path = os.path.join(os.path.dirname(__file__), 'files', '2020-03-05.opdata')
         opdata_uploader = OPDataFile(file_path)
         list(opdata_uploader.make_docs())
 
