@@ -25,6 +25,7 @@ from dataUploader.uploader.speed import SpeedFile
 from dataUploader.uploader.stop import StopFile
 from dataUploader.uploader.stopbyroute import StopByRouteFile
 from dataUploader.uploader.trip import TripFile
+from dataUploader.uploader.opdata import OPDataFile
 
 
 def upload_file(es_instance, datafile, index_name=None, chunk_size=5000, threads=4, timeout=30):
@@ -56,6 +57,8 @@ def upload_file(es_instance, datafile, index_name=None, chunk_size=5000, threads
         uploader = PaymentFactorFile(datafile)
     elif index_name == 'bip':
         uploader = BipFile(datafile)
+    elif index_name == 'opdata':
+        uploader = OPDataFile(datafile)
     else:
         raise UnrecognizedFileExtensionError(datafile)
 

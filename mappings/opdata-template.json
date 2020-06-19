@@ -1,0 +1,56 @@
+{
+  "settings": {
+    "index": {
+      "number_of_shards": 1,
+      "number_of_replicas": 1
+    }
+  },
+  "mappings": {
+    "doc": {
+      "properties": {
+        "path": {
+          "type": "keyword"
+        },
+        "date": {
+          "type": "date"
+        },
+        "opRouteCode": {
+          "type": "keyword"
+        },
+        "operator": {
+          "type": "integer"
+        },
+        "userRouteCode": {
+          "type": "keyword"
+        },
+        "dayType": {
+          "properties": {
+            "timePeriod": {
+              "type": "integer"
+            },
+            "startPeriodTime": {
+              "type": "date",
+              "format": "HH:mm:ss"
+            },
+            "endPeriodTime": {
+              "type": "date",
+              "format": "HH:mm:ss"
+            },
+            "frecuency": {
+              "type": "float"
+            },
+            "capacity": {
+              "type": "float"
+            },
+            "distance": {
+              "type": "float"
+            },
+            "speed": {
+              "type": "float"
+            }
+          }
+        }
+      }
+    }
+  }
+}see
