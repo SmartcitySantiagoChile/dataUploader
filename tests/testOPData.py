@@ -46,3 +46,4 @@ class LoadOPData(TestCase):
             list(opdata_uploader.make_docs())
 
             parallel_bulk.assert_called()
+

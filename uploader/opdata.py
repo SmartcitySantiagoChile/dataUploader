@@ -16,9 +16,6 @@ class OPDataFile(DataFile):
         self.fieldnames = ['opRouteCode', 'operator', 'userRouteCode', 'direction', 'dayType', 'timePeriod',
                            'startPeriodTime', 'endPeriodTime', 'frecuency', 'capacity', 'distance', 'speed']
 
-    def row_parser(self, row, path, timestamp):
-        pass
-
     def make_docs(self):
         with self.get_file_object() as f:
             next(f)  # skip header
