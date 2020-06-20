@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/SmartcitySantiagoChile/dataUploader.svg?branch=master)](https://travis-ci.com/SmartcitySantiagoChile/dataUploader) [![Coverage Status](https://coveralls.io/repos/github/SmartcitySantiagoChile/dataUploader/badge.svg?branch=master)](https://coveralls.io/github/SmartcitySantiagoChile/dataUploader?branch=master)
+[![Build Status](https://travis-ci.com/SmartcitySantiagoChile/dataUploader.svg?branch=master)](https://travis-ci.com/SmartcitySantiagoChile/dataUploader)   [![Coverage Status](https://coveralls.io/repos/github/SmartcitySantiagoChile/dataUploader/badge.svg?branch=master)](https://coveralls.io/github/SmartcitySantiagoChile/dataUploader?branch=master)
 ## dataUploader
 Python script to upload files to Elasticsearch
 
