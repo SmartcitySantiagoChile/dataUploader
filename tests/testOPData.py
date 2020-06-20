@@ -5,7 +5,7 @@ import os
 from unittest import TestCase
 
 import mock
-from uploader.opdata import OPDataFile
+from dataUploader.uploader.opdata import OPDataFile
 
 
 class LoadOPData(TestCase):
