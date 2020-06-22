@@ -28,7 +28,6 @@ class OPDataFile(DataFile):
                 try:
                     dayTypes = list(dayTypes)
                     path = self.basename
-                    timestamp = get_timestamp()
                     dayTypes = [{
                         'timePeriod': int(p['timePeriod']),
                         'startPeriodTime': p['startPeriodTime'],
@@ -40,7 +39,7 @@ class OPDataFile(DataFile):
                     yield {
                         "_source": {
                             "path": path,
-                            "date": timestamp,
+                            "date": path.split(".")[0],
                             "opRouteCode": identifier[1],
                             "operator": int(identifier[2]),
                             "userRouteCode": identifier[3],
