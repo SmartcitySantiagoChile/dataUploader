@@ -40,7 +40,7 @@ class OPDataFile(DataFile):
                     yield {
                         "_source": {
                             "path": path,
-                            "date": timestamp,
+                            "date": path.split(".")[0],
                             "opRouteCode": identifier[1],
                             "operator": int(identifier[2]),
                             "userRouteCode": identifier[3],
