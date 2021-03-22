@@ -111,19 +111,19 @@
           "type": "half_float",
           "index": false
         },
-        "evadedBoarding":{
+        "expandedEvasionBoarding":{
           "type": "half_float",
           "index":false
         },
-        "evadedAlighting":{
+        "expandedEvasionAlighting":{
           "type": "half_float",
           "index":false
         },
-        "correctedBoarding":{
+        "expandedBoardingPlusExpandedEvasionBoarding":{
           "type": "half_float",
           "index":false
         },
-        "correctedAlighting":{
+        "expandedAlightingPlusExpandedEvasionAlighting":{
           "type": "half_float",
           "index":false
         },
@@ -131,7 +131,7 @@
           "type": "half_float",
           "index": false
         },
-        "correctedLoadProfile": {
+        "loadProfileWithEvasion": {
           "type": "half_float",
           "index": false
         },
