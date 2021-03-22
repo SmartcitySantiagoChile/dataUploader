@@ -111,7 +111,31 @@
           "type": "half_float",
           "index": false
         },
+        "evadedBoarding":{
+          "type": "half_float",
+          "index":false
+        },
+        "evadedAlighting":{
+          "type": "half_float",
+          "index":false
+        },
+        "correctedBoarding":{
+          "type": "half_float",
+          "index":false
+        },
+        "correctedAlighting":{
+          "type": "half_float",
+          "index":false
+        },
         "loadProfile": {
+          "type": "half_float",
+          "index": false
+        },
+        "correctedLoadProfile": {
+          "type": "half_float",
+          "index": false
+        },
+        "boardingWithAlighting": {
           "type": "half_float",
           "index": false
         },
