@@ -36,7 +36,7 @@ class ProfileFile(DataFile):
                                                                        'expandedAlightingPlusExpandedEvasionAlighting'] is None else \
             row['expandedAlightingPlusExpandedEvasionAlighting']
         load_profile_with_evasion = -1 if row['loadProfileWithEvasion'] is None else row['loadProfileWithEvasion']
-        boarding_with_alighting = row['boardingWithAlighting']
+        boarding_with_alighting = -1 if row['boardingWithAlighting'] is None else row['boardingWithAlighting']
         if expedition_stop_time == '-':
             time_period_in_stop_time = -1
             half_hour_in_stop_time = -1
