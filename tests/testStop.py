@@ -1,13 +1,11 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from unittest import TestCase
+import os
+from unittest import TestCase, mock
 
 from uploader.stop import StopFile
 from uploader.stopbyroute import StopByRouteFile
-
-import mock
-import os
 
 
 class LoadStopData(TestCase):

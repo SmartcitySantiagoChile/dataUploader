@@ -1,12 +1,10 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from unittest import TestCase
+import os
+from unittest import TestCase, mock
 
 from uploader.expedition import ExpeditionFile
-
-import mock
-import os
 
 
 class LoadExpeditionData(TestCase):

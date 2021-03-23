@@ -2,9 +2,7 @@
 from __future__ import unicode_literals
 
 import os
-from unittest import TestCase
-
-import mock
+from unittest import TestCase, mock
 
 from uploader.profile import ProfileFile
 
