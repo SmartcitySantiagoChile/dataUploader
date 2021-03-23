@@ -111,7 +111,31 @@
           "type": "half_float",
           "index": false
         },
+        "expandedEvasionBoarding":{
+          "type": "half_float",
+          "index":false
+        },
+        "expandedEvasionAlighting":{
+          "type": "half_float",
+          "index":false
+        },
+        "expandedBoardingPlusExpandedEvasionBoarding":{
+          "type": "half_float",
+          "index":false
+        },
+        "expandedAlightingPlusExpandedEvasionAlighting":{
+          "type": "half_float",
+          "index":false
+        },
         "loadProfile": {
+          "type": "half_float",
+          "index": false
+        },
+        "loadProfileWithEvasion": {
+          "type": "half_float",
+          "index": false
+        },
+        "boardingWithAlighting": {
           "type": "half_float",
           "index": false
         },

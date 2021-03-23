@@ -16,14 +16,28 @@ class ProfileFile(DataFile):
                            'Bajadastotal', 'expandedAlighting', 'loadProfile', 'busCapacity', 'TiempoGPSInterpolado',
                            'TiempoPrimeraTrx', 'TiempoGPSMasCercano', 'expeditionStopTime', 'nSubidasTmp',
                            'userStopCode', 'timePeriodInStartTime', 'timePeriodInStopTime', 'dayType', 'busStation',
-                           'transactions', 'halfHourInStartTime', 'halfHourInStopTime', 'notValid']
+                           'transactions', 'halfHourInStartTime', 'halfHourInStopTime', 'notValid',
+                           'expandedEvasionBoarding', 'expandedEvasionAlighting',
+                           'expandedBoardingPlusExpandedEvasionBoarding',
+                           'expandedAlightingPlusExpandedEvasionAlighting', 'loadProfileWithEvasion',
+                           'boardingWithAlighting'
+                           ]
 
     def row_parser(self, row, path, timestamp):
         expedition_stop_time = row['expeditionStopTime']
         time_period_in_stop_time = row['timePeriodInStopTime']
         half_hour_in_stop_time = -1 if row['halfHourInStopTime'] is None else row['halfHourInStopTime']
+        expanded_evasion_boarding = -1 if row['expandedEvasionBoarding'] is None else row['expandedEvasionBoarding']
+        expanded_evasion_alighting = -1 if row['expandedEvasionAlighting'] is None else row['expandedEvasionAlighting']
+        expanded_boarding_plus_expanded_evasion_boarding = -1 if row[
+                                                                     'expandedBoardingPlusExpandedEvasionBoarding'] is None else \
+            row['expandedBoardingPlusExpandedEvasionBoarding']
+        expanded_alighting_plus_expanded_evasion_alighting = -1 if row[
+                                                                       'expandedAlightingPlusExpandedEvasionAlighting'] is None else \
+            row['expandedAlightingPlusExpandedEvasionAlighting']
+        load_profile_with_evasion = -1 if row['loadProfileWithEvasion'] is None else row['loadProfileWithEvasion']
+        boarding_with_alighting = -1 if row['boardingWithAlighting'] is None else row['boardingWithAlighting']
         if expedition_stop_time == '-':
-            expedition_stop_time = "0"
             time_period_in_stop_time = -1
             half_hour_in_stop_time = -1
         return {
@@ -54,5 +68,11 @@ class ProfileFile(DataFile):
             "transactions": int(row['transactions']),
             "halfHourInStartTime": int(row['halfHourInStartTime']),
             "halfHourInStopTime": int(half_hour_in_stop_time),
-            "notValid": int(row['notValid'])
+            "notValid": int(row['notValid']),
+            "expandedEvasionBoarding": float(expanded_evasion_boarding),
+            "expandedEvasionAlighting": float(expanded_evasion_alighting),
+            "expandedBoardingPlusExpandedEvasionBoarding": float(expanded_boarding_plus_expanded_evasion_boarding),
+            "expandedAlightingPlusExpandedEvasionAlighting": float(expanded_alighting_plus_expanded_evasion_alighting),
+            "loadProfileWithEvasion": float(load_profile_with_evasion),
+            "boardingWithAlighting": float(boarding_with_alighting)
         }

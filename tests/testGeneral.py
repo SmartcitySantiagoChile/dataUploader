@@ -1,12 +1,10 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from unittest import TestCase
+import os
+from unittest import TestCase, mock
 
 from uploader.general import GeneralFile
-
-import mock
-import os
 
 
 class LoadGeneralData(TestCase):

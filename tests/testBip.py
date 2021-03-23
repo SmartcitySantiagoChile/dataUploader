@@ -2,9 +2,7 @@
 from __future__ import unicode_literals
 
 import os
-from unittest import TestCase
-
-import mock
+from unittest import TestCase, mock
 
 from uploader.bip import BipFile
 
@@ -45,7 +43,7 @@ class LoadBipData(TestCase):
 
             bip_uploader = BipFile(file_path)
             bip_uploader.load(elasticsearch_mock, self.index_name, self.chunk_size, self.threads,
-                                        self.timeout)
+                              self.timeout)
 
             list(bip_uploader.make_docs())
 

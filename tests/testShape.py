@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from unittest import TestCase
-
-from uploader.shape import ShapeFile
+import os
+from unittest import TestCase, mock
 
 import mock
-import os
+
+from uploader.shape import ShapeFile
 
 
 class LoadShapeData(TestCase):
