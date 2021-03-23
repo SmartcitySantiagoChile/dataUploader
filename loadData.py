@@ -96,7 +96,7 @@ def main():
     timeout = args.timeout
 
     # disable refresh
-    if index_name is not None:
+    if index_name is not None and es.indices.exists(index=index_name):
         Index(index_name, using=es).put_settings(body={'index.refresh_interval': -1})
 
     for datafile in datafiles:
