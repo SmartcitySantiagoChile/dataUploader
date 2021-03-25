@@ -25,7 +25,7 @@ class LoadProfileData(TestCase):
         type(search_mock).total = mock.PropertyMock(return_value=0)
 
     def test_check_make_docs(self):
-        file_path = os.path.join(os.path.dirname(__file__), 'files', '2017-07-31.profile')
+        file_path = os.path.join(os.path.dirname(__file__), 'files', '2020-03-20.profile')
 
         profile_uploader = ProfileFile(file_path)
         list(profile_uploader.make_docs())
@@ -34,7 +34,7 @@ class LoadProfileData(TestCase):
     @mock.patch('uploader.datafile.Search')
     @mock.patch('loadData.Elasticsearch')
     def test_load_profile_data(self, elasticsearch_mock, search_mock, parallel_bulk):
-        file_name_list = ['2017-07-31.profile', '2017-07-31.profile.gz', '2017-07-31.profile.zip',
+        file_name_list = ['2020-03-20.profile', '2020-03-20.profile.gz', '2020-03-20.profile.zip',
                           '2017-07-31-with-evasion.profile', '2017-07-31-with-evasion.profile.gz',
                           '2017-07-31-with-evasion.profile.zip']
         for file_name in file_name_list:
