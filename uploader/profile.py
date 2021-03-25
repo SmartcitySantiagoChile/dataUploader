@@ -9,14 +9,14 @@ class ProfileFile(DataFile):
 
     def __init__(self, datafile):
         DataFile.__init__(self, datafile)
-        self.fieldnames = ['operator', 'route', 'userRoute', 'licensePlate', 'authStopCode',
-                           'userStopName', 'expeditionStartTime', 'expeditionEndTime', 'fulfillment',
-                           'expeditionStopOrder', 'expeditionDayId', 'stopDistanceFromPathStart', '#Subidas',
-                           '#SubidasLejanas', 'Subidastotal', 'expandedBoarding', '#Bajadas', '#BajadasLejanas',
-                           'Bajadastotal', 'expandedAlighting', 'loadProfile', 'busCapacity', 'TiempoGPSInterpolado',
-                           'TiempoPrimeraTrx', 'TiempoGPSMasCercano', 'expeditionStopTime', 'nSubidasTmp',
-                           'userStopCode', 'timePeriodInStartTime', 'timePeriodInStopTime', 'dayType', 'busStation',
-                           'transactions', 'halfHourInStartTime', 'halfHourInStopTime', 'notValid',
+        self.fieldnames = ['Operador', 'ServicioSentido', 'ServicioUsuario', 'Patente', 'Paradero',
+                           'NombreParada', 'Hini', 'Hfin', 'Cumplimiento',
+                           'Correlativo', 'idExpedicion', 'DistEnRuta', '#Subidas',
+                           '#SubidasLejanas', 'Subidastotal', 'SubidasExpandidas', '#Bajadas', '#BajadasLejanas',
+                           'Bajadastotal', 'BajadasExpandidas', 'Carga', 'Capacidad', 'TiempoGPSInterpolado',
+                           'TiempoPrimeraTrx', 'TiempoGPSMasCercano', 'Tiempo', 'nSubidasTmp',
+                           'ParaderoUsuario', 'PeriodoTSExpedicion', 'PeriodoTSParada', 'TipoDia', 'ZP',
+                           'DeltaTrxs', 'MHSalida', 'MHPasada', 'ExpedicionConProblema',
                            'expandedEvasionBoarding', 'expandedEvasionAlighting',
                            'expandedBoardingPlusExpandedEvasionBoarding',
                            'expandedAlightingPlusExpandedEvasionAlighting', 'loadProfileWithEvasion',
@@ -24,9 +24,9 @@ class ProfileFile(DataFile):
                            ]
 
     def row_parser(self, row, path, timestamp):
-        expedition_stop_time = row['expeditionStopTime']
-        time_period_in_stop_time = row['timePeriodInStopTime']
-        half_hour_in_stop_time = -1 if row['halfHourInStopTime'] is None else row['halfHourInStopTime']
+        expedition_stop_time = row['Tiempo']
+        time_period_in_stop_time = row['PeriodoTSParada']
+        half_hour_in_stop_time = -1 if row['MHPasada'] is None else row['MHPasada']
         expanded_evasion_boarding = -1 if row['expandedEvasionBoarding'] is None else row['expandedEvasionBoarding']
         expanded_evasion_alighting = -1 if row['expandedEvasionAlighting'] is None else row['expandedEvasionAlighting']
         expanded_boarding_plus_expanded_evasion_boarding = -1 if row[
@@ -43,32 +43,32 @@ class ProfileFile(DataFile):
         return {
             "path": path,
             "timestamp": timestamp,
-            "operator": int(row['operator']),
-            "route": row['route'],
-            "userRoute": row['userRoute'],
-            "licensePlate": row['licensePlate'],
-            "authStopCode": row['authStopCode'],
-            "userStopName": row['userStopName'],
-            "expeditionStartTime": row['expeditionStartTime'],
-            "expeditionEndTime": row['expeditionEndTime'],
-            "fulfillment": row['fulfillment'],
-            "expeditionStopOrder": int(row['expeditionStopOrder']),
-            "expeditionDayId": int(row['expeditionDayId']),
-            "stopDistanceFromPathStart": int(row['stopDistanceFromPathStart']),
-            "expandedBoarding": float(row['expandedBoarding']),
-            "expandedAlighting": float(row['expandedAlighting']),
-            "loadProfile": float(row['loadProfile']),
-            "busCapacity": int(row['busCapacity']),
+            "operator": int(row['Operador']),
+            "route": row['ServicioSentido'],
+            "userRoute": row['ServicioUsuario'],
+            "licensePlate": row['Patente'],
+            "authStopCode": row['Paradero'],
+            "userStopName": row['NombreParada'],
+            "expeditionStartTime": row['Hini'],
+            "expeditionEndTime": row['Hfin'],
+            "fulfillment": row['Cumplimiento'],
+            "expeditionStopOrder": int(row['Correlativo']),
+            "expeditionDayId": int(row['idExpedicion']),
+            "stopDistanceFromPathStart": int(row['DistEnRuta']),
+            "expandedBoarding": float(row['SubidasExpandidas']),
+            "expandedAlighting": float(row['BajadasExpandidas']),
+            "loadProfile": float(row['Carga']),
+            "busCapacity": int(row['Capacidad']),
             "expeditionStopTime": expedition_stop_time,
-            "userStopCode": row['userStopCode'],
-            "timePeriodInStartTime": int(row['timePeriodInStartTime']),
+            "userStopCode": row['ParaderoUsuario'],
+            "timePeriodInStartTime": int(row['PeriodoTSExpedicion']),
             "timePeriodInStopTime": int(time_period_in_stop_time),
-            "dayType": int(row['dayType']),
-            "busStation": int(row['busStation']),
-            "transactions": int(row['transactions']),
-            "halfHourInStartTime": int(row['halfHourInStartTime']),
+            "dayType": int(row['TipoDia']),
+            "busStation": int(row['ZP']),
+            "transactions": int(row['DeltaTrxs']),
+            "halfHourInStartTime": int(row['MHSalida']),
             "halfHourInStopTime": int(half_hour_in_stop_time),
-            "notValid": int(row['notValid']),
+            "notValid": int(row['ExpedicionConProblema']),
             "expandedEvasionBoarding": float(expanded_evasion_boarding),
             "expandedEvasionAlighting": float(expanded_evasion_alighting),
             "expandedBoardingPlusExpandedEvasionBoarding": float(expanded_boarding_plus_expanded_evasion_boarding),
