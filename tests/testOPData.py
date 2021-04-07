@@ -1,10 +1,7 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 import os
 from unittest import TestCase, mock
 
-from uploader.opdata import OPDataFile
+from datauploader.uploader.opdata import OPDataFile
 
 
 class LoadOPData(TestCase):
@@ -29,9 +26,9 @@ class LoadOPData(TestCase):
         opdata_uploader = OPDataFile(file_path)
         list(opdata_uploader.make_docs())
 
-    @mock.patch('uploader.datafile.parallel_bulk')
-    @mock.patch('uploader.datafile.Search')
-    @mock.patch('loadData.Elasticsearch')
+    @mock.patch('datauploader.uploader.datafile.parallel_bulk')
+    @mock.patch('datauploader.uploader.datafile.Search')
+    @mock.patch('datauploader.loadData.Elasticsearch')
     def test_load_data(self, elasticsearch_mock, search_mock, parallel_bulk):
         file_name_list = ['2020-03-05.opdata', '2020-03-05.opdata.gz', '2020-03-05.opdata.zip']
         for file_name in file_name_list:

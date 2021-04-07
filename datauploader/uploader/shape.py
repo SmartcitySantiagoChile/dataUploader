@@ -1,12 +1,8 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
-from itertools import groupby
-
-from uploader.datafile import DataFile, get_timestamp
-
 import csv
 import traceback
+from itertools import groupby
+
+from datauploader.uploader.datafile import DataFile, get_timestamp
 
 
 class ShapeFile(DataFile):
@@ -26,7 +22,7 @@ class ShapeFile(DataFile):
             reader = csv.DictReader(f, delimiter=delimiter, fieldnames=self.fieldnames)
             # Group data using 'route' as key
             for identifier, points in groupby(reader, lambda point: (point['authRouteCode'], point['userRouteCode'],
-                                                                        point['operator'])):
+                                                                     point['operator'])):
                 try:
                     points = list(points)
                     start_date = self.name_to_date()

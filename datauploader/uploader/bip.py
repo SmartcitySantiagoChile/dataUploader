@@ -1,8 +1,4 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
-from uploader.datafile import DataFile
-
+from datauploader.uploader.datafile import DataFile
 
 
 class BipFile(DataFile):
@@ -13,7 +9,6 @@ class BipFile(DataFile):
         self.fieldnames = ['bipNumber', 'validationTime', 'source', 'operator', 'route', 'userRoute']
 
     def row_parser(self, row, path, timestamp):
-
         return {
             "path": path,
             "timestamp": timestamp,

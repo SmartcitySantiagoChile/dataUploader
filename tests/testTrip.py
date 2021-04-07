@@ -1,10 +1,7 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 import os
 from unittest import TestCase, mock
 
-from uploader.trip import TripFile
+from datauploader.uploader.trip import TripFile
 
 
 class LoadTripData(TestCase):
@@ -30,9 +27,9 @@ class LoadTripData(TestCase):
         trip_uploader = TripFile(file_path)
         list(trip_uploader.make_docs())
 
-    @mock.patch('uploader.datafile.parallel_bulk')
-    @mock.patch('uploader.datafile.Search')
-    @mock.patch('loadData.Elasticsearch')
+    @mock.patch('datauploader.uploader.datafile.parallel_bulk')
+    @mock.patch('datauploader.uploader.datafile.Search')
+    @mock.patch('datauploader.loadData.Elasticsearch')
     def test_load_trip_data(self, elasticsearch_mock, search_mock, parallel_bulk):
         file_name_list = ['2016-03-14.trip', '2016-03-14.trip.gz', '2016-03-14.trip.zip']
         for file_name in file_name_list:

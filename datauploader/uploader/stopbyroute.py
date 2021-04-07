@@ -1,12 +1,8 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
-from itertools import groupby
-
-from uploader.datafile import DataFile, get_timestamp
-
 import csv
 import traceback
+from itertools import groupby
+
+from datauploader.uploader.datafile import DataFile, get_timestamp
 
 
 class StopByRouteFile(DataFile):

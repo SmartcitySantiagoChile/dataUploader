@@ -1,10 +1,7 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 import os
 from unittest import TestCase, mock
 
-from uploader.paymentfactor import PaymentFactorFile
+from datauploader.uploader.paymentfactor import PaymentFactorFile
 
 
 class LoadProfileData(TestCase):
@@ -30,9 +27,9 @@ class LoadProfileData(TestCase):
         profile_uploader = PaymentFactorFile(file_path)
         list(profile_uploader.make_docs())
 
-    @mock.patch('uploader.datafile.parallel_bulk')
-    @mock.patch('uploader.datafile.Search')
-    @mock.patch('loadData.Elasticsearch')
+    @mock.patch('datauploader.uploader.datafile.parallel_bulk')
+    @mock.patch('datauploader.uploader.datafile.Search')
+    @mock.patch('datauploader.loadData.Elasticsearch')
     def test_load_data(self, elasticsearch_mock, search_mock, parallel_bulk):
         file_name_list = ['2019-08-10.paymentfactor', '2019-08-10.paymentfactor.gz',
                           '2019-08-10.paymentfactor.zip']

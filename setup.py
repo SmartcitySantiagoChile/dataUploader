@@ -5,7 +5,7 @@ with open('README.md', 'r') as fh:
 
 setuptools.setup(
     name='data-uploader',
-    version='v1.0.0',
+    version='v2.0.0',
     author='ADATRAP',
     author_email='cephei.1313@gmail.com',
     description='library to manage ADATRAP data in elasticsearch',

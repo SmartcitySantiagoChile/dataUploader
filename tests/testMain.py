@@ -1,10 +1,7 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 import os
 from unittest import TestCase, mock
 
-from loadData import main
+from datauploader.loadData import main
 
 
 class Main(TestCase):
@@ -27,10 +24,10 @@ class Main(TestCase):
         type(argparse_mock).file = mock.PropertyMock(return_value=[file_path_pattern])
         type(argparse_mock).index = index_name
 
-    @mock.patch('uploader.datafile.parallel_bulk')
-    @mock.patch('uploader.datafile.Search')
-    @mock.patch('loadData.argparse')
-    @mock.patch('loadData.Elasticsearch')
+    @mock.patch('datauploader.uploader.datafile.parallel_bulk')
+    @mock.patch('datauploader.uploader.datafile.Search')
+    @mock.patch('datauploader.loadData.argparse')
+    @mock.patch('datauploader.loadData.Elasticsearch')
     def test_load_file_data_(self, elasticsearch_mock, argparse_mock, search_mock, parallel_bulk):
         pattern_list = ['*.profile', '*.expedition', '*.general', '*.od', '*.shape', '*.speed',
                         '*.stop', '*.trip', ]
@@ -44,10 +41,10 @@ class Main(TestCase):
             parallel_bulk.return_value = [(True, 'info')]
             main()
 
-    @mock.patch('uploader.datafile.parallel_bulk')
-    @mock.patch('uploader.datafile.Search')
-    @mock.patch('loadData.argparse')
-    @mock.patch('loadData.Elasticsearch')
+    @mock.patch('datauploader.uploader.datafile.parallel_bulk')
+    @mock.patch('datauploader.uploader.datafile.Search')
+    @mock.patch('datauploader.loadData.argparse')
+    @mock.patch('datauploader.loadData.Elasticsearch')
     def test_load_zipped_file_data(self, elasticsearch_mock, argparse_mock, search_mock, parallel_bulk):
         # elasticsearch_mock
         pattern_list = ['*.profile.zip', '*.expedition.zip', '*.general.zip', '*.od.zip', '*.shape.zip', '*.speed.zip',

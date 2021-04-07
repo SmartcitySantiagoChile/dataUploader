@@ -1,12 +1,9 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 import os
 from unittest import TestCase, mock
 
 import mock
 
-from uploader.shape import ShapeFile
+from datauploader.uploader.shape import ShapeFile
 
 
 class LoadShapeData(TestCase):
@@ -32,9 +29,9 @@ class LoadShapeData(TestCase):
         shape_uploader = ShapeFile(file_path)
         list(shape_uploader.make_docs())
 
-    @mock.patch('uploader.datafile.parallel_bulk')
-    @mock.patch('uploader.datafile.Search')
-    @mock.patch('loadData.Elasticsearch')
+    @mock.patch('datauploader.uploader.datafile.parallel_bulk')
+    @mock.patch('datauploader.uploader.datafile.Search')
+    @mock.patch('datauploader.loadData.Elasticsearch')
     def test_load_shape_data(self, elasticsearch_mock, search_mock, parallel_bulk):
         file_name_list = ['2017-04-03.shape', '2017-04-03.shape.gz', '2017-04-03.shape.zip']
         for file_name in file_name_list:

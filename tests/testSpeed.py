@@ -1,10 +1,7 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 import os
 from unittest import TestCase, mock
 
-from uploader.speed import SpeedFile
+from datauploader.uploader.speed import SpeedFile
 
 
 class LoadSpeedData(TestCase):
@@ -30,9 +27,9 @@ class LoadSpeedData(TestCase):
         speed_uploader = SpeedFile(file_path)
         list(speed_uploader.make_docs())
 
-    @mock.patch('uploader.datafile.parallel_bulk')
-    @mock.patch('uploader.datafile.Search')
-    @mock.patch('loadData.Elasticsearch')
+    @mock.patch('datauploader.uploader.datafile.parallel_bulk')
+    @mock.patch('datauploader.uploader.datafile.Search')
+    @mock.patch('datauploader.loadData.Elasticsearch')
     def test_load_speed_data(self, elasticsearch_mock, search_mock, parallel_bulk):
 
         file_name_list = ['2017-04-03.speed', '2017-04-03.speed.gz', '2017-04-03.speed.zip']

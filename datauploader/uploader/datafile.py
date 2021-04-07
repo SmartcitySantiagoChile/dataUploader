@@ -1,19 +1,16 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
-from elasticsearch.helpers import parallel_bulk
-from elasticsearch_dsl import Search
-
-from datetime import datetime
-
-from errors import IndexNotEmptyError, StopDocumentExist
-
 import csv
+import gzip
 import io
 import os
 import traceback
 import zipfile
-import gzip
+from datetime import datetime
+
+from elasticsearch.helpers import parallel_bulk
+from elasticsearch_dsl import Search
+
+from datauploader.config import BASE_DIR
+from datauploader.errors import IndexNotEmptyError, StopDocumentExist
 
 
 def is_gzipfile(file_path):
@@ -32,8 +29,7 @@ class DataFile:
         self.fieldnames = []
 
     def get_mapping_file(self, index_name):
-        current_dir = os.path.dirname(__file__)
-        mapping_file = os.path.join(current_dir, '..', 'mappings', '{0}-template.json'.format(index_name))
+        mapping_file = os.path.join(BASE_DIR, 'mappings', '{0}-template.json'.format(index_name))
         return mapping_file
 
     def get_file_name(self):

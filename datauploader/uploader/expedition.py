@@ -1,7 +1,4 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
-from uploader.datafile import DataFile
+from datauploader.uploader.datafile import DataFile
 
 
 class ExpeditionFile(DataFile):

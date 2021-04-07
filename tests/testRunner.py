@@ -1,8 +1,5 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
-import unittest
 import os
+import unittest
 
 loader = unittest.TestLoader()
 start_dir = os.path.dirname(__file__)

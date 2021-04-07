@@ -1,11 +1,8 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 import csv
 import traceback
 from itertools import groupby
 
-from uploader.datafile import DataFile, get_timestamp
+from datauploader.uploader.datafile import DataFile
 
 
 class OPDataFile(DataFile):

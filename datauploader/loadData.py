@@ -1,31 +1,23 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 import argparse
 import glob
 import os
-import sys
 
 from elasticsearch import Elasticsearch
 from elasticsearch_dsl import Index
 
-# add path so we can use function through command line
-new_path = os.path.join(os.path.dirname(__file__), '..')
-sys.path.append(new_path)
-
-from errors import UnrecognizedFileExtensionError, IndexNotEmptyError
-from uploader.bip import BipFile
-from uploader.paymentfactor import PaymentFactorFile
-from uploader.expedition import ExpeditionFile
-from uploader.general import GeneralFile
-from uploader.odbyroute import OdByRouteFile
-from uploader.profile import ProfileFile
-from uploader.shape import ShapeFile
-from uploader.speed import SpeedFile
-from uploader.stop import StopFile
-from uploader.stopbyroute import StopByRouteFile
-from uploader.trip import TripFile
-from uploader.opdata import OPDataFile
+from datauploader.uploader.bip import BipFile
+from datauploader.uploader.expedition import ExpeditionFile
+from datauploader.uploader.general import GeneralFile
+from datauploader.uploader.odbyroute import OdByRouteFile
+from datauploader.uploader.opdata import OPDataFile
+from datauploader.uploader.paymentfactor import PaymentFactorFile
+from datauploader.uploader.profile import ProfileFile
+from datauploader.uploader.shape import ShapeFile
+from datauploader.uploader.speed import SpeedFile
+from datauploader.uploader.stop import StopFile
+from datauploader.uploader.stopbyroute import StopByRouteFile
+from datauploader.uploader.trip import TripFile
+from datauploader.errors import UnrecognizedFileExtensionError, IndexNotEmptyError
 
 
 def upload_file(es_instance, datafile, index_name=None, chunk_size=5000, threads=4, timeout=30):
