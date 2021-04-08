@@ -5,7 +5,7 @@ with open('README.md', 'r') as fh:
 
 setuptools.setup(
     name='data-uploader',
-    version='2.0.0',
+    version='2.0.1',
     author='ADATRAP',
     author_email='cephei.1313@gmail.com',
     description='library to manage ADATRAP data in elasticsearch',
@@ -13,6 +13,10 @@ setuptools.setup(
     long_description_content_type='text/markdown',
     url='https://github.com/SmartcitySantiagoChile/dataUploader',
     packages=setuptools.find_packages(),
+    package_data={
+        'datauploader': ['mappings/*.json']
+    },
+    include_package_data=True,
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
