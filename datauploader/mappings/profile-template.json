@@ -171,6 +171,15 @@
         },
         "notValid": {
           "type": "byte"
+        },
+        "evasionPercent": {
+          "type": "float"
+        },
+        "evasionType": {
+          "type": "byte"
+        },
+        "uniformDistributionMethod": {
+          "type": "byte"
         }
       }
     }
