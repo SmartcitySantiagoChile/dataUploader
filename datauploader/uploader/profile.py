@@ -17,7 +17,7 @@ class ProfileFile(DataFile):
                            'expandedEvasionBoarding', 'expandedEvasionAlighting',
                            'expandedBoardingPlusExpandedEvasionBoarding',
                            'expandedAlightingPlusExpandedEvasionAlighting', 'loadProfileWithEvasion',
-                           'boardingWithAlighting'
+                           'boardingWithAlighting', "evasionPercent", "evasionType", "uniformDistributionMethod"
                            ]
 
     def row_parser(self, row, path, timestamp):
@@ -71,5 +71,8 @@ class ProfileFile(DataFile):
             "expandedBoardingPlusExpandedEvasionBoarding": float(expanded_boarding_plus_expanded_evasion_boarding),
             "expandedAlightingPlusExpandedEvasionAlighting": float(expanded_alighting_plus_expanded_evasion_alighting),
             "loadProfileWithEvasion": float(load_profile_with_evasion),
-            "boardingWithAlighting": float(boarding_with_alighting)
+            "boardingWithAlighting": float(boarding_with_alighting),
+            "evasionPercent": float(row['evasionPercent']),
+            "evasionType": int(row['evasionType']),
+            "uniformDistributionMethod": int(row['uniformDistributionMethod'])
         }
