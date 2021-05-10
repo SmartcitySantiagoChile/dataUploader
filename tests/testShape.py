@@ -1,11 +1,10 @@
 import os
 from unittest import TestCase, mock
 
-import mock
 
 from datauploader.uploader.shape import ShapeFile
 
-
+u
 class LoadShapeData(TestCase):
 
     def setUp(self):
