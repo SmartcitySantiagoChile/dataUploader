@@ -31,7 +31,7 @@ class LoadProfileData(TestCase):
     @mock.patch('datauploader.uploader.datafile.Search')
     @mock.patch('datauploader.loadData.Elasticsearch')
     def test_load_profile_data(self, elasticsearch_mock, search_mock, parallel_bulk):
-        file_name_list = ['2020-11-30.profile', '2020-11-30.profile.gz', '2020-11-30.profile.zip',
+        file_name_list = ['2020-11-30-with-evasion-2.profile', '2020-11-30-with-evasion-2.profile.gz', '2020-11-30-with-evasion-2.profile.zip',
                           '2017-07-31-with-evasion.profile', '2017-07-31-with-evasion.profile.gz',
                           '2017-07-31-with-evasion.profile.zip', '2020-03-20.profile', '2020-03-20.profile.gz', '2020-03-20.profile.zip']
         for file_name in file_name_list:
