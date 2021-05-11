@@ -22,7 +22,7 @@ class LoadProfileData(TestCase):
         type(search_mock).total = mock.PropertyMock(return_value=0)
 
     def test_check_make_docs(self):
-        file_path = os.path.join(os.path.dirname(__file__), 'files', '2020-11-30.profile')
+        file_path = os.path.join(os.path.dirname(__file__), 'files', '2020-11-30-with-evasion-2.profile')
 
         profile_uploader = ProfileFile(file_path)
         list(profile_uploader.make_docs())
