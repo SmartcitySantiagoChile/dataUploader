@@ -17,7 +17,7 @@ class ProfileFile(DataFile):
                            'expandedEvasionBoarding', 'expandedEvasionAlighting',
                            'expandedBoardingPlusExpandedEvasionBoarding',
                            'expandedAlightingPlusExpandedEvasionAlighting', 'loadProfileWithEvasion',
-                           'boardingWithAlighting'
+                           'boardingWithAlighting', "evasionPercent", "evasionType", "uniformDistributionMethod"
                            ]
 
     def row_parser(self, row, path, timestamp):
@@ -37,6 +37,10 @@ class ProfileFile(DataFile):
         if expedition_stop_time == '-':
             time_period_in_stop_time = -1
             half_hour_in_stop_time = -1
+        evasion_percent = -1 if row['evasionPercent'] is None else float(row['evasionPercent'])
+        evasion_type = -1 if row['evasionType'] is None else int(row['evasionType'])
+        uniform_distribution_method = -1 if row['uniformDistributionMethod'] is None else int(
+            row['uniformDistributionMethod'])
         return {
             "path": path,
             "timestamp": timestamp,
@@ -71,5 +75,8 @@ class ProfileFile(DataFile):
             "expandedBoardingPlusExpandedEvasionBoarding": float(expanded_boarding_plus_expanded_evasion_boarding),
             "expandedAlightingPlusExpandedEvasionAlighting": float(expanded_alighting_plus_expanded_evasion_alighting),
             "loadProfileWithEvasion": float(load_profile_with_evasion),
-            "boardingWithAlighting": float(boarding_with_alighting)
+            "boardingWithAlighting": float(boarding_with_alighting),
+            "evasionPercent": evasion_percent,
+            "evasionType": evasion_type,
+            "uniformDistributionMethod": uniform_distribution_method
         }
