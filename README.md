@@ -76,3 +76,9 @@ overwritten.
 ##### Run tests:
 
     python -m unittest
+
+##### Release version:
+
+- Change version code in `setup.py`
+- Make a release with same version code in `setup.py` in https://github.com/SmartcitySantiagoChile/dataUploader/releases
+- Add changes in github.com
