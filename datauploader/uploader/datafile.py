@@ -45,11 +45,11 @@ class DataFile:
             # it assumes that zip file has only one file
             file_name = zip_file_obj.namelist()[0]
             file_obj_0 = zip_file_obj.open(file_name, 'r')
-            file_obj = io.TextIOWrapper(file_obj_0, encoding='latin-1')
+            file_obj = io.TextIOWrapper(file_obj_0, encoding='utf-8')
         elif is_gzipfile(self.datafile):
-            file_obj = gzip.open(self.datafile, str('rt'), encoding='latin-1')
+            file_obj = gzip.open(self.datafile, str('rt'), encoding='utf-8')
         else:
-            file_obj = io.open(self.datafile, str('r'), encoding='latin-1')
+            file_obj = io.open(self.datafile, str('r'), encoding='utf-8')
 
         return file_obj
 
