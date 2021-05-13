@@ -103,6 +103,10 @@
           "type": "half_float",
           "index": false
         },
+        "boarding": {
+          "type": "half_float",
+          "index": false
+        },
         "expandedBoarding": {
           "type": "half_float",
           "index": false

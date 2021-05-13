@@ -56,6 +56,7 @@ class ProfileFile(DataFile):
             "expeditionStopOrder": int(row['Correlativo']),
             "expeditionDayId": int(row['idExpedicion']),
             "stopDistanceFromPathStart": int(row['DistEnRuta']),
+            "boarding": float(row['#Subidas']),
             "expandedBoarding": float(row['SubidasExpandidas']),
             "expandedAlighting": float(row['BajadasExpandidas']),
             "loadProfile": float(row['Carga']),
