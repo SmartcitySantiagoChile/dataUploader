@@ -24,8 +24,8 @@ class ProfileFile(DataFile):
         expedition_stop_time = row['Tiempo']
         time_period_in_stop_time = row['PeriodoTSParada']
         half_hour_in_stop_time = -1 if row['MHPasada'] is None else row['MHPasada']
-        expanded_evasion_boarding = -1 if row['expandedEvasionBoarding'] is None else row['expandedEvasionBoarding']
-        expanded_evasion_alighting = -1 if row['expandedEvasionAlighting'] is None else row['expandedEvasionAlighting']
+        expanded_evasion_boarding = 0 if row['expandedEvasionBoarding'] is None else row['expandedEvasionBoarding']
+        expanded_evasion_alighting = 0 if row['expandedEvasionAlighting'] is None else row['expandedEvasionAlighting']
         expanded_boarding_plus_expanded_evasion_boarding = 0 if row[
                                                                     'expandedBoardingPlusExpandedEvasionBoarding'] is None else \
             row['expandedBoardingPlusExpandedEvasionBoarding']
