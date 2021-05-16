@@ -26,18 +26,18 @@ class ProfileFile(DataFile):
         half_hour_in_stop_time = -1 if row['MHPasada'] is None else row['MHPasada']
         expanded_evasion_boarding = -1 if row['expandedEvasionBoarding'] is None else row['expandedEvasionBoarding']
         expanded_evasion_alighting = -1 if row['expandedEvasionAlighting'] is None else row['expandedEvasionAlighting']
-        expanded_boarding_plus_expanded_evasion_boarding = -1 if row[
-                                                                     'expandedBoardingPlusExpandedEvasionBoarding'] is None else \
+        expanded_boarding_plus_expanded_evasion_boarding = 0 if row[
+                                                                    'expandedBoardingPlusExpandedEvasionBoarding'] is None else \
             row['expandedBoardingPlusExpandedEvasionBoarding']
-        expanded_alighting_plus_expanded_evasion_alighting = -1 if row[
-                                                                       'expandedAlightingPlusExpandedEvasionAlighting'] is None else \
+        expanded_alighting_plus_expanded_evasion_alighting = 0 if row[
+                                                                      'expandedAlightingPlusExpandedEvasionAlighting'] is None else \
             row['expandedAlightingPlusExpandedEvasionAlighting']
-        load_profile_with_evasion = -1 if row['loadProfileWithEvasion'] is None else row['loadProfileWithEvasion']
-        boarding_with_alighting = -1 if row['boardingWithAlighting'] is None else row['boardingWithAlighting']
+        load_profile_with_evasion = 0 if row['loadProfileWithEvasion'] is None else row['loadProfileWithEvasion']
+        boarding_with_alighting = 0 if row['boardingWithAlighting'] is None else row['boardingWithAlighting']
         if expedition_stop_time == '-':
             time_period_in_stop_time = -1
             half_hour_in_stop_time = -1
-        evasion_percent = -1 if row['evasionPercent'] is None else float(row['evasionPercent'])
+        evasion_percent = 0 if row['evasionPercent'] is None else float(row['evasionPercent'])
         evasion_type = -1 if row['evasionType'] is None else int(row['evasionType'])
         uniform_distribution_method = -1 if row['uniformDistributionMethod'] is None else int(
             row['uniformDistributionMethod'])
