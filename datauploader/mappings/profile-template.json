@@ -184,6 +184,15 @@
         },
         "uniformDistributionMethod": {
           "type": "byte"
+        },
+        "passengerPerKmSection": {
+          "type": "float"
+        },
+        "passengerWithEvasionPerKmSection": {
+          "type": "float"
+        },
+        "capacityPerKmSection": {
+          "type": "float"
         }
       }
     }
