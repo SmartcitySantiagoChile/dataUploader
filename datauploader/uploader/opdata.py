@@ -10,8 +10,8 @@ class OPDataFile(DataFile):
 
     def __init__(self, datafile):
         DataFile.__init__(self, datafile)
-        self.fieldnames = ['opRouteCode', 'operator', 'userRouteCode', 'direction', 'dayType', 'timePeriod',
-                           'startPeriodTime', 'endPeriodTime', 'frecuency', 'capacity', 'distance', 'speed']
+        self.fieldnames = ['ServicioSentido', 'UN', 'Servicio', 'Sentido', 'ServicioTS', 'TipoDia', 'PeriodoTS',
+                           'HoraIni', 'HoraFin', 'Frecuencia', 'Capacidad', 'Distancia', 'Velocidad']
 
     def make_docs(self):
         with self.get_file_object() as f:
@@ -19,20 +19,20 @@ class OPDataFile(DataFile):
             delimiter = str('|')
             reader = csv.DictReader(f, delimiter=delimiter, fieldnames=self.fieldnames)
             # Group data using 'route' as key
-            for identifier, dayTypes in groupby(reader, lambda dayType: (dayType['dayType'], dayType['opRouteCode'],
-                                                                         dayType['operator'],
-                                                                         dayType['userRouteCode'])):
+            for identifier, day_types in groupby(reader,
+                                                 lambda day_type: (day_type['TipoDia'], day_type['ServicioTS'],
+                                                                   day_type['UN'], day_type['Servicio'])):
                 try:
-                    dayTypes = list(dayTypes)
+                    day_types = list(day_types)
                     path = self.basename
-                    dayTypes = [{
-                        'timePeriod': int(p['timePeriod']),
-                        'startPeriodTime': p['startPeriodTime'],
-                        'endPeriodTime': p['endPeriodTime'],
-                        'frecuency': float(p['frecuency']),
-                        'capacity': float(p['capacity']),
-                        'distance': float(p['distance']),
-                        'speed': float(p['speed'])} for p in dayTypes]
+                    day_types = [{
+                        'timePeriod': int(p['PeriodoTS']),
+                        'startPeriodTime': p['HoraIni'],
+                        'endPeriodTime': p['HoraFin'],
+                        'frequency': float(p['Frecuencia']),
+                        'capacity': float(p['Capacidad']),
+                        'distance': float(p['Distancia']),
+                        'speed': float(p['Velocidad'])} for p in day_types]
                     yield {
                         "_source": {
                             "path": path,
@@ -40,7 +40,7 @@ class OPDataFile(DataFile):
                             "opRouteCode": identifier[1],
                             "operator": int(identifier[2]),
                             "userRouteCode": identifier[3],
-                            "dayType": dayTypes
+                            "dayType": day_types
                         }
                     }
                 except ValueError:

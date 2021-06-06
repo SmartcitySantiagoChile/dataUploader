@@ -22,7 +22,7 @@ class LoadOPData(TestCase):
         type(search_mock).total = mock.PropertyMock(return_value=0)
 
     def test_check_make_docs(self):
-        file_path = os.path.join(os.path.dirname(__file__), 'files', '2020-03-05.opdata')
+        file_path = os.path.join(os.path.dirname(__file__), 'files', '2019-03-06.opdata')
         opdata_uploader = OPDataFile(file_path)
         list(opdata_uploader.make_docs())
 
@@ -30,7 +30,7 @@ class LoadOPData(TestCase):
     @mock.patch('datauploader.uploader.datafile.Search')
     @mock.patch('datauploader.loadData.Elasticsearch')
     def test_load_data(self, elasticsearch_mock, search_mock, parallel_bulk):
-        file_name_list = ['2020-03-05.opdata', '2020-03-05.opdata.gz', '2020-03-05.opdata.zip']
+        file_name_list = ['2019-03-06.opdata', '2019-03-06.opdata.gz', '2019-03-06.opdata.zip']
         for file_name in file_name_list:
             file_path = os.path.join(os.path.dirname(__file__), 'files', file_name)
             self.prepare_search_mock(search_mock)
