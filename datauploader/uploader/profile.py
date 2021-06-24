@@ -42,10 +42,11 @@ class ProfileFile(DataFile):
         evasion_type = -1 if row['evasionType'] is None else int(row['evasionType'])
         uniform_distribution_method = -1 if row['uniformDistributionMethod'] is None else int(
             row['uniformDistributionMethod'])
-        pax_km_section = 0 if row['pax-km_tramo'] is None else float(row['pax-km_tramo'])
-        pax_with_evasion_km_section = 0 if row['pax-km_corregido_tramo'] is None else float(
-            row['pax-km_corregido_tramo'])
-        capacity_km_section = 0 if row['plazas-km_tramo'] is None else float(row['plazas-km_tramo'])
+        pax_km_section = 0 if row['pax-km_tramo'] is None or row['pax-km_tramo'] == '-' else float(row['pax-km_tramo'])
+        pax_with_evasion_km_section = 0 if row['pax-km_corregido_tramo'] is None or row[
+            'pax-km_corregido_tramo'] == '-' else float(row['pax-km_corregido_tramo'])
+        capacity_km_section = 0 if row['plazas-km_tramo'] is None or row['plazas-km_tramo'] == '-' \
+            else float(row['plazas-km_tramo'])
 
         return {
             'path': path,
