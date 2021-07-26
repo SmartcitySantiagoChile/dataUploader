@@ -1,0 +1,44 @@
+{
+  "settings": {
+    "max_result_window": 15000,
+    "index": {
+      "number_of_shards": 2,
+      "number_of_replicas": 1
+    }
+  },
+  "mappings": {
+    "doc": {
+      "properties": {
+        "path": {
+          "type": "keyword"
+        },
+        "operator": {
+          "type": "byte"
+        },
+        "boardingTime": {
+          "type": "date",
+          "format": "yyyy-MM-dd HH:mm:ss"
+        },
+        "stageNumber": {
+          "type": "byte"
+        },
+        "dayType": {
+          "type": "byte"
+        },
+        "authStopCode": {
+          "type": "keyword"
+        },
+        "halfHourInBoardingTime": {
+          "type": "byte"
+        },
+        "boardingStopCommune": {
+          "type": "byte"
+        },
+        "expandedBoarding": {
+          "type": "half_float",
+          "index": false
+        }
+      }
+    }
+  }
+}

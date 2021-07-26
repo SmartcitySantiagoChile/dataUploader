@@ -5,6 +5,7 @@ import os
 from elasticsearch import Elasticsearch
 from elasticsearch_dsl import Index
 
+from datauploader.errors import UnrecognizedFileExtensionError, IndexNotEmptyError
 from datauploader.uploader.bip import BipFile
 from datauploader.uploader.expedition import ExpeditionFile
 from datauploader.uploader.general import GeneralFile
@@ -14,10 +15,10 @@ from datauploader.uploader.paymentfactor import PaymentFactorFile
 from datauploader.uploader.profile import ProfileFile
 from datauploader.uploader.shape import ShapeFile
 from datauploader.uploader.speed import SpeedFile
+from datauploader.uploader.stage import StageFile
 from datauploader.uploader.stop import StopFile
 from datauploader.uploader.stopbyroute import StopByRouteFile
 from datauploader.uploader.trip import TripFile
-from datauploader.errors import UnrecognizedFileExtensionError, IndexNotEmptyError
 
 
 def upload_file(es_instance, datafile, index_name=None, chunk_size=5000, threads=4, timeout=30):
@@ -51,6 +52,8 @@ def upload_file(es_instance, datafile, index_name=None, chunk_size=5000, threads
         uploader = BipFile(datafile)
     elif index_name == 'opdata':
         uploader = OPDataFile(datafile)
+    elif index_name == 'stage':
+        uploader = StageFile(datafile)
     else:
         raise UnrecognizedFileExtensionError(datafile)
 
