@@ -40,6 +40,14 @@ class TripFile(DataFile):
         row['tipo_transporte_2'] = int(row['tipo_transporte_2'])
         row['tipo_transporte_3'] = int(row['tipo_transporte_3'])
         row['tipo_transporte_4'] = int(row['tipo_transporte_4'])
+        if row['n_etapas'] == 1:
+            row['servicio_bajada'] = row['srv_1']
+        elif row['n_etapas'] == 2:
+            row['servicio_bajada'] = row['srv_2']
+        elif row['n_etapas'] == 3:
+            row['servicio_bajada'] = row['srv_3']
+        elif row['n_etapas'] == 4:
+            row['servicio_bajada'] = row['srv_4']
         row['comuna_subida'] = int(row['comuna_subida'])
         row['comuna_bajada'] = int(row['comuna_bajada'])
         row['zona_subida'] = int(row['zona_subida'])
@@ -71,5 +79,4 @@ class TripFile(DataFile):
         row['periodo_bajada_4'] = int(row['periodo_bajada_4']) if row['periodo_bajada_4'].isdigit() else -1
 
         row.pop(None)
-
         return row
