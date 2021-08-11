@@ -73,6 +73,9 @@
         "srv_4": {
           "type": "keyword"
         },
+        "servicio_bajada": {
+          "type": "keyword"
+        },
         "paradero_subida": {
           "type": "keyword"
         },
