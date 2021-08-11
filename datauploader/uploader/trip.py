@@ -9,7 +9,7 @@ class TripFile(DataFile):
         self.fieldnames = ['tipodia', 'factor_expansion', 'n_etapas', 'tviaje', 'distancia_eucl',
                            'distancia_ruta', 'tiempo_subida', 'tiempo_bajada', 'mediahora_subida', 'mediahora_bajada',
                            'periodo_subida', 'periodo_bajada', 'tipo_transporte_1', 'tipo_transporte_2',
-                           'tipo_transporte_3', 'tipo_transporte_4', 'srv_1', 'srv_2', 'srv_3', 'srv_4',
+                           'tipo_transporte_3', 'tipo_transporte_4', 'srv_1', 'srv_2', 'srv_3', 'srv_4','servicio_bajada'
                            'paradero_subida', 'paradero_bajada', 'comuna_subida', 'comuna_bajada', 'zona_subida',
                            'zona_bajada', 'modos', 'tiempo_subida_1', 'tiempo_bajada_1', 'tiempo_subida_2',
                            'tiempo_bajada_2', 'tiempo_subida_3', 'tiempo_bajada_3', 'tiempo_subida_4',
@@ -40,6 +40,14 @@ class TripFile(DataFile):
         row['tipo_transporte_2'] = int(row['tipo_transporte_2'])
         row['tipo_transporte_3'] = int(row['tipo_transporte_3'])
         row['tipo_transporte_4'] = int(row['tipo_transporte_4'])
+        if row['n_etapas'] == 1:
+            row['servicio_bajada'] = row['srv_1']
+        elif row['n_etapas'] == 2:
+            row['servicio_bajada'] = row['srv_2']
+        elif row['n_etapas'] == 3:
+            row['servicio_bajada'] = row['srv_3']
+        elif row['n_etapas'] == 4:
+            row['servicio_bajada'] = row['srv_4']
         row['comuna_subida'] = int(row['comuna_subida'])
         row['comuna_bajada'] = int(row['comuna_bajada'])
         row['zona_subida'] = int(row['zona_subida'])
