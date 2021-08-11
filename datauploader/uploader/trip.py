@@ -9,7 +9,7 @@ class TripFile(DataFile):
         self.fieldnames = ['tipodia', 'factor_expansion', 'n_etapas', 'tviaje', 'distancia_eucl',
                            'distancia_ruta', 'tiempo_subida', 'tiempo_bajada', 'mediahora_subida', 'mediahora_bajada',
                            'periodo_subida', 'periodo_bajada', 'tipo_transporte_1', 'tipo_transporte_2',
-                           'tipo_transporte_3', 'tipo_transporte_4', 'srv_1', 'srv_2', 'srv_3', 'srv_4','servicio_bajada'
+                           'tipo_transporte_3', 'tipo_transporte_4', 'srv_1', 'srv_2', 'srv_3', 'srv_4',
                            'paradero_subida', 'paradero_bajada', 'comuna_subida', 'comuna_bajada', 'zona_subida',
                            'zona_bajada', 'modos', 'tiempo_subida_1', 'tiempo_bajada_1', 'tiempo_subida_2',
                            'tiempo_bajada_2', 'tiempo_subida_3', 'tiempo_bajada_3', 'tiempo_subida_4',
@@ -79,5 +79,4 @@ class TripFile(DataFile):
         row['periodo_bajada_4'] = int(row['periodo_bajada_4']) if row['periodo_bajada_4'].isdigit() else -1
 
         row.pop(None)
-
         return row
