@@ -61,6 +61,9 @@
         "tipo_transporte_4": {
           "type": "byte"
         },
+         "modo_bajada": {
+          "type": "byte"
+        },
         "srv_1": {
           "type": "keyword"
         },
