@@ -40,6 +40,7 @@ class TripFile(DataFile):
         row['tipo_transporte_2'] = int(row['tipo_transporte_2'])
         row['tipo_transporte_3'] = int(row['tipo_transporte_3'])
         row['tipo_transporte_4'] = int(row['tipo_transporte_4'])
+        row['modo_subida'] = row['tipo_transporte_1'] if row['tipo_transporte_1'] != 3 else 1
         if row['n_etapas'] == 1:
             row['servicio_bajada'] = row['srv_1']
             row['modo_bajada'] = row['tipo_transporte_1']
@@ -52,6 +53,7 @@ class TripFile(DataFile):
         elif row['n_etapas'] == 4:
             row['servicio_bajada'] = row['srv_4']
             row['modo_bajada'] = row['tipo_transporte_4']
+        row['modo_bajada'] = row['modo_bajada'] if row['modo_bajada'] != 3 else 1
         row['comuna_subida'] = int(row['comuna_subida'])
         row['comuna_bajada'] = int(row['comuna_bajada'])
         row['zona_subida'] = int(row['zona_subida'])
