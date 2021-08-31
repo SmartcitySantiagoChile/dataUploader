@@ -1,5 +1,6 @@
 import csv
 import traceback
+from collections import defaultdict
 from itertools import groupby
 
 from datauploader.uploader.datafile import DataFile, get_timestamp
@@ -12,6 +13,18 @@ class StopByRouteFile(DataFile):
         DataFile.__init__(self, datafile)
         self.fieldnames = ['authRouteCode', 'userRouteCode', 'operator', 'order', 'authStopCode', 'userStopCode',
                            'stopName', 'latitude', 'longitude']
+        self.routes_by_stop = defaultdict(lambda: set())
+        with self.get_file_object() as f:
+            next(f)  # skip header
+            delimiter = '|'
+            reader = csv.DictReader(f, delimiter=delimiter, fieldnames=self.fieldnames)
+            for row in reader:
+                self.routes_by_stop[row['authStopCode']].add(row['userRouteCode'])
+
+        for authStopCode in self.routes_by_stop.keys():
+            route_list = list(self.routes_by_stop[authStopCode])
+            route_list.sort()
+            self.routes_by_stop[authStopCode] = route_list
 
     def make_docs(self):
         with self.get_file_object() as f:
@@ -36,6 +49,7 @@ class StopByRouteFile(DataFile):
                             'latitude': float(p['latitude']),
                             'authStopCode': p['authStopCode'],
                             'userStopCode': p['userStopCode'],
+                            'routes': self.routes_by_stop[p['authStopCode']],
                             'stopName': p['stopName'],
                         } for p in stops
                     ]

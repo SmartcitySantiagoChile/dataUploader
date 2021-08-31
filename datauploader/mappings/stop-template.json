@@ -76,6 +76,10 @@
               "type": "keyword"
             }
           }
+        },
+        "routes": {
+          "type": "keyword",
+          "index": false
         }
       }
     }
