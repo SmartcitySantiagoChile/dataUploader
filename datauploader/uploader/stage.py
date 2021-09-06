@@ -15,14 +15,14 @@ class StageFile(DataFile):
                            'tEsperaMediaIntervalo', 'periodoSubida', 'periodoBajada', 'tiempoIniExpedicion']
 
     def row_parser(self, row, path, timestamp):
-        operator = row['operador']
+        operator = int(row['operador'])
         boarding_time = row['tiempo_subida']
         stage_number = int(row['correlativo_etapas'])
         day_type = self.translate_day_type(row['tipo_dia'])
         authority_stop_code = row['parada_subida']
         half_hour_in_boarding_time = self.translate_half_hour(row['media_hora_subida'])
         stop_commune = self.translate_commune(row['comuna_subida'])
-        expanded_boarding = row['fExpansionZonaPeriodoTS']
+        expanded_boarding = float(row['fExpansionZonaPeriodoTS']) if row['fExpansionZonaPeriodoTS'] != '-' else 0
 
         return {
             'path': path,
