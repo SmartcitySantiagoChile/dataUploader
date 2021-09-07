@@ -23,7 +23,7 @@ class StageFile(DataFile):
         half_hour_in_boarding_time = self.translate_half_hour(row['media_hora_subida'])
         stop_commune = self.translate_commune(row['comuna_subida'])
         expanded_boarding = float(row['fExpansionZonaPeriodoTS']) if row['fExpansionZonaPeriodoTS'] != '-' else 0
-
+        time_period_in_boarding_time = self.translate_period(row['periodoSubida'])
         return {
             'path': path,
             'operator': operator,
@@ -33,7 +33,9 @@ class StageFile(DataFile):
             'authStopCode': authority_stop_code,
             'halfHourInBoardingTime': half_hour_in_boarding_time,
             'boardingStopCommune': stop_commune,
-            'expandedBoarding': expanded_boarding
+            'expandedBoarding': expanded_boarding,
+            'timePeriodInBoardingTime': time_period_in_boarding_time,
+            'busStation': row['tipo_transporte'] if row["tipo_transporte"] == "ZP" else 0
         }
 
     def translate_day_type(self, value):
@@ -77,3 +79,23 @@ class StageFile(DataFile):
             return data[value]
         except KeyError:
             raise ValueError('commune "{0}" is not valid'.format(value))
+
+    def translate_period(self, value):
+        data = {
+            "01 - PRE NOCTURNO": 0,
+            "02 - NOCTURNO": 1,
+            "03 - TRANSICION NOCTURNO": 2,
+            "04 - PUNTA MANANA": 3,
+            "05 - TRANSICION PUNTA MANANA": 4,
+            "06 - FUERA DE PUNTA MANANA": 5,
+            "07 - PUNTA MEDIODIA": 6,
+            "08 - FUERA DE PUNTA TARDE": 7,
+            "09 - PUNTA TARDE1": 8,
+            "10 - PUNTA TARDE2": 9,
+            "11 - FUERA DE PUNTA NOCTURNO": 10
+        }
+        try:
+            return data[value]
+        except KeyError:
+            raise ValueError(f'period "value" is not valid')
+
