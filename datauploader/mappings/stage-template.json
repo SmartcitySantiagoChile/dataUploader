@@ -37,6 +37,12 @@
         "expandedBoarding": {
           "type": "half_float",
           "index": false
+        },
+        "timePeriodInBoardingTime": {
+          "type": "byte"
+        },
+        "busStation": {
+          "type": "byte"
         }
       }
     }
