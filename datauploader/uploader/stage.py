@@ -24,6 +24,7 @@ class StageFile(DataFile):
         stop_commune = self.translate_commune(row['comuna_subida'])
         expanded_boarding = float(row['fExpansionZonaPeriodoTS']) if row['fExpansionZonaPeriodoTS'] != '-' else 0
         time_period_in_boarding_time = self.translate_period(row['periodoSubida'])
+        bus_station = 1 if row["tipo_transporte"] == "ZP" else 0
         return {
             'path': path,
             'operator': operator,
@@ -35,7 +36,7 @@ class StageFile(DataFile):
             'boardingStopCommune': stop_commune,
             'expandedBoarding': expanded_boarding,
             'timePeriodInBoardingTime': time_period_in_boarding_time,
-            'busStation': row['tipo_transporte'] if row["tipo_transporte"] == "ZP" else 0
+            'busStation': bus_station
         }
 
     def translate_day_type(self, value):
@@ -82,20 +83,37 @@ class StageFile(DataFile):
 
     def translate_period(self, value):
         data = {
-            "01 - PRE NOCTURNO": 0,
-            "02 - NOCTURNO": 1,
-            "03 - TRANSICION NOCTURNO": 2,
-            "04 - PUNTA MANANA": 3,
-            "05 - TRANSICION PUNTA MANANA": 4,
-            "06 - FUERA DE PUNTA MANANA": 5,
-            "07 - PUNTA MEDIODIA": 6,
-            "08 - FUERA DE PUNTA TARDE": 7,
-            "09 - PUNTA TARDE1": 8,
-            "10 - PUNTA TARDE2": 9,
-            "11 - FUERA DE PUNTA NOCTURNO": 10
+            "01 - PRE NOCTURNO": 30,
+            "02 - NOCTURNO": 31,
+            "03 - TRANSICION NOCTURNO": 32,
+            "04 - PUNTA MANANA": 33,
+            "05 - TRANSICION PUNTA MANANA": 34,
+            "06 - FUERA DE PUNTA MANANA": 35,
+            "07 - PUNTA MEDIODIA": 36,
+            "08 - FUERA DE PUNTA TARDE": 37,
+            "09 - PUNTA TARDE1": 38,
+            "10 - PUNTA TARDE2": 39,
+            "11 - FUERA DE PUNTA NOCTURNO": 40,
+            "12 - PRE NOCTURNO": 41,
+            "01 - PRE NOCTURNO SABADO": 42,
+            "02 - NOCTURNO SABADO": 43,
+            "03 - TRANSICION SABADO MANANA": 44,
+            "04 - PUNTA MANANA SABADO": 45,
+            "05 - MANANA SABADO": 46,
+            "06 - PUNTA MEDIODIA SABADO": 47,
+            "07 - TARDE SABADO": 48,
+            "08 - TRANSICION SABADO NOCTURNO": 49,
+            "09 - PRE NOCTURNO SABADO": 50,
+            "01 - PRE NOCTURNO DOMINGO": 51,
+            "02 - NOCTURNO DOMINGO": 52,
+            "03 - TRANSICION DOMINGO MANANA": 53,
+            "04 - MANANA DOMINGO": 54,
+            "05 - MEDIODIA DOMINGO": 55,
+            "06 - TARDE DOMINGO": 56,
+            "07 - TRANSICION DOMINGO NOCTURNO": 57,
+            "08 - PRE NOCTURNO DOMINGO": 58
         }
         try:
             return data[value]
         except KeyError:
             raise ValueError(f'period "value" is not valid')
-
