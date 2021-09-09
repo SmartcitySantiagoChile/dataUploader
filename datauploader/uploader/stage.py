@@ -15,7 +15,7 @@ class StageFile(DataFile):
                            'tEsperaMediaIntervalo', 'periodoSubida', 'periodoBajada', 'tiempoIniExpedicion']
 
     def row_parser(self, row, path, timestamp):
-        operator = int(row['operador'])
+        operator = self.translate_operator(row['operador'])
         boarding_time = row['tiempo_subida']
         stage_number = int(row['correlativo_etapas'])
         day_type = self.translate_day_type(row['tipo_dia'])
@@ -117,3 +117,11 @@ class StageFile(DataFile):
             return data[value]
         except KeyError:
             raise ValueError(f'period "value" is not valid')
+
+    def translate_operator(self, value):
+        translated_value = int(value)
+        if value == 1:
+            translated_value = 8
+        if value == 17:
+            translated_value = 9
+        return translated_value
