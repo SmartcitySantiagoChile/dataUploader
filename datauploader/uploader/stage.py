@@ -120,8 +120,8 @@ class StageFile(DataFile):
 
     def translate_operator(self, value):
         translated_value = int(value)
-        if value == 1:
+        if translated_value == 1:
             translated_value = 8
-        if value == 17:
+        if translated_value == 17:
             translated_value = 9
         return translated_value
