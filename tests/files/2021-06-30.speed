@@ -1,0 +1,6 @@
+Route|IdSection|Date|Period|DayType|TotalDistance|TotalTime|Speed|Observations|InvalidObservations|Operator|RouteUser|IsEndSection
+B01 00I|0|2021-06-30|11|0|399.54|73.58|19.55|1|0|6|B01|0
+B01 00I|0|2021-06-30|13|0|368.84|134.14|9.90|1|0|6|B01|0
+B01 00I|0|2021-06-30|14|0|726.19|321.12|8.14|2|0|6|B01|0
+B01 00I|0|2021-06-30|15|0|1156.39|465.11|8.95|3|0|6|B01|0
+B01 00I|0|2021-06-30|16|0|1680.84|582.74|10.38|4|0|6|B01|0
