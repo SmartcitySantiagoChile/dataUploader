@@ -50,10 +50,10 @@ class LoadOPData(TestCase):
         file_name_list = ['2019-03-06.opdata', '2019-03-06.opdata.gz', '2019-03-06.opdata.zip']
         for file_name in file_name_list:
             file_path = os.path.join(os.path.dirname(__file__), 'files', file_name)
-            general_uploader = OPDataFile(file_path)
+            opdata_uploader = OPDataFile(file_path)
             data_file = DataFile(file_path)
             with data_file.get_file_object() as csvfile:
                 reader = csv.reader(csvfile, delimiter="|")
                 row = next(reader)
-                self.assertEqual(general_uploader.fieldnames, row)
+                self.assertEqual(opdata_uploader.fieldnames, row)
 

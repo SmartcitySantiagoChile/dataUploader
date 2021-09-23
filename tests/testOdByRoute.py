@@ -50,9 +50,9 @@ class LoadOdByRouteData(TestCase):
         file_name_list = ['2017-05-08.odbyroute', '2017-05-08.odbyroute.gz', '2017-05-08.odbyroute.zip']
         for file_name in file_name_list:
             file_path = os.path.join(os.path.dirname(__file__), 'files', file_name)
-            general_uploader = OdByRouteFile(file_path)
+            odbyroute_uploader = OdByRouteFile(file_path)
             data_file = DataFile(file_path)
             with data_file.get_file_object() as csvfile:
                 reader = csv.reader(csvfile, delimiter="|")
                 row = next(reader)
-                self.assertEqual(general_uploader.fieldnames, row)
+                self.assertEqual(odbyroute_uploader.fieldnames, row)
