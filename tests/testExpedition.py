@@ -1,6 +1,8 @@
+import csv
 import os
 from unittest import TestCase, mock
 
+from datauploader.uploader.datafile import DataFile
 from datauploader.uploader.expedition import ExpeditionFile
 
 
@@ -43,3 +45,14 @@ class LoadExpeditionData(TestCase):
             list(expedition.make_docs())
 
             parallel_bulk.assert_called()
+
+    def test_field_names(self):
+        file_name_list = ['2016-05-23.expedition', '2016-05-23.expedition.zip', '2016-05-23.expedition.gz']
+        for file_name in file_name_list:
+            file_path = os.path.join(os.path.dirname(__file__), 'files', file_name)
+            expedition_uploader = ExpeditionFile(file_path)
+            data_file = DataFile(file_path)
+            with data_file.get_file_object() as csvfile:
+                reader = csv.reader(csvfile, delimiter="|")
+                row = next(reader)
+                self.assertEqual(expedition_uploader.fieldnames, row)
