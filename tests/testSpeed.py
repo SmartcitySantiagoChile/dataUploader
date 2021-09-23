@@ -51,9 +51,9 @@ class LoadSpeedData(TestCase):
         file_name_list = ['2021-06-30.speed', '2021-06-30.speed.gz', '2021-06-30.speed.zip']
         for file_name in file_name_list:
             file_path = os.path.join(os.path.dirname(__file__), 'files', file_name)
-            shape_uploader = SpeedFile(file_path)
+            speed_uploader = SpeedFile(file_path)
             data_file = DataFile(file_path)
             with data_file.get_file_object() as csvfile:
                 reader = csv.reader(csvfile, delimiter="|")
                 row = next(reader)
-                self.assertEqual(shape_uploader.fieldnames, row)
+                self.assertEqual(speed_uploader.fieldnames, row)
