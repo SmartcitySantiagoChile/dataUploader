@@ -1,8 +1,10 @@
+import csv
 import os
 from unittest import TestCase, mock
 
-
+from datauploader.uploader.datafile import DataFile
 from datauploader.uploader.shape import ShapeFile
+
 
 class LoadShapeData(TestCase):
 
@@ -31,7 +33,8 @@ class LoadShapeData(TestCase):
     @mock.patch('datauploader.uploader.datafile.Search')
     @mock.patch('datauploader.loadData.Elasticsearch')
     def test_load_shape_data(self, elasticsearch_mock, search_mock, parallel_bulk):
-        file_name_list = ['2017-04-03.shape', '2017-04-03.shape.gz', '2017-04-03.shape.zip']
+        file_name_list = ['2017-04-03.shape', '2017-04-03.shape.gz', '2017-04-03.shape.zip', "2021-05-19.shape",
+                          "2021-05-19.shape.gz", "2021-05-19.shape.zip"]
         for file_name in file_name_list:
             file_path = os.path.join(os.path.dirname(__file__), 'files', file_name)
             self.prepare_search_mock(search_mock)
@@ -43,3 +46,15 @@ class LoadShapeData(TestCase):
             list(shape_uploader.make_docs())
 
             parallel_bulk.assert_called()
+
+    def test_field_names(self):
+        file_name_list = ["2021-05-19.shape",
+                          "2021-05-19.shape.gz", "2021-05-19.shape.zip"]
+        for file_name in file_name_list:
+            file_path = os.path.join(os.path.dirname(__file__), 'files', file_name)
+            shape_uploader = ShapeFile(file_path)
+            data_file = DataFile(file_path)
+            with data_file.get_file_object() as csvfile:
+                reader = csv.reader(csvfile, delimiter="|")
+                row = next(reader)
+                self.assertEqual(shape_uploader.fieldnames, row)
