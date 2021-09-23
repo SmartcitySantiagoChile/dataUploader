@@ -6,25 +6,25 @@ class PaymentFactorFile(DataFile):
 
     def __init__(self, datafile):
         DataFile.__init__(self, datafile)
-        self.fieldnames = ['date', 'dayType', 'assignation', 'busStationId', 'busStationName', 'operator', 'total',
-                           'sum', 'subtraction', 'neutral', 'factor', 'routes', 'transactions', 'validatorId']
+        self.fieldnames = ["FECHA", "TIPODIA", "ASIGNACION", "ZP", "NOMBRE", "UN", "TOTAL", "SUMAN", "RESTAN",
+                           "NEUTRAS", "FACTOR", "SERVS", "TRXS", "VALIDATORID"]
 
     def row_parser(self, row, path, timestamp):
         return {
             "path": path,
             "timestamp": timestamp,
-            "date": row['date'],
-            "dayType": int(row['dayType']),
-            "assignation": row['assignation'],
-            "busStationId": row['busStationId'],
-            "busStationName": row['busStationName'],
-            "operator": int(row['operator']),
-            "total": float(row['total']),
-            "sum": float(row['sum']),
-            "subtraction": float(row['subtraction']),
-            "neutral": float(row['neutral']),
-            "factor": float(row['factor']),
-            "routes": row['routes'],
-            "transactions": row['transactions'],
-            "validatorId": row['validatorId']
+            "date": row['FECHA'],
+            "dayType": int(row['TIPODIA']),
+            "assignation": row['ASIGNACION'],
+            "busStationId": row['ZP'],
+            "busStationName": row['NOMBRE'],
+            "operator": int(row['UN']),
+            "total": float(row['TOTAL']),
+            "sum": float(row['SUMAN']),
+            "subtraction": float(row['RESTAN']),
+            "neutral": float(row['NEUTRAS']),
+            "factor": float(row['FACTOR']),
+            "routes": row['SERVS'],
+            "transactions": row['TRXS'],
+            "validatorId": row['VALIDATORID']
         }
