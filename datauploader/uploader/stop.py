@@ -10,8 +10,8 @@ class StopFile(DataFile):
 
     def __init__(self, datafile):
         DataFile.__init__(self, datafile)
-        self.fieldnames = ['authRouteCode', 'userRouteCode', 'operator', 'order', 'authStopCode', 'userStopCode',
-                           'stopName', 'latitude', 'longitude']
+        self.fieldnames = ['Servicio', 'ServicioUsuario', 'Operador', 'Correlativo', 'Codigo', 'CodigoUsuario',
+                           'Nombre', 'Latitud', 'Longitud', "esZP"]
         self.uploaded_stops = []
         self.routes_by_stop = defaultdict(lambda: set())
 
@@ -20,7 +20,7 @@ class StopFile(DataFile):
             delimiter = '|'
             reader = csv.DictReader(f, delimiter=delimiter, fieldnames=self.fieldnames)
             for row in reader:
-                self.routes_by_stop[row['authStopCode']].add(row['userRouteCode'])
+                self.routes_by_stop[row['Codigo']].add(row['ServicioUsuario'])
 
         for authStopCode in self.routes_by_stop.keys():
             route_list = list(self.routes_by_stop[authStopCode])
@@ -28,19 +28,19 @@ class StopFile(DataFile):
             self.routes_by_stop[authStopCode] = route_list
 
     def row_parser(self, row, path, timestamp):
-        if row['userStopCode'] in self.uploaded_stops or row['userStopCode'] == '-':
-            raise StopDocumentExist('Stop {0} exists'.format(row['userStopCode']))
+        if row['CodigoUsuario'] in self.uploaded_stops or row['CodigoUsuario'] == '-':
+            raise StopDocumentExist('Stop {0} exists'.format(row['CodigoUsuario']))
 
-        self.uploaded_stops.append(row['userStopCode'])
+        self.uploaded_stops.append(row['CodigoUsuario'])
 
         return {
             'path': path,
             'timestamp': timestamp,
             'startDate': self.name_to_date(),
-            'authCode': row['authStopCode'],
-            'userCode': row['userStopCode'],
-            'name': row['stopName'],
-            'routes': self.routes_by_stop[row['authStopCode']],
-            'latitude': float(row['latitude']),
-            'longitude': float(row['longitude'])
+            'authCode': row['Servicio'],
+            'userCode': row['CodigoUsuario'],
+            'name': row['Nombre'],
+            'routes': self.routes_by_stop[row['Codigo']],
+            'latitude': float(row['Latitud']),
+            'longitude': float(row['Longitud'])
         }
