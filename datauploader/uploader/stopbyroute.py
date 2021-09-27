@@ -11,15 +11,15 @@ class StopByRouteFile(DataFile):
 
     def __init__(self, datafile):
         DataFile.__init__(self, datafile)
-        self.fieldnames = ['authRouteCode', 'userRouteCode', 'operator', 'order', 'authStopCode', 'userStopCode',
-                           'stopName', 'latitude', 'longitude']
+        self.fieldnames = ['Servicio', 'ServicioUsuario', 'Operador', 'Correlativo', 'Codigo', 'CodigoUsuario',
+                           'Nombre', 'Latitud', 'Longitud', 'esZP']
         self.routes_by_stop = defaultdict(lambda: set())
         with self.get_file_object() as f:
             next(f)  # skip header
             delimiter = '|'
             reader = csv.DictReader(f, delimiter=delimiter, fieldnames=self.fieldnames)
             for row in reader:
-                self.routes_by_stop[row['authStopCode']].add(row['userRouteCode'])
+                self.routes_by_stop[row['Codigo']].add(row['ServicioUsuario'])
 
         for authStopCode in self.routes_by_stop.keys():
             route_list = list(self.routes_by_stop[authStopCode])
@@ -34,7 +34,7 @@ class StopByRouteFile(DataFile):
 
             # Group data using 'authRouteCode' as key
             for authUserOp, stops in groupby(reader,
-                                             lambda r: (r['authRouteCode'], r['userRouteCode'], r['operator'])):
+                                             lambda r: (r['Servicio'], r['ServicioUsuario'], r['Operador'])):
                 # skip if authority operator code is an hyphen
                 if authUserOp[0] == str('-'):
                     continue
@@ -44,13 +44,13 @@ class StopByRouteFile(DataFile):
                     date = self.name_to_date()
                     stops = [
                         {
-                            'order': int(p['order']),
-                            'longitude': float(p['longitude']),
-                            'latitude': float(p['latitude']),
-                            'authStopCode': p['authStopCode'],
-                            'userStopCode': p['userStopCode'],
-                            'routes': self.routes_by_stop[p['authStopCode']],
-                            'stopName': p['stopName'],
+                            'order': int(p['Correlativo']),
+                            'longitude': float(p['Longitud']),
+                            'latitude': float(p['Latitud']),
+                            'authStopCode': p['Codigo'],
+                            'userStopCode': p['CodigoUsuario'],
+                            'routes': self.routes_by_stop[p['Codigo']],
+                            'stopName': p['Nombre'],
                         } for p in stops
                     ]
                     yield {

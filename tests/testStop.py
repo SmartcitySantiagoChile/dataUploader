@@ -52,14 +52,26 @@ class LoadStopData(TestCase):
 
             parallel_bulk.assert_called()
 
-    def test_field_names(self):
+    def test_stop_field_names(self):
         file_name_list = ['2021-05-19.stop',
                           '2021-05-19.stop.gz', '2021-05-19.stop.zip']
         for file_name in file_name_list:
             file_path = os.path.join(os.path.dirname(__file__), 'files', file_name)
-            stage_uploader = StopFile(file_path)
+            stop_uploader = StopFile(file_path)
             data_file = DataFile(file_path)
             with data_file.get_file_object() as csvfile:
                 reader = csv.reader(csvfile, delimiter="|")
                 row = next(reader)
-                self.assertEqual(stage_uploader.fieldnames, row)
+                self.assertEqual(stop_uploader.fieldnames, row)
+
+    def test_stop_by_route_field_names(self):
+        file_name_list = ['2021-05-19.stop',
+                          '2021-05-19.stop.gz', '2021-05-19.stop.zip']
+        for file_name in file_name_list:
+            file_path = os.path.join(os.path.dirname(__file__), 'files', file_name)
+            stop_by_route_uploader = StopByRouteFile(file_path)
+            data_file = DataFile(file_path)
+            with data_file.get_file_object() as csvfile:
+                reader = csv.reader(csvfile, delimiter="|")
+                row = next(reader)
+                self.assertEqual(stop_by_route_uploader.fieldnames, row)
