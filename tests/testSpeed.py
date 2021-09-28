@@ -1,6 +1,8 @@
+import csv
 import os
 from unittest import TestCase, mock
 
+from datauploader.uploader.datafile import DataFile
 from datauploader.uploader.speed import SpeedFile
 
 
@@ -44,3 +46,14 @@ class LoadSpeedData(TestCase):
             list(speed_uploader.make_docs())
 
             parallel_bulk.assert_called()
+
+    def test_field_names(self):
+        file_name_list = ['2021-06-30.speed', '2021-06-30.speed.gz', '2021-06-30.speed.zip']
+        for file_name in file_name_list:
+            file_path = os.path.join(os.path.dirname(__file__), 'files', file_name)
+            speed_uploader = SpeedFile(file_path)
+            data_file = DataFile(file_path)
+            with data_file.get_file_object() as csvfile:
+                reader = csv.reader(csvfile, delimiter="|")
+                row = next(reader)
+                self.assertEqual(speed_uploader.fieldnames, row)

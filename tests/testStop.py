@@ -1,6 +1,8 @@
+import csv
 import os
 from unittest import TestCase, mock
 
+from datauploader.uploader.datafile import DataFile
 from datauploader.uploader.stop import StopFile
 from datauploader.uploader.stopbyroute import StopByRouteFile
 
@@ -32,7 +34,8 @@ class LoadStopData(TestCase):
     @mock.patch('datauploader.uploader.datafile.Search')
     @mock.patch('datauploader.loadData.Elasticsearch')
     def test_load_stop_data(self, elasticsearch_mock, search_mock, parallel_bulk):
-        file_name_list = ['2017-07-31.stop', '2017-07-31.stop.gz', '2017-07-31.stop.zip']
+        file_name_list = ['2017-07-31.stop', '2017-07-31.stop.gz', '2017-07-31.stop.zip', '2021-05-19.stop',
+                          '2021-05-19.stop.gz', '2021-05-19.stop.zip']
         for file_name in file_name_list:
             file_path = os.path.join(os.path.dirname(__file__), 'files', file_name)
             self.prepare_search_mock(search_mock)
@@ -48,3 +51,27 @@ class LoadStopData(TestCase):
             list(stop_uploader2.make_docs())
 
             parallel_bulk.assert_called()
+
+    def test_stop_field_names(self):
+        file_name_list = ['2021-05-19.stop',
+                          '2021-05-19.stop.gz', '2021-05-19.stop.zip']
+        for file_name in file_name_list:
+            file_path = os.path.join(os.path.dirname(__file__), 'files', file_name)
+            stop_uploader = StopFile(file_path)
+            data_file = DataFile(file_path)
+            with data_file.get_file_object() as csvfile:
+                reader = csv.reader(csvfile, delimiter="|")
+                row = next(reader)
+                self.assertEqual(stop_uploader.fieldnames, row)
+
+    def test_stop_by_route_field_names(self):
+        file_name_list = ['2021-05-19.stop',
+                          '2021-05-19.stop.gz', '2021-05-19.stop.zip']
+        for file_name in file_name_list:
+            file_path = os.path.join(os.path.dirname(__file__), 'files', file_name)
+            stop_by_route_uploader = StopByRouteFile(file_path)
+            data_file = DataFile(file_path)
+            with data_file.get_file_object() as csvfile:
+                reader = csv.reader(csvfile, delimiter="|")
+                row = next(reader)
+                self.assertEqual(stop_by_route_uploader.fieldnames, row)

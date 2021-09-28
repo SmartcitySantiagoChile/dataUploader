@@ -1,6 +1,8 @@
+import csv
 import os
 from unittest import TestCase, mock
 
+from datauploader.uploader.datafile import DataFile
 from datauploader.uploader.trip import TripFile
 
 
@@ -31,7 +33,8 @@ class LoadTripData(TestCase):
     @mock.patch('datauploader.uploader.datafile.Search')
     @mock.patch('datauploader.loadData.Elasticsearch')
     def test_load_trip_data(self, elasticsearch_mock, search_mock, parallel_bulk):
-        file_name_list = ['2016-03-14.trip', '2016-03-14.trip.gz', '2016-03-14.trip.zip']
+        file_name_list = ['2016-03-14.trip', '2016-03-14.trip.gz', '2016-03-14.trip.zip', '2021-06-30.trip',
+                          '2021-06-30.trip.gz', '2021-06-30.trip.zip']
         for file_name in file_name_list:
             file_path = os.path.join(os.path.dirname(__file__), 'files', file_name)
             self.prepare_search_mock(search_mock)
@@ -43,3 +46,15 @@ class LoadTripData(TestCase):
             list(trip_uploader.make_docs())
 
             parallel_bulk.assert_called()
+
+    def test_field_names(self):
+        file_name_list = ['2021-06-30.trip',
+                          '2021-06-30.trip.gz', '2021-06-30.trip.zip']
+        for file_name in file_name_list:
+            file_path = os.path.join(os.path.dirname(__file__), 'files', file_name)
+            trip_uploader = TripFile(file_path)
+            data_file = DataFile(file_path)
+            with data_file.get_file_object() as csvfile:
+                reader = csv.reader(csvfile, delimiter="|")
+                row = next(reader)
+                self.assertEqual(trip_uploader.fieldnames, row)

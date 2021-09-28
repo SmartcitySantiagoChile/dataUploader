@@ -1,6 +1,8 @@
+import csv
 import os
 from unittest import TestCase, mock
 
+from datauploader.uploader.datafile import DataFile
 from datauploader.uploader.odbyroute import OdByRouteFile
 
 
@@ -43,3 +45,14 @@ class LoadOdByRouteData(TestCase):
             list(odbyroute_uploader.make_docs())
 
             parallel_bulk.assert_called()
+
+    def test_field_names(self):
+        file_name_list = ['2017-05-08.odbyroute', '2017-05-08.odbyroute.gz', '2017-05-08.odbyroute.zip']
+        for file_name in file_name_list:
+            file_path = os.path.join(os.path.dirname(__file__), 'files', file_name)
+            odbyroute_uploader = OdByRouteFile(file_path)
+            data_file = DataFile(file_path)
+            with data_file.get_file_object() as csvfile:
+                reader = csv.reader(csvfile, delimiter="|")
+                row = next(reader)
+                self.assertEqual(odbyroute_uploader.fieldnames, row)

@@ -1,6 +1,8 @@
+import csv
 import os
 from unittest import TestCase, mock
 
+from datauploader.uploader.datafile import DataFile
 from datauploader.uploader.paymentfactor import PaymentFactorFile
 
 
@@ -45,3 +47,15 @@ class LoadProfileData(TestCase):
             list(paymentfactor_uploader.make_docs())
 
             parallel_bulk.assert_called()
+
+    def test_field_names(self):
+        file_name_list = ['2019-08-10.paymentfactor', '2019-08-10.paymentfactor.gz',
+                          '2019-08-10.paymentfactor.zip']
+        for file_name in file_name_list:
+            file_path = os.path.join(os.path.dirname(__file__), 'files', file_name)
+            paymentfactor_uploader = PaymentFactorFile(file_path)
+            data_file = DataFile(file_path)
+            with data_file.get_file_object() as csvfile:
+                reader = csv.reader(csvfile, delimiter="|")
+                row = next(reader)
+                self.assertEqual(paymentfactor_uploader.fieldnames, row)

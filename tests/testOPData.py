@@ -1,6 +1,8 @@
+import csv
 import os
 from unittest import TestCase, mock
 
+from datauploader.uploader.datafile import DataFile
 from datauploader.uploader.opdata import OPDataFile
 
 
@@ -43,3 +45,15 @@ class LoadOPData(TestCase):
             list(opdata_uploader.make_docs())
 
             parallel_bulk.assert_called()
+
+    def test_field_names(self):
+        file_name_list = ['2019-03-06.opdata', '2019-03-06.opdata.gz', '2019-03-06.opdata.zip']
+        for file_name in file_name_list:
+            file_path = os.path.join(os.path.dirname(__file__), 'files', file_name)
+            opdata_uploader = OPDataFile(file_path)
+            data_file = DataFile(file_path)
+            with data_file.get_file_object() as csvfile:
+                reader = csv.reader(csvfile, delimiter="|")
+                row = next(reader)
+                self.assertEqual(opdata_uploader.fieldnames, row)
+

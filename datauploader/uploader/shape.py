@@ -10,7 +10,7 @@ class ShapeFile(DataFile):
 
     def __init__(self, datafile):
         DataFile.__init__(self, datafile)
-        self.fieldnames = ['authRouteCode', 'segmentStart', 'latitude', 'longitude', 'operator', 'userRouteCode']
+        self.fieldnames = ['Route', 'IsSectionInit', 'Latitude', 'Longitude', 'Operator', 'RouteUser']
 
     def row_parser(self, row, path, timestamp):
         pass
@@ -21,17 +21,17 @@ class ShapeFile(DataFile):
             delimiter = str('|')
             reader = csv.DictReader(f, delimiter=delimiter, fieldnames=self.fieldnames)
             # Group data using 'route' as key
-            for identifier, points in groupby(reader, lambda point: (point['authRouteCode'], point['userRouteCode'],
-                                                                     point['operator'])):
+            for identifier, points in groupby(reader, lambda point: (point['Route'], point['RouteUser'],
+                                                                     point['Operator'])):
                 try:
                     points = list(points)
                     start_date = self.name_to_date()
                     path = self.basename
                     timestamp = get_timestamp()
                     points = [{
-                        'segmentStart': int(p['segmentStart']),
-                        'longitude': float(p['longitude']),
-                        'latitude': float(p['latitude'])} for p in points]
+                        'segmentStart': int(p['IsSectionInit']),
+                        'longitude': float(p['Longitude']),
+                        'latitude': float(p['Latitude'])} for p in points]
                     yield {
                         "_source": {
                             "path": path,
@@ -45,3 +45,4 @@ class ShapeFile(DataFile):
                     }
                 except ValueError:
                     traceback.print_exc()
+

@@ -6,16 +6,16 @@ class BipFile(DataFile):
 
     def __init__(self, datafile):
         DataFile.__init__(self, datafile)
-        self.fieldnames = ['bipNumber', 'validationTime', 'source', 'operator', 'route', 'userRoute']
+        self.fieldnames = ["id", "tiempo", "sitio", "op", "servicio_sonda", "servicio_usuario", "periodo", "tipo_dia"]
 
     def row_parser(self, row, path, timestamp):
         return {
             "path": path,
             "timestamp": timestamp,
-            "operator": int(row['operator']),
-            "route": row['route'],
-            "userRoute": row['userRoute'],
-            "validationTime": row['validationTime'],
-            "source": row['source'],
-            "bipNumber": row['bipNumber']
+            "operator": int(row['op']),
+            "route": row['servicio_sonda'],
+            "userRoute": row['servicio_usuario'],
+            "validationTime": row['tiempo'],
+            "source": row['sitio'],
+            "bipNumber": row['id']
         }
