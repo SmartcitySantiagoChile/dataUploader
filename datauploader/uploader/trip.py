@@ -7,23 +7,22 @@ class TripFile(DataFile):
     def __init__(self, datafile):
         DataFile.__init__(self, datafile)
         self.fieldnames = ["tipodia", "factor_expansion", "n_etapas", "tviaje", "distancia_eucl", "distancia_ruta",
-                           "tiempo_subida",
-                           "tiempo_bajada", "mediahora_subida", "mediahora_bajada", "periodo_subida", "periodo_bajada",
-                           "tipo_transporte_1", "tipo_transporte_2", "tipo_transporte_3", "tipo_transporte_4", "srv_1",
-                           "srv_2", "srv_3",
-                           "srv_4", "paradero_subida", "paradero_bajada", "comuna_subida", "comuna_bajada",
-                           "zona_subida", "zona_bajada",
-                           "modos", "tiempo_subida1", "tiempo_subida2", "tiempo_subida3", "tiempo_subida4",
-                           "tiempo_bajada1",
-                           "tiempo_bajada2", "tiempo_bajada3", "tiempo_bajada4", "zona_subida1", "zona_bajada1",
-                           "zona_subida2",
-                           "zona_bajada2", "zona_subida3", "zona_bajada3", "zona_subida4", "zona_bajada4",
-                           "paraderosubida_1era",
-                           "paraderosubida_2da", "paraderosubida_3era", "paraderosubida_4ta", "paraderobajada_1era",
-                           "paraderobajada_2da",
-                           "paraderobajada_3era", "paraderobajada_4ta", "mediahora_bajada_1era", "mediahora_bajada_2da",
-                           "mediahora_bajada_3era", "mediahora_bajada_4ta", "periodo_bajada_1era", "periodo_bajada_2da",
-                           "periodo_bajada_3era", "periodo_bajada_4ta", ""]
+                           "tiempo_subida", "tiempo_bajada",
+                           "mediahora_subida", "mediahora_bajada",
+                           "periodo_subida", "periodo_bajada",
+                           "tipo_transporte_1", "tipo_transporte_2", "tipo_transporte_3", "tipo_transporte_4",
+                           "srv_1", "srv_2", "srv_3", "srv_4",
+                           "paradero_subida", "paradero_bajada", "comuna_subida", "comuna_bajada",
+                           "zona_subida", "zona_bajada", "modos",
+                           "tiempo_subida1", "tiempo_subida2", "tiempo_subida3", "tiempo_subida4",
+                           "tiempo_bajada1", "tiempo_bajada2", "tiempo_bajada3", "tiempo_bajada4",
+                           "zona_subida1", "zona_subida2", "zona_subida3", "zona_subida4",
+                           "zona_bajada1", "zona_bajada2", "zona_bajada3", "zona_bajada4",
+                           "paraderosubida_1era", "paraderosubida_2da", "paraderosubida_3era", "paraderosubida_4ta",
+                           "paraderobajada_1era", "paraderobajada_2da", "paraderobajada_3era", "paraderobajada_4ta",
+                           "mediahora_bajada_1era", "mediahora_bajada_2da", "mediahora_bajada_3era",
+                           "mediahora_bajada_4ta",
+                           "periodo_bajada_1era", "periodo_bajada_2da", "periodo_bajada_3era", "periodo_bajada_4ta", ""]
         self.null_date = "1970-01-01 00:00:00"
 
     def row_parser(self, row, path, timestamp):
