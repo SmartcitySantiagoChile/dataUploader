@@ -22,7 +22,7 @@ class TripFile(DataFile):
                            "paraderobajada_1era", "paraderobajada_2da", "paraderobajada_3era", "paraderobajada_4ta",
                            "mediahora_bajada_1era", "mediahora_bajada_2da", "mediahora_bajada_3era",
                            "mediahora_bajada_4ta",
-                           "periodo_bajada_1era", "periodo_bajada_2da", "periodo_bajada_3era", "periodo_bajada_4ta", ""]
+                           "periodo_bajada_1era", "periodo_bajada_2da", "periodo_bajada_3era", "periodo_bajada_4ta"]
         self.null_date = "1970-01-01 00:00:00"
 
     def row_parser(self, row, path, timestamp):

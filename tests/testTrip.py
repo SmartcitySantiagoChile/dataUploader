@@ -57,4 +57,6 @@ class LoadTripData(TestCase):
             with data_file.get_file_object() as csvfile:
                 reader = csv.reader(csvfile, delimiter="|")
                 row = next(reader)
+                # delete last column because is an empty column
+                row = row[:len(row) - 1]
                 self.assertEqual(trip_uploader.fieldnames, row)
