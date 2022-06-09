@@ -37,7 +37,7 @@ class StopFile(DataFile):
             'path': path,
             'timestamp': timestamp,
             'startDate': self.name_to_date(),
-            'authCode': row['Servicio'],
+            'authCode': row['Codigo'],
             'userCode': row['CodigoUsuario'],
             'name': row['Nombre'],
             'routes': self.routes_by_stop[row['Codigo']],
