@@ -58,6 +58,14 @@
         "validatorId": {
           "type": "text",
           "index": false
+        },
+        "operatorTransactions": {
+          "type": "integer",
+          "index": false
+        },
+        "factorWithoutThreesomeMethodology": {
+          "type": "float",
+          "index": false
         }
       }
     }
