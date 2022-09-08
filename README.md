@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.com/SmartcitySantiagoChile/dataUploader.svg?branch=master)](https://travis-ci.com/SmartcitySantiagoChile/dataUploader)   [![Coverage Status](https://coveralls.io/repos/github/SmartcitySantiagoChile/dataUploader/badge.svg?branch=master)](https://coveralls.io/github/SmartcitySantiagoChile/dataUploader?branch=master)
 
-## datauploader
+# datauploader
 
 Python script to upload files to Elasticsearch
 
@@ -16,11 +16,11 @@ To load a file, the usage is:
 
     python3 datauploader/loadData.py path/to/file
 
-##### Arguments:
+## Arguments:
 
     file: path to the file that contains the data to load.
 
-##### Optional:
+## Optional:
 
     --host: the IP where ES is running. Default:"127.0.0.1".
     --port: the port that application is listening on. Default: 9200.
@@ -33,7 +33,7 @@ The default chunk size and number of threads are the ones that gave the best res
 files, so using the defaults is recommended. Nevertheless, sometimes loading a big file can cause a timeout error; in
 this case, raising the timeout value should solve the issue (https://github.com/elastic/elasticsearch-py/issues/231)
 
-##### About the mappings:
+## About the mappings:
 
 The mappings must be in a folder called ```mappings``` in the same directory where ```loadData.py``` is. The script uses
 the datafile extension to know what mapping to use so, if the mapping is called ```ext-template.json```, then the file
@@ -62,7 +62,7 @@ option ```ignore malformed``` can be
 used (https://www.elastic.co/guide/en/elasticsearch/reference/current/ignore-malformed.html,
 check ```stop-template.json```.)
 
-##### About the extensions:
+## About the extensions:
 
 The extensions that this script loads are: ```expedition```, ```general```, ```od```, ```profile```, ```shape```
 , ```speed```, ```stop``` and ```trip```.
@@ -73,11 +73,27 @@ to be added or if its a nested file (meaning it has more than a line per documen
 that inherits from ```datafile.py``` must be created and the ```getHeader``` and ```makeDocs``` methods must be
 overwritten.
   
-##### Run tests:
+## Run tests:
 
     python -m unittest
 
-##### Release version:
+### run docker-compose tests
+
+This test the process to upload to elasticsearch.
+
+Build command:
+
+```
+docker-compose -p input-validation -f docker\docker-compose.yml build
+```
+
+Run command:
+
+```
+docker-compose -p input-validation -f docker\docker-compose.yml up --abort-on-container-exit
+```
+
+## Release version:
 
 - Change version code in `setup.py`
 - Make a release with same version code in `setup.py` in https://github.com/SmartcitySantiagoChile/dataUploader/releases

@@ -1,0 +1,32 @@
+version: '3.7'
+
+services:
+  es:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.2.3
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    ports:
+      - 9200:9200
+    environment:
+      - discovery.type=single-node
+      - cluster.routing.allocation.disk.threshold_enabled=false
+      - "ES_JAVA_OPTS=-Xms1024m -Xmx1024m"
+      - bootstrap.memory_lock=true
+    networks:
+      - test_network
+
+  test:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    command: test
+    depends_on:
+      - es
+    networks:
+      - test_network
+
+networks:
+  test_network:
+    driver: bridge
