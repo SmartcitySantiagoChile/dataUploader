@@ -190,204 +190,188 @@ class TripFile(DataFile):
 
         # New columns post 2022-09-30
         # Case 1: similar names
-        if row["tiempo_inicio_viaje"]:
+        if row.get("tiempo_inicio_viaje"):
             row["tiempo_subida"] = row["tiempo_inicio_viaje"]
-        if row["tiempo_fin_viaje"]:
+        if row.get("tiempo_fin_viaje"):
             row["tiempo_bajada"] = row["tiempo_fin_viaje"]
-        if row["mediahora_inicio_viaje"]:
+        if row.get("mediahora_inicio_viaje"):
             row["mediahora_subida"] = row["mediahora_inicio_viaje"]
-        if row["mediahora_fin_viaje"]:
+        if row.get("mediahora_fin_viaje"):
             row["mediahora_bajada"] = row["mediahora_fin_viaje"]
-        if row["periodo_inicio_viaje"]:
+        if row.get("periodo_inicio_viaje"):
             row["periodo_subida"] = row["periodo_inicio_viaje"]
-        if row["periodo_fin_viaje"]:
+        if row.get("periodo_fin_viaje"):
             row["periodo_bajada"] = row["periodo_fin_viaje"]
-        if row["paradero_inicio_viaje"]:
+        if row.get("paradero_inicio_viaje"):
             row["paradero_subida"] = row["paradero_inicio_viaje"]
-        if row["paradero_fin_viaje"]:
+        if row.get("paradero_fin_viaje"):
             row["paradero_bajada"] = row["paradero_fin_viaje"]
-        if row["comuna_inicio_viaje"]:
+        if row.get("comuna_inicio_viaje"):
             row["comuna_subida"] = row["comuna_inicio_viaje"]
-        if row["comuna_fin_viaje"]:
+        if row.get("comuna_fin_viaje"):
             row["comuna_bajada"] = row["comuna_fin_viaje"]
-        if row["zona_inicio_viaje"]:
+        if row.get("zona_inicio_viaje"):
             row["zona_subida"] = row["zona_inicio_viaje"]
-        if row["zona_fin_viaje"]:
+        if row.get("zona_fin_viaje"):
             row["zona_bajada"] = row["zona_fin_viaje"]
-        if row["tiempo_subida_1"]:
+        if row.get("tiempo_subida_1"):
             row["tiempo_subida1"] = row["tiempo_subida_1"]
-        if row["tiempo_subida_2"]:
+        if row.get("tiempo_subida_2"):
             row["tiempo_subida2"] = row["tiempo_subida_2"]
-        if row["tiempo_subida_3"]:
+        if row.get("tiempo_subida_3"):
             row["tiempo_subida3"] = row["tiempo_subida_3"]
-        if row["tiempo_subida_4"]:
+        if row.get("tiempo_subida_4"):
             row["tiempo_subida4"] = row["tiempo_subida_4"]
-        if row["tiempo_bajada_1"]:
+        if row.get("tiempo_bajada_1"):
             row["tiempo_bajada1"] = row["tiempo_bajada_1"]
-        if row["tiempo_bajada_2"]:
+        if row.get("tiempo_bajada_2"):
             row["tiempo_bajada2"] = row["tiempo_bajada_2"]
-        if row["tiempo_bajada_3"]:
+        if row.get("tiempo_bajada_3"):
             row["tiempo_bajada3"] = row["tiempo_bajada_3"]
-        if row["tiempo_bajada_4"]:
+        if row.get("tiempo_bajada_4"):
             row["tiempo_bajada4"] = row["tiempo_bajada_4"]
 
-        if row["zona_subida_1"]:
+        if row.get("zona_subida_1"):
             row["zona_subida1"] = row["zona_subida_1"]
-        if row["zona_subida_2"]:
+        if row.get("zona_subida_2"):
             row["zona_subida2"] = row["zona_subida_2"]
-        if row["zona_subida_3"]:
+        if row.get("zona_subida_3"):
             row["zona_subida3"] = row["zona_subida_3"]
-        if row["zona_subida_4"]:
+        if row.get("zona_subida_4"):
             row["zona_subida4"] = row["zona_subida_4"]
-        if row["zona_bajada_1"]:
+        if row.get("zona_bajada_1"):
             row["zona_bajada1"] = row["zona_bajada_1"]
-        if row["zona_bajada_2"]:
+        if row.get("zona_bajada_2"):
             row["zona_bajada2"] = row["zona_bajada_2"]
-        if row["zona_bajada_3"]:
+        if row.get("zona_bajada_3"):
             row["zona_bajada3"] = row["zona_bajada_3"]
-        if row["zona_bajada_4"]:
+        if row.get("zona_bajada_4"):
             row["zona_bajada4"] = row["zona_bajada_4"]
 
-        if row["paradero_subida_1"]:
+        if row.get("paradero_subida_1"):
             row["paraderosubida_1era"] = row["paradero_subida_1"]
-        if row["paradero_subida_2"]:
+        if row.get("paradero_subida_2"):
             row["paraderosubida_2da"] = row["paradero_subida_2"]
-        if row["paradero_subida_3"]:
+        if row.get("paradero_subida_3"):
             row["paraderosubida_3era"] = row["paradero_subida_3"]
-        if row["paradero_subida_4"]:
+        if row.get("paradero_subida_4"):
             row["paraderosubida_4ta"] = row["paradero_subida_4"]
-        if row["paradero_bajada_1"]:
-            row["zona_bajada1"] = row["paradero_bajada_1"]
-        if row["paradero_bajada_2"]:
+        if row.get("paradero_bajada_1"):
+            row["paraderobajada_1era"] = row["paradero_bajada_1"]
+        if row.get("paradero_bajada_2"):
             row["paraderobajada_2da"] = row["paradero_bajada_2"]
-        if row["paradero_bajada_3"]:
+        if row.get("paradero_bajada_3"):
             row["paraderobajada_3era"] = row["paradero_bajada_3"]
-        if row["paradero_bajada_4"]:
+        if row.get("paradero_bajada_4"):
             row["paraderobajada_4ta"] = row["paradero_bajada_4"]
 
-        if row["mediahora_bajada_1"]:
+        if row.get("mediahora_bajada_1"):
             row["mediahora_bajada_1era"] = row["mediahora_bajada_1"]
-        if row["mediahora_bajada_2"]:
+        if row.get("mediahora_bajada_2"):
             row["mediahora_bajada_2da"] = row["mediahora_bajada_2"]
-        if row["mediahora_bajada_3"]:
+        if row.get("mediahora_bajada_3"):
             row["mediahora_bajada_3era"] = row["mediahora_bajada_3"]
-        if row["mediahora_bajada_4"]:
+        if row.get("mediahora_bajada_4"):
             row["mediahora_bajada_4ta"] = row["mediahora_bajada_4"]
 
-        if row["periodo_bajada_1"]:
+        if row.get("periodo_bajada_1"):
             row["periodo_bajada_1era"] = row["periodo_bajada_1"]
-        if row["periodo_bajada_2"]:
+        if row.get("periodo_bajada_2"):
             row["periodo_bajada_2da"] = row["periodo_bajada_2"]
-        if row["periodo_bajada_3"]:
+        if row.get("periodo_bajada_3"):
             row["periodo_bajada_3era"] = row["periodo_bajada_3"]
-        if row["periodo_bajada_4"]:
-            row["periodo_bajada_4ta"] = row["periodo_bajada_4s"]
+        if row.get("periodo_bajada_4"):
+            row["periodo_bajada_4ta"] = row["periodo_bajada_4"]
 
         # Case 2: new columns
-        es_row["id_tarjeta"] = int(row["id_tarjeta"]) if row["id_tarjeta"] else -1
-        es_row["id_viaje"] = int(row["id_viaje"]) if row["id_viaje"] else -1
-        es_row["n_etapas_sin_bajada"] = (
-            int(row["netapassinbajada"]) if row["netapassinbajada"] else -1
+        es_row["id_tarjeta"] = self.get_int_value_or_minus_one(row, "id_tarjeta")
+        es_row["id_viaje"] = self.get_int_value_or_minus_one(row, "id_viaje")
+        es_row["n_etapas_sin_bajada"] = self.get_int_value_or_minus_one(
+            row, "netapassinbajada"
         )
-        es_row["ultima_etapa_con_bajada"] = (
-            int(row["ultimaetapaconbajada"]) if row["ultimaetapaconbajada"] else -1
+        es_row["ultima_etapa_con_bajada"] = self.get_int_value_or_minus_one(
+            row, "ultimaetapaconbajada"
         )
-        es_row["contrato"] = row["contrato"] if row["contrato"] else "-"
+        es_row["contrato"] = self.get_int_value_or_minus_one(row, "contrato")
         es_row["mediahora_inicio_viaje_hora"] = (
             row["mediahora_inicio_viaje_hora"]
-            if row["mediahora_inicio_viaje_hora"]
+            if row.get("mediahora_inicio_viaje_hora")
             else "25:00:00"
         )
         es_row["mediahora_fin_viaje_hora"] = (
             row["mediahora_fin_viaje_hora"]
-            if row["mediahora_fin_viaje_hora"]
+            if row.get("mediahora_fin_viaje_hora")
             else "25:00:00"
         )
-        es_row["op_etapa_1"] = (
-            int(row["op_1era_etapa"]) if row["op_1era_etapa"] != "-" else -1
+        es_row["op_etapa_1"] = self.get_int_value_or_minus_one(row, "op_1era_etapa")
+        es_row["op_etapa_2"] = self.get_int_value_or_minus_one(row, "op_2da_etapa")
+        es_row["op_etapa_3"] = self.get_int_value_or_minus_one(row, "op_3era_etapa")
+        es_row["op_etapa_4"] = self.get_int_value_or_minus_one(row, "op_4ta_etapa")
+        es_row["distancia_caminata_1"] = self.get_float_value_or_minus_one(row, "dt1")
+        es_row["distancia_caminata_2"] = self.get_float_value_or_minus_one(row, "dt2")
+        es_row["distancia_caminata_3"] = self.get_float_value_or_minus_one(row, "dt3")
+        es_row["distancia_caminata_4"] = self.get_float_value_or_minus_one(row, "dt4")
+        es_row["distancia_caminata_final"] = self.get_float_value_or_minus_one(
+            row, "dtfinal"
         )
-        es_row["op_etapa_2"] = (
-            int(row["op_2da_etapa"]) if row["op_2da_etapa"] != "-" else -1
+        es_row["distancia_vehiculo_ruta_1"] = self.get_int_value_or_minus_one(
+            row, "dveh_ruta1"
         )
-        es_row["op_etapa_3"] = (
-            int(row["op_3era_etapa"]) if row["op_3era_etapa"] != "-" else -1
+        es_row["distancia_vehiculo_ruta_2"] = self.get_int_value_or_minus_one(
+            row, "dveh_ruta2"
         )
-        es_row["op_etapa_4"] = (
-            int(row["op_4ta_etapa"]) if row["op_4ta_etapa"] != "-" else -1
+        es_row["distancia_vehiculo_ruta_3"] = self.get_int_value_or_minus_one(
+            row, "dveh_ruta3"
         )
-        es_row["distancia_caminata_1"] = (
-            float(row["dt1"]) if row["dt1"] != "-" else -1.0
+        es_row["distancia_vehiculo_ruta_4"] = self.get_int_value_or_minus_one(
+            row, "dveh_ruta4"
         )
-        es_row["distancia_caminata_2"] = (
-            float(row["dt2"]) if row["dt2"] != "-" else -1.0
+        es_row["distancia_vehiculo_ruta_final"] = self.get_int_value_or_minus_one(
+            row, "dveh_rutafinal"
         )
-        es_row["distancia_caminata_3"] = (
-            float(row["dt3"]) if row["dt3"] != "-" else -1.0
+        es_row[
+            "distancia_euclideana_vehiculo_ruta_1"
+        ] = self.get_int_value_or_minus_one(row, "dveh_euc1")
+        es_row[
+            "distancia_euclideana_vehiculo_ruta_2"
+        ] = self.get_int_value_or_minus_one(row, "dveh_euc2")
+        es_row[
+            "distancia_euclideana_vehiculo_ruta_3"
+        ] = self.get_int_value_or_minus_one(row, "dveh_euc3")
+        es_row[
+            "distancia_euclideana_vehiculo_ruta_4"
+        ] = self.get_int_value_or_minus_one(row, "dveh_euc4")
+        es_row[
+            "distancia_euclideana_vehiculo_ruta_final"
+        ] = self.get_int_value_or_minus_one(row, "dveh_eucfinal")
+        es_row["tipo_corte_etapa_viaje"] = self.get_string_value_or_hyphen(
+            row, "tipo_corte_etapa_viaje"
         )
-        es_row["distancia_caminata_4"] = (
-            float(row["dt4"]) if row["dt4"] != "-" else -1.0
-        )
-        es_row["distancia_caminata_final"] = (
-            float(row["dtfinal"]) if row["dtfinal"] != "-" else -1.0
-        )
-        es_row["distancia_vehiculo_ruta_1"] = (
-            int(row["dveh_ruta1"]) if row["dveh_ruta1"] != "-" else -1
-        )
-        es_row["distancia_vehiculo_ruta_2"] = (
-            int(row["dveh_ruta2"]) if row["dveh_ruta2"] != "-" else -1
-        )
-        es_row["distancia_vehiculo_ruta_3"] = (
-            int(row["dveh_ruta3"]) if row["dveh_ruta3"] != "-" else -1
-        )
-        es_row["distancia_vehiculo_ruta_4"] = (
-            int(row["dveh_ruta4"]) if row["dveh_ruta4"] != "-" else -1
-        )
-        es_row["distancia_vehiculo_ruta_final"] = (
-            int(row["dveh_rutafinal"]) if row["dveh_rutafinal"] != "-" else -1
-        )
-        es_row["distancia_euclideana_vehiculo_ruta_1"] = (
-            int(row["dveh_euc1"]) if row["dveh_euc1"] != "-" else -1
-        )
-        es_row["distancia_euclideana_vehiculo_ruta_2"] = (
-            int(row["dveh_euc2"]) if row["dveh_euc2"] != "-" else -1
-        )
-        es_row["distancia_euclideana_vehiculo_ruta_3"] = (
-            int(row["dveh_euc3"]) if row["dveh_euc3"] != "-" else -1
-        )
-        es_row["distancia_euclideana_vehiculo_ruta_4"] = (
-            int(row["dveh_euc4"]) if row["dveh_euc4"] != "-" else -1
-        )
-        es_row["distancia_euclideana_vehiculo_ruta_final"] = (
-            int(row["dveh_eucfinal"]) if row["dveh_eucfinal"] != "-" else -1
-        )
-        es_row["tipo_corte_etapa_viaje"] = (
-            row["tipo_corte_etapa_viaje"] if row["tipo_corte_etapa_viaje"] else "-"
-        )
-        es_row["proposito"] = row["proposito"] if row["proposito"] else "-"
-        es_row["tiempo_entrada"] = int(row["entrada"]) if row["entrada"] != "-" else -1
-        es_row["tiempo_espera_0"] = int(row["te0"]) if row["te0"] != "-" else -1
-        es_row["tiempo_espera_1"] = int(row["te1"]) if row["te1"] != "-" else -1
-        es_row["tiempo_espera_2"] = int(row["te2"]) if row["te2"] != "-" else -1
-        es_row["tiempo_espera_3"] = int(row["te3"]) if row["te3"] != "-" else -1
-        es_row["tiempo_viaje_vehiculo_1"] = int(row["tv1"]) if row["tv1"] != "-" else -1
-        es_row["tiempo_viaje_vehiculo_2"] = int(row["tv2"]) if row["tv2"] != "-" else -1
-        es_row["tiempo_viaje_vehiculo_3"] = int(row["tv3"]) if row["tv3"] != "-" else -1
-        es_row["tiempo_viaje_vehiculo_4"] = int(row["tv4"]) if row["tv4"] != "-" else -1
-        es_row["tiempo_caminata_etapa_1"] = int(row["tc1"]) if row["tc1"] != "-" else -1
-        es_row["tiempo_caminata_etapa_2"] = int(row["tc2"]) if row["tc2"] != "-" else -1
-        es_row["tiempo_caminata_etapa_3"] = int(row["tc3"]) if row["tc3"] != "-" else -1
-        es_row["tiempo_caminata_etapa_4"] = int(row["tc4"]) if row["tc4"] != "-" else -1
-        es_row["tiempo_egreso"] = int(row["egreso"]) if row["egreso"] != "-" else -1
-        es_row["tiempo_viaje_total"] = (
-            int(row["tviaje2"]) if row["tviaje2"] != "-" else -1
-        )
+        es_row["proposito"] = self.get_string_value_or_hyphen(row, "proposito")
+        es_row["tiempo_entrada"] = self.get_int_value_or_minus_one(row, "entrada")
+        es_row["tiempo_espera_0"] = self.get_int_value_or_minus_one(row, "te0")
+        es_row["tiempo_espera_1"] = self.get_int_value_or_minus_one(row, "te1")
+        es_row["tiempo_espera_2"] = self.get_int_value_or_minus_one(row, "te2")
+        es_row["tiempo_espera_3"] = self.get_int_value_or_minus_one(row, "te3")
+        es_row["tiempo_viaje_vehiculo_1"] = self.get_int_value_or_minus_one(row, "tv1")
+        es_row["tiempo_viaje_vehiculo_2"] = self.get_int_value_or_minus_one(row, "tv2")
+        es_row["tiempo_viaje_vehiculo_3"] = self.get_int_value_or_minus_one(row, "tv3")
+        es_row["tiempo_viaje_vehiculo_4"] = self.get_int_value_or_minus_one(row, "tv4")
+        es_row["tiempo_caminata_etapa_1"] = self.get_int_value_or_minus_one(row, "tc1")
+        es_row["tiempo_caminata_etapa_2"] = self.get_int_value_or_minus_one(row, "tc2")
+        es_row["tiempo_caminata_etapa_3"] = self.get_int_value_or_minus_one(row, "tc3")
+        es_row["tiempo_caminata_etapa_4"] = self.get_int_value_or_minus_one(row, "tc4")
+        es_row["tiempo_egreso"] = self.get_int_value_or_minus_one(row, "egreso")
+        es_row["tiempo_viaje_total"] = self.get_int_value_or_minus_one(row, "tviaje2")
 
         # Legacy columns
         es_row["tipodia"] = int(row["tipodia"])
         es_row["factor_expansion"] = float(row["factor_expansion"])
         es_row["n_etapas"] = int(row["n_etapas"])
-        es_row["tviaje"] = float(row["tviaje"])
-        es_row["distancia_eucl"] = float(row["distancia_eucl"])
+        es_row["tviaje"] = self.get_float_value_or_minus_one(row, "tviaje")
+        es_row["distancia_eucl"] = self.get_float_value_or_minus_one(
+            row, "distancia_eucl"
+        )
         es_row["distancia_ruta"] = float(row["distancia_ruta"])
         es_row["tiempo_subida"] = row["tiempo_subida"]
         es_row["tiempo_bajada"] = row["tiempo_bajada"]
@@ -395,10 +379,18 @@ class TripFile(DataFile):
         es_row["mediahora_bajada"] = int(row["mediahora_bajada"])
         es_row["periodo_subida"] = int(row["periodo_subida"])
         es_row["periodo_bajada"] = int(row["periodo_bajada"])
-        es_row["tipo_transporte_1"] = int(row["tipo_transporte_1"])
-        es_row["tipo_transporte_2"] = int(row["tipo_transporte_2"])
-        es_row["tipo_transporte_3"] = int(row["tipo_transporte_3"])
-        es_row["tipo_transporte_4"] = int(row["tipo_transporte_4"])
+        es_row["tipo_transporte_1"] = self.get_int_value_or_minus_one(
+            row, "tipo_transporte_1"
+        )
+        es_row["tipo_transporte_2"] = self.get_int_value_or_minus_one(
+            row, "tipo_transporte_2"
+        )
+        es_row["tipo_transporte_3"] = self.get_int_value_or_minus_one(
+            row, "tipo_transporte_3"
+        )
+        es_row["tipo_transporte_4"] = self.get_int_value_or_minus_one(
+            row, "tipo_transporte_4"
+        )
         # si el modo de subida es "Bus + Metro" usar "Bus" como modo de subida
         es_row["modo_subida"] = (
             row["tipo_transporte_1"] if row["tipo_transporte_1"] != 3 else 1
@@ -430,7 +422,7 @@ class TripFile(DataFile):
         es_row["comuna_subida"] = int(row["comuna_subida"])
         es_row["comuna_bajada"] = int(row["comuna_bajada"])
         es_row["zona_subida"] = int(row["zona_subida"])
-        es_row["zona_bajada"] = int(row["zona_bajada"])
+        es_row["zona_bajada"] = self.get_int_value_or_minus_one(row, "zona_bajada")
         es_row["modos"] = int(row["modos"])
         es_row["tiempo_subida_1"] = (
             row["tiempo_subida1"] if row["tiempo_subida1"] != "-" else self.null_date

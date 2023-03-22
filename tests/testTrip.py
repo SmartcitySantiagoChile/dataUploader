@@ -39,6 +39,9 @@ class LoadTripData(TestCase):
             "2021-06-30.trip",
             "2021-06-30.trip.gz",
             "2021-06-30.trip.zip",
+            "2022-10-01.trip",
+            "2022-10-01.trip.gz",
+            "2022-10-01.trip.zip",
         ]
         for file_name in file_name_list:
             file_path = os.path.join(os.path.dirname(__file__), "files", file_name)
@@ -64,6 +67,8 @@ class LoadTripData(TestCase):
             "2021-06-30.trip.gz",
             "2021-06-30.trip.zip",
             "2022-10-01.trip",
+            "2022-10-01.trip.gz",
+            "2022-10-01.trip.zip",
         ]
         for file_name in file_name_list:
             file_path = os.path.join(os.path.dirname(__file__), "files", file_name)

@@ -272,6 +272,15 @@
         "distancia_euclideana_vehiculo_ruta_4": {
           "type": "integer"
         },
+        "distancia_caminata_final": {
+          "type": "float"
+        },
+        "distancia_vehiculo_ruta_final": {
+          "type": "integer"
+        },
+        "distancia_euclideana_vehiculo_ruta_final": {
+          "type": "integer"
+        },
         "tipo_corte_etapa_viaje": {
           "type": "keyword"
         },
