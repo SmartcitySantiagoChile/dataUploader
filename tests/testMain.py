@@ -2,6 +2,7 @@ import os
 from unittest import TestCase, mock
 
 from datauploader.loadData import main
+from datauploader.uploader.datafile import DataFile
 
 
 class Main(TestCase):
@@ -57,3 +58,24 @@ class Main(TestCase):
 
             parallel_bulk.return_value = [(True, 'info')]
             main()
+        
+    def test_get_int_value_or_minus_one(self):
+        data_file_object = DataFile("")
+        row_dict = {"example": 1, "example_2": "-"}
+        self.assertEqual(data_file_object.get_int_value_or_minus_one(row_dict, "example"), 1)
+        self.assertEqual(data_file_object.get_int_value_or_minus_one(row_dict, "example_3"), -1)
+        self.assertEqual(data_file_object.get_int_value_or_minus_one(row_dict, "example_2"), -1)
+
+    def test_get_float_value_or_minus_one(self):
+        data_file_object = DataFile("")
+        row_dict = {"example": 1.0, "example_2": "-"}
+        self.assertEqual(data_file_object.get_float_value_or_minus_one(row_dict, "example"), 1.0)
+        self.assertEqual(data_file_object.get_float_value_or_minus_one(row_dict, "example_3"), -1.0)
+        self.assertEqual(data_file_object.get_float_value_or_minus_one(row_dict, "example_2"), -1.0)
+    
+    def test_get_string_value_or_hyphen(self):
+        data_file_object = DataFile("")
+        row_dict = {"example": "hello", "example_2": "-"}
+        self.assertEqual(data_file_object.get_string_value_or_hyphen(row_dict, "example"), "hello")
+        self.assertEqual(data_file_object.get_string_value_or_hyphen(row_dict, "example_3"), "-")
+        self.assertEqual(data_file_object.get_string_value_or_hyphen(row_dict, "example_2"), "-")
