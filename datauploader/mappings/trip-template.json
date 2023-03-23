@@ -211,129 +211,170 @@
           "type": "integer"
         },
         "id_viaje": {
-          "type": "byte"
+          "type": "byte",
+          "index": false
         },
         "n_etapas_sin_bajada": {
-          "type": "byte"
+          "type": "byte",
+          "index": false
         },
         "ultima_etapa_con_bajada": {
-          "type": "byte"
+          "type": "byte",
+          "index": false
         },
         "contrato": {
-          "type": "keyword"
+          "type": "keyword",
+          "index": false
         },
         "mediahora_inicio_viaje_hora": {
           "type": "date",
-          "format": "HH:mm:ss"
+          "format": "HH:mm:ss",
+          "index": false
         },
         "mediahora_fin_viaje_hora": {
           "type": "date",
-          "format": "HH:mm:ss"
+          "format": "HH:mm:ss",
+          "index": false
         },
         "op_etapa_1": {
-          "type": "byte"
+          "type": "byte",
+          "index": false
         },
         "op_etapa_2": {
-          "type": "byte"
+          "type": "byte",
+          "index": false
         },
         "op_etapa_3": {
-          "type": "byte"
+          "type": "byte",
+          "index": false
         },
         "op_etapa_4": {
-          "type": "byte"
+          "type": "byte",
+          "index": false
         },
         "distancia_caminata_1": {
-          "type": "float"
+          "type": "float",
+          "index": false
         },
         "distancia_vehiculo_ruta_1": {
-          "type": "integer"
+          "type": "integer",
+          "index": false
         },
         "distancia_euclideana_vehiculo_ruta_1": {
-          "type": "integer"
+          "type": "integer",
+          "index": false
         },
         "distancia_caminata_2": {
-          "type": "float"
+          "type": "float",
+          "index": false
         },
         "distancia_vehiculo_ruta_2": {
-          "type": "integer"
+          "type": "integer",
+          "index": false
         },
         "distancia_euclideana_vehiculo_ruta_2": {
-          "type": "integer"
+          "type": "integer",
+          "index": false
         },
         "distancia_caminata_3": {
-          "type": "float"
+          "type": "float",
+          "index": false
         },
         "distancia_vehiculo_ruta_3": {
-          "type": "integer"
+          "type": "integer",
+          "index": false
         },
         "distancia_euclideana_vehiculo_ruta_3": {
-          "type": "integer"
+          "type": "integer",
+          "index": false
         },
         "distancia_caminata_4": {
-          "type": "float"
+          "type": "float",
+          "index": false
         },
         "distancia_vehiculo_ruta_4": {
-          "type": "integer"
+          "type": "integer",
+          "index": false
         },
         "distancia_euclideana_vehiculo_ruta_4": {
-          "type": "integer"
+          "type": "integer",
+          "index": false
         },
         "distancia_caminata_final": {
-          "type": "float"
+          "type": "float",
+          "index": false
         },
         "distancia_vehiculo_ruta_final": {
-          "type": "integer"
+          "type": "integer",
+          "index": false
         },
         "distancia_euclideana_vehiculo_ruta_final": {
-          "type": "integer"
+          "type": "integer",
+          "index": false
         },
         "tipo_corte_etapa_viaje": {
-          "type": "keyword"
+          "type": "keyword",
+          "index": false
         },
         "proposito": {
-          "type": "keyword"
+          "type": "keyword",
+          "index": false
         },
         "tiempo_entrada": {
-          "type": "integer"
+          "type": "integer",
+          "index": false
         },
         "tiempo_espera_0": {
-          "type": "integer"
+          "type": "integer",
+          "index": false
         },
         "tiempo_viaje_vehiculo_1": {
-          "type": "integer"
+          "type": "integer",
+          "index": false
         },
         "tiempo_caminata_etapa_1": {
-          "type": "integer"
+          "type": "integer",
+          "index": false
         },
         "tiempo_espera_1": {
-          "type": "integer"
+          "type": "integer",
+          "index": false
         },
         "tiempo_viaje_vehiculo_2": {
-          "type": "integer"
+          "type": "integer",
+          "index": false
         },
         "tiempo_caminata_etapa_2": {
-          "type": "integer"
+          "type": "integer",
+          "index": false
         },
         "tiempo_espera_2": {
-          "type": "integer"
+          "type": "integer",
+          "index": false
         },
         "tiempo_viaje_vehiculo_3": {
-          "type": "integer"
+          "type": "integer",
+          "index": false
         },
         "tiempo_caminata_etapa_3": {
-          "type": "integer"
+          "type": "integer",
+          "index": false
         },
         "tiempo_espera_3": {
-          "type": "integer"
+          "type": "integer",
+          "index": false
         },
         "tiempo_viaje_vehiculo_4": {
-          "type": "integer"
+          "type": "integer",
+          "index": false
         },
         "tiempo_egreso": {
-          "type": "integer"
+          "type": "integer",
+          "index": false
         },
         "tiempo_viaje_total": {
-          "type": "integer"
+          "type": "integer",
+          "index": false
         }
       }
     }
