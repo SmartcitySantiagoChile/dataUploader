@@ -37,6 +37,12 @@
           "type": "date",
           "format": "yyyy-MM-dd HH:mm:ss"
         },
+        "mediahora_subida": {
+          "type": "byte"
+        },
+        "mediahora_bajada": {
+          "type": "byte"
+        },
         "periodo_subida": {
           "type": "byte"
         },
