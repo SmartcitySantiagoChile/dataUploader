@@ -84,13 +84,13 @@ This test the process to upload to elasticsearch.
 Build command:
 
 ```
-docker-compose -p input-validation -f docker\docker-compose.yml build
+docker-compose -p datauploader -f docker\docker-compose.yml build
 ```
 
 Run command:
 
 ```
-docker-compose -p input-validation -f docker\docker-compose.yml up --abort-on-container-exit
+docker-compose -p datauploader -f docker\docker-compose.yml up --abort-on-container-exit
 ```
 
 ## Release version:

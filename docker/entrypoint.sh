@@ -19,9 +19,7 @@ wait_for_port "elasticsearch" "es" "9200"
 case "$1" in
   test)
     echo "starting tests..."
-    # python3 -m unittest
-    curl -X DELETE "http://es:9200/paymentfactor"
-    python3 datauploader/loadData.py --host es --index paymentfactor tests/files/2019-08-10.paymentfactor
-    curl -X GET "http://es:9200/paymentfactor/_search"
+    shunit2 test-elasticsearch.sh
+    
   ;;
 esac

@@ -7,10 +7,9 @@ from datauploader.uploader.opdata import OPDataFile
 
 
 class LoadOPData(TestCase):
-
     def setUp(self):
         # default values
-        self.index_name = 'bip'
+        self.index_name = "bip"
         self.chunk_size = 5000
         self.threads = 4
         self.timeout = 30
@@ -24,36 +23,50 @@ class LoadOPData(TestCase):
         type(search_mock).total = mock.PropertyMock(return_value=0)
 
     def test_check_make_docs(self):
-        file_path = os.path.join(os.path.dirname(__file__), 'files', '2019-03-06.opdata')
+        file_path = os.path.join(
+            os.path.dirname(__file__), "files", "2019-03-06.opdata"
+        )
         opdata_uploader = OPDataFile(file_path)
         list(opdata_uploader.make_docs())
 
-    @mock.patch('datauploader.uploader.datafile.parallel_bulk')
-    @mock.patch('datauploader.uploader.datafile.Search')
-    @mock.patch('datauploader.loadData.Elasticsearch')
+    @mock.patch("datauploader.uploader.datafile.parallel_bulk")
+    @mock.patch("datauploader.uploader.datafile.Search")
+    @mock.patch("datauploader.loadData.Elasticsearch")
     def test_load_data(self, elasticsearch_mock, search_mock, parallel_bulk):
-        file_name_list = ['2019-03-06.opdata', '2019-03-06.opdata.gz', '2019-03-06.opdata.zip']
+        file_name_list = [
+            "2019-03-06.opdata",
+            "2019-03-06.opdata.gz",
+            "2019-03-06.opdata.zip",
+        ]
         for file_name in file_name_list:
-            file_path = os.path.join(os.path.dirname(__file__), 'files', file_name)
+            file_path = os.path.join(os.path.dirname(__file__), "files", file_name)
             self.prepare_search_mock(search_mock)
-            parallel_bulk.return_value = [(True, 'info')]
+            parallel_bulk.return_value = [(True, "info")]
 
             opdata_uploader = OPDataFile(file_path)
-            opdata_uploader.load(elasticsearch_mock, self.index_name, self.chunk_size, self.threads,
-                                 self.timeout)
+            opdata_uploader.load(
+                elasticsearch_mock,
+                self.index_name,
+                self.chunk_size,
+                self.threads,
+                self.timeout,
+            )
 
             list(opdata_uploader.make_docs())
 
             parallel_bulk.assert_called()
 
     def test_field_names(self):
-        file_name_list = ['2019-03-06.opdata', '2019-03-06.opdata.gz', '2019-03-06.opdata.zip']
+        file_name_list = [
+            "2019-03-06.opdata",
+            "2019-03-06.opdata.gz",
+            "2019-03-06.opdata.zip",
+        ]
         for file_name in file_name_list:
-            file_path = os.path.join(os.path.dirname(__file__), 'files', file_name)
+            file_path = os.path.join(os.path.dirname(__file__), "files", file_name)
             opdata_uploader = OPDataFile(file_path)
             data_file = DataFile(file_path)
             with data_file.get_file_object() as csvfile:
                 reader = csv.reader(csvfile, delimiter="|")
                 row = next(reader)
                 self.assertEqual(opdata_uploader.fieldnames, row)
-
