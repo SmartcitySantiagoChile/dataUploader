@@ -35,7 +35,8 @@
         },
         "tiempo_bajada": {
           "type": "date",
-          "format": "yyyy-MM-dd HH:mm:ss"
+          "format": "yyyy-MM-dd HH:mm:ss",
+          "index": false
         },
         "mediahora_subida": {
           "type": "byte"
@@ -105,59 +106,75 @@
         },
         "tiempo_subida_1": {
           "type": "date",
-          "format": "yyyy-MM-dd HH:mm:ss"
+          "format": "yyyy-MM-dd HH:mm:ss",
+          "index": false
         },
         "tiempo_bajada_1": {
           "type": "date",
-          "format": "yyyy-MM-dd HH:mm:ss"
+          "format": "yyyy-MM-dd HH:mm:ss",
+          "index": false
         },
         "tiempo_subida_2": {
           "type": "date",
-          "format": "yyyy-MM-dd HH:mm:ss"
+          "format": "yyyy-MM-dd HH:mm:ss",
+          "index": false
         },
         "tiempo_bajada_2": {
           "type": "date",
-          "format": "yyyy-MM-dd HH:mm:ss"
+          "format": "yyyy-MM-dd HH:mm:ss",
+          "index": false
         },
         "tiempo_subida_3": {
           "type": "date",
-          "format": "yyyy-MM-dd HH:mm:ss"
+          "format": "yyyy-MM-dd HH:mm:ss",
+          "index": false
         },
         "tiempo_bajada_3": {
           "type": "date",
-          "format": "yyyy-MM-dd HH:mm:ss"
+          "format": "yyyy-MM-dd HH:mm:ss",
+          "index": false
         },
         "tiempo_subida_4": {
           "type": "date",
-          "format": "yyyy-MM-dd HH:mm:ss"
+          "format": "yyyy-MM-dd HH:mm:ss",
+          "index": false
         },
         "tiempo_bajada_4": {
           "type": "date",
-          "format": "yyyy-MM-dd HH:mm:ss"
+          "format": "yyyy-MM-dd HH:mm:ss",
+          "index": false
         },
         "zona_subida_1": {
-          "type": "short"
+          "type": "short",
+          "index": false
         },
         "zona_bajada_1": {
-          "type": "short"
+          "type": "short",
+          "index": false
         },
         "zona_subida_2": {
-          "type": "short"
+          "type": "short",
+          "index": false
         },
         "zona_bajada_2": {
-          "type": "short"
+          "type": "short",
+          "index": false
         },
         "zona_subida_3": {
-          "type": "short"
+          "type": "short",
+          "index": false
         },
         "zona_bajada_3": {
-          "type": "short"
+          "type": "short",
+          "index": false
         },
         "zona_subida_4": {
-          "type": "short"
+          "type": "short",
+          "index": false
         },
         "zona_bajada_4": {
-          "type": "short"
+          "type": "short",
+          "index": false
         },
         "parada_subida_1": {
           "type": "keyword"
@@ -208,10 +225,11 @@
           "type": "byte"
         },
         "id_tarjeta": {
-          "type": "integer"
+          "type": "integer",
+          "index": false
         },
         "id_viaje": {
-          "type": "byte",
+          "type": "short",
           "index": false
         },
         "n_etapas_sin_bajada": {
