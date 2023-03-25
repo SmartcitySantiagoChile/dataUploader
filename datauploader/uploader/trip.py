@@ -421,7 +421,7 @@ class TripFile(DataFile):
         es_row["paradero_bajada"] = row["paradero_bajada"]
         es_row["comuna_subida"] = int(row["comuna_subida"])
         es_row["comuna_bajada"] = int(row["comuna_bajada"])
-        es_row["zona_subida"] = int(row["zona_subida"])
+        es_row["zona_subida"] = self.get_int_value_or_minus_one(row, "zona_subida")
         es_row["zona_bajada"] = self.get_int_value_or_minus_one(row, "zona_bajada")
         es_row["modos"] = int(row["modos"])
         es_row["tiempo_subida_1"] = (
