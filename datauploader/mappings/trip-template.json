@@ -246,13 +246,14 @@
         },
         "mediahora_inicio_viaje_hora": {
           "type": "date",
-          "format": "HH:mm:ss",
+          "format": "hour_minute_second",
           "index": false
         },
         "mediahora_fin_viaje_hora": {
           "type": "date",
-          "format": "HH:mm:ss",
+          "format": "hour_minute_second",
           "index": false
+
         },
         "op_etapa_1": {
           "type": "byte",

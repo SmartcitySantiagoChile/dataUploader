@@ -295,14 +295,10 @@ class TripFile(DataFile):
         )
         es_row["contrato"] = self.get_int_value_or_minus_one(row, "contrato")
         es_row["mediahora_inicio_viaje_hora"] = (
-            row["mediahora_inicio_viaje_hora"]
-            if row.get("mediahora_inicio_viaje_hora") not in [None, "-"]
-            else "00:00:00"
+            row["mediahora_inicio_viaje_hora"] if row.get("mediahora_inicio_viaje_hora") and not row.get("mediahora_inicio_viaje_hora") in [None, "-"] else "00:00:00"
         )
         es_row["mediahora_fin_viaje_hora"] = (
-            row["mediahora_fin_viaje_hora"]
-            if row.get("mediahora_fin_viaje_hora") not in [None, "-"]
-            else "00:00:00"
+            row["mediahora_fin_viaje_hora"] if row.get("mediahora_fin_viaje_hora") and not row.get("mediahora_fin_viaje_hora")  in [None, "-"] else "00:00:00"
         )
         es_row["op_etapa_1"] = self.get_int_value_or_minus_one(row, "op_1era_etapa")
         es_row["op_etapa_2"] = self.get_int_value_or_minus_one(row, "op_2da_etapa")
