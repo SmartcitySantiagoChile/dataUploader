@@ -314,7 +314,6 @@ class TripFile(DataFile):
         es_row["distancia_caminata_1"] = self.get_float_value_or_minus_one(row, "dt1")
         es_row["distancia_caminata_2"] = self.get_float_value_or_minus_one(row, "dt2")
         es_row["distancia_caminata_3"] = self.get_float_value_or_minus_one(row, "dt3")
-        es_row["distancia_caminata_4"] = self.get_float_value_or_minus_one(row, "dt4")
         es_row["distancia_caminata_final"] = self.get_float_value_or_minus_one(
             row, "dtfinal"
         )
