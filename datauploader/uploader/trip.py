@@ -4,6 +4,7 @@ from datetime import datetime
 
 from datauploader.uploader.datafile import DataFile
 
+
 class TripFile(DataFile):
     """Class that represents a trip file."""
 
@@ -294,10 +295,16 @@ class TripFile(DataFile):
         )
         es_row["contrato"] = self.get_int_value_or_minus_one(row, "contrato")
         es_row["mediahora_inicio_viaje_hora"] = (
-            row["mediahora_inicio_viaje_hora"] if row.get("mediahora_inicio_viaje_hora") and row.get("mediahora_inicio_viaje_hora") != "-" else "00:00:00"
+            row["mediahora_inicio_viaje_hora"]
+            if row.get("mediahora_inicio_viaje_hora")
+            and row.get("mediahora_inicio_viaje_hora") != "-"
+            else "00:00:00"
         )
         es_row["mediahora_fin_viaje_hora"] = (
-            row["mediahora_fin_viaje_hora"] if row.get("mediahora_fin_viaje_hora") and row.get("mediahora_fin_viaje_hora") != "-" else "00:00:00"
+            row["mediahora_fin_viaje_hora"]
+            if row.get("mediahora_fin_viaje_hora")
+            and row.get("mediahora_fin_viaje_hora") != "-"
+            else "00:00:00"
         )
 
         es_row["op_etapa_1"] = self.get_int_value_or_minus_one(row, "op_1era_etapa")
@@ -359,19 +366,27 @@ class TripFile(DataFile):
         es_row["tiempo_caminata_etapa_3"] = self.get_int_value_or_minus_one(row, "tc3")
         es_row["tiempo_caminata_etapa_4"] = self.get_int_value_or_minus_one(row, "tc4")
         es_row["tiempo_egreso"] = self.get_int_value_or_minus_one(row, "egreso")
-        es_row["tiempo_viaje_total"] = self.get_int_value_or_minus_one(row, "tviaje2")
+
+        # Tviaje case
+        if row.get("tviaje2"):
+            es_row["tviaje"] = self.get_float_value_or_minus_one(row, "tviaje2")
+        else:
+            es_row["tviaje"] = self.get_float_value_or_minus_one(row, "tviaje")
 
         # Legacy columns
         es_row["tipodia"] = int(row["tipodia"])
         es_row["factor_expansion"] = float(row["factor_expansion"])
         es_row["n_etapas"] = int(row["n_etapas"])
-        es_row["tviaje"] = self.get_float_value_or_minus_one(row, "tviaje")
         es_row["distancia_eucl"] = self.get_float_value_or_minus_one(
             row, "distancia_eucl"
         )
         es_row["distancia_ruta"] = float(row["distancia_ruta"])
-        es_row["tiempo_subida"] = row["tiempo_subida"] if row["tiempo_subida"] != "-" else self.null_date
-        es_row["tiempo_bajada"] = row["tiempo_bajada"] if row["tiempo_bajada"] != "-" else self.null_date
+        es_row["tiempo_subida"] = (
+            row["tiempo_subida"] if row["tiempo_subida"] != "-" else self.null_date
+        )
+        es_row["tiempo_bajada"] = (
+            row["tiempo_bajada"] if row["tiempo_bajada"] != "-" else self.null_date
+        )
         es_row["mediahora_subida"] = int(row["mediahora_subida"])
         es_row["mediahora_bajada"] = int(row["mediahora_bajada"])
         es_row["periodo_subida"] = int(row["periodo_subida"])
