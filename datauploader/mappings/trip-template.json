@@ -225,7 +225,7 @@
           "type": "byte"
         },
         "id_tarjeta": {
-          "type": "integer",
+          "type": "long",
           "index": false
         },
         "id_viaje": {
