@@ -371,8 +371,8 @@ class TripFile(DataFile):
             row, "distancia_eucl"
         )
         es_row["distancia_ruta"] = float(row["distancia_ruta"])
-        es_row["tiempo_subida"] = row["tiempo_subida"]
-        es_row["tiempo_bajada"] = row["tiempo_bajada"]
+        es_row["tiempo_subida"] = row["tiempo_subida"] if row["tiempo_subida"] != "-" else self.null_date
+        es_row["tiempo_bajada"] = row["tiempo_bajada"] if row["tiempo_bajada"] != "-" else self.null_date
         es_row["mediahora_subida"] = int(row["mediahora_subida"])
         es_row["mediahora_bajada"] = int(row["mediahora_bajada"])
         es_row["periodo_subida"] = int(row["periodo_subida"])
