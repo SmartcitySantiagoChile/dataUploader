@@ -4,7 +4,6 @@ from datetime import datetime
 
 from datauploader.uploader.datafile import DataFile
 
-import logging
 class TripFile(DataFile):
     """Class that represents a trip file."""
 
