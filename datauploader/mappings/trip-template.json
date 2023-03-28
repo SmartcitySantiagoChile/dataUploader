@@ -307,10 +307,6 @@
           "type": "integer",
           "index": false
         },
-        "distancia_caminata_4": {
-          "type": "float",
-          "index": false
-        },
         "distancia_vehiculo_ruta_4": {
           "type": "integer",
           "index": false
