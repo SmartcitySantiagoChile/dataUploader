@@ -4,7 +4,6 @@ from datetime import datetime
 
 from datauploader.uploader.datafile import DataFile
 
-
 class TripFile(DataFile):
     """Class that represents a trip file."""
 
@@ -295,15 +294,12 @@ class TripFile(DataFile):
         )
         es_row["contrato"] = self.get_int_value_or_minus_one(row, "contrato")
         es_row["mediahora_inicio_viaje_hora"] = (
-            row["mediahora_inicio_viaje_hora"]
-            if row.get("mediahora_inicio_viaje_hora") not in [None, "-"]
-            else "00:00:00"
+            row["mediahora_inicio_viaje_hora"] if row.get("mediahora_inicio_viaje_hora") and row.get("mediahora_inicio_viaje_hora") != "-" else "00:00:00"
         )
         es_row["mediahora_fin_viaje_hora"] = (
-            row["mediahora_fin_viaje_hora"]
-            if row.get("mediahora_fin_viaje_hora") not in [None, "-"]
-            else "00:00:00"
+            row["mediahora_fin_viaje_hora"] if row.get("mediahora_fin_viaje_hora") and row.get("mediahora_fin_viaje_hora") != "-" else "00:00:00"
         )
+
         es_row["op_etapa_1"] = self.get_int_value_or_minus_one(row, "op_1era_etapa")
         es_row["op_etapa_2"] = self.get_int_value_or_minus_one(row, "op_2da_etapa")
         es_row["op_etapa_3"] = self.get_int_value_or_minus_one(row, "op_3era_etapa")
@@ -374,8 +370,8 @@ class TripFile(DataFile):
             row, "distancia_eucl"
         )
         es_row["distancia_ruta"] = float(row["distancia_ruta"])
-        es_row["tiempo_subida"] = row["tiempo_subida"]
-        es_row["tiempo_bajada"] = row["tiempo_bajada"]
+        es_row["tiempo_subida"] = row["tiempo_subida"] if row["tiempo_subida"] != "-" else self.null_date
+        es_row["tiempo_bajada"] = row["tiempo_bajada"] if row["tiempo_bajada"] != "-" else self.null_date
         es_row["mediahora_subida"] = int(row["mediahora_subida"])
         es_row["mediahora_bajada"] = int(row["mediahora_bajada"])
         es_row["periodo_subida"] = int(row["periodo_subida"])
@@ -521,5 +517,4 @@ class TripFile(DataFile):
             if row["periodo_bajada_4ta"].isdigit()
             else -1
         )
-
         return es_row
