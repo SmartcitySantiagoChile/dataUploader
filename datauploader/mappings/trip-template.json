@@ -279,7 +279,7 @@
           "type": "integer",
           "index": false
         },
-        "distancia_euclideana_vehiculo_ruta_1": {
+        "distancia_euclidiana_vehiculo_ruta_1": {
           "type": "integer",
           "index": false
         },
@@ -291,7 +291,7 @@
           "type": "integer",
           "index": false
         },
-        "distancia_euclideana_vehiculo_ruta_2": {
+        "distancia_euclidiana_vehiculo_ruta_2": {
           "type": "integer",
           "index": false
         },
@@ -303,7 +303,7 @@
           "type": "integer",
           "index": false
         },
-        "distancia_euclideana_vehiculo_ruta_3": {
+        "distancia_euclidiana_vehiculo_ruta_3": {
           "type": "integer",
           "index": false
         },
@@ -311,7 +311,7 @@
           "type": "integer",
           "index": false
         },
-        "distancia_euclideana_vehiculo_ruta_4": {
+        "distancia_euclidiana_vehiculo_ruta_4": {
           "type": "integer",
           "index": false
         },
@@ -323,7 +323,7 @@
           "type": "integer",
           "index": false
         },
-        "distancia_euclideana_vehiculo_ruta_final": {
+        "distancia_euclidiana_vehiculo_ruta_final": {
           "type": "integer",
           "index": false
         },

@@ -333,19 +333,19 @@ class TripFile(DataFile):
             row, "dveh_rutafinal"
         )
         es_row[
-            "distancia_euclideana_vehiculo_ruta_1"
+            "distancia_euclidiana_vehiculo_ruta_1"
         ] = self.get_int_value_or_minus_one(row, "dveh_euc1")
         es_row[
-            "distancia_euclideana_vehiculo_ruta_2"
+            "distancia_euclidiana_vehiculo_ruta_2"
         ] = self.get_int_value_or_minus_one(row, "dveh_euc2")
         es_row[
-            "distancia_euclideana_vehiculo_ruta_3"
+            "distancia_euclidiana_vehiculo_ruta_3"
         ] = self.get_int_value_or_minus_one(row, "dveh_euc3")
         es_row[
-            "distancia_euclideana_vehiculo_ruta_4"
+            "distancia_euclidiana_vehiculo_ruta_4"
         ] = self.get_int_value_or_minus_one(row, "dveh_euc4")
         es_row[
-            "distancia_euclideana_vehiculo_ruta_final"
+            "distancia_euclidiana_vehiculo_ruta_final"
         ] = self.get_int_value_or_minus_one(row, "dveh_eucfinal")
         es_row["tipo_corte_etapa_viaje"] = self.get_string_value_or_hyphen(
             row, "tipo_corte_etapa_viaje"
