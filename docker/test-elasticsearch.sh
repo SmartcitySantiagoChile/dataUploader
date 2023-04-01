@@ -70,31 +70,31 @@ testExpedition(){
 
 testProfile(){
     python3 datauploader/loadData.py --host es --index profile tests/files/2020-03-20.profile &>/dev/null
-    PROFILE_DATA=$(curl -X GET http://es:9200/profile/_search | jq -r '._shards.total')
-    assertEquals 16 $PROFILE_DATA
+    PROFILE_DATA1=$(curl -X GET http://es:9200/profile/_search | jq -r '._shards.total')
+    assertEquals 16 $PROFILE_DATA1
 }
 
 testProfile2(){
     python3 datauploader/loadData.py --host es --index profile tests/files/2021-06-30.profile &>/dev/null
-    PROFILE_DATA=$(curl -X GET http://es:9200/profile/_search | jq -r '._shards.total')
-    assertEquals 16 $PROFILE_DATA
+    PROFILE_DATA2=$(curl -X GET http://es:9200/profile/_search | jq -r '._shards.total')
+    assertEquals 16 $PROFILE_DATA2
 }
 
 testTrip1(){
     python3 datauploader/loadData.py --host es --index trip tests/files/2016-03-14.trip &>/dev/null
-    TRIP_DATA=$(curl -X GET http://es:9200/trip/_search | jq -r '._shards.total')
-    assertEquals 23 $TRIP_DATA
+    TRIP_DATA1=$(curl -X GET http://es:9200/trip/_search | jq -r '._shards.total')
+    assertEquals 23 $TRIP_DATA1
 }
 
 testTrip2(){
     python3 datauploader/loadData.py --host es --index trip tests/files/2021-06-30.trip &>/dev/null
-    TRIP_DATA=$(curl -X GET http://es:9200/trip/_search | jq -r '._shards.total')
-    assertEquals 23 $TRIP_DATA
+    TRIP_DATA2=$(curl -X GET http://es:9200/trip/_search | jq -r '._shards.total')
+    assertEquals 23 $TRIP_DATA2
 }
 
 testTrip3(){
     python3 datauploader/loadData.py --host es --index trip tests/files/2022-10-01.trip &>/dev/null
-    TRIP_DATA=$(curl -X GET http://es:9200/trip/_search | jq -r '._shards.total')
-    assertEquals 23 $TRIP_DATA
+    TRIP_DATA3=$(curl -X GET http://es:9200/trip/_search | jq -r '._shards.total')
+    assertEquals 23 $TRIP_DATA3
 }
 
