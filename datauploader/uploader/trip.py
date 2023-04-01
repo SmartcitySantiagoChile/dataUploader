@@ -297,13 +297,13 @@ class TripFile(DataFile):
         es_row["mediahora_inicio_viaje_hora"] = (
             row["mediahora_inicio_viaje_hora"]
             if row.get("mediahora_inicio_viaje_hora")
-            and row.get("mediahora_inicio_viaje_hora") != "-"
+               and row.get("mediahora_inicio_viaje_hora") != "-"
             else "00:00:00"
         )
         es_row["mediahora_fin_viaje_hora"] = (
             row["mediahora_fin_viaje_hora"]
             if row.get("mediahora_fin_viaje_hora")
-            and row.get("mediahora_fin_viaje_hora") != "-"
+               and row.get("mediahora_fin_viaje_hora") != "-"
             else "00:00:00"
         )
 

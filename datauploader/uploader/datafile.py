@@ -102,12 +102,12 @@ class DataFile:
         start_date = datetime.strptime(file_name, '%Y-%m-%d').isoformat() + '.000Z'
 
         return start_date
-   
+
     def get_int_value_or_minus_one(self, row: dict, key: str) -> int:
         if row.get(key) and row.get(key) != "-":
             return int(row[key])
         return -1
-   
+
     def get_float_value_or_minus_one(self, row: dict, key: str) -> float:
         if row.get(key) and row.get(key) != "-":
             return float(row[key])
@@ -115,6 +115,7 @@ class DataFile:
 
     def get_string_value_or_hyphen(self, row: dict, key: str) -> str:
         return row[key] if row.get(key) else "-"
+
 
 def get_timestamp():
     return datetime.utcnow()
