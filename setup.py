@@ -1,11 +1,11 @@
 import setuptools
 
-with open('README.md', 'r') as fh:
+with open('README.md', 'r', encoding='utf-8') as fh:
     long_description = fh.read()
 
 setuptools.setup(
     name='data-uploader',
-    version='2.0.28',
+    version='2.0.29',
     author='ADATRAP',
     author_email='cephei.1313@gmail.com',
     description='library to manage ADATRAP data in elasticsearch',
