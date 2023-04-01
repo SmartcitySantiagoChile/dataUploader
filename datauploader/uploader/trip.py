@@ -533,8 +533,11 @@ class TripFile(DataFile):
             else -1
         )
 
-        speed_m_s = es_row['distancia_eucl'] / es_row['tviaje']
-        speed_km_hr = speed_m_s * 3600 / 1000
+        try:
+            speed_m_s = es_row['distancia_eucl'] / es_row['tviaje']
+            speed_km_hr = speed_m_s * 3600 / 1000
+        except ZeroDivisionError:
+            speed_km_hr = 0
 
         # check conditions to upload file
         if es_row["paradero_bajada"] != '-' and \
