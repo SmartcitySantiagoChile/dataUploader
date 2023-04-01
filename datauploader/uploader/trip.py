@@ -544,7 +544,7 @@ class TripFile(DataFile):
                 es_row["factor_expansion"] > 0 and \
                 60 * 1 < es_row["tviaje"] < 60 * 60 * 4 and \
                 es_row["n_etapas"] <= 5 and \
-                es_row["distancia_eucl"] < 50 * 1000 and \
+                0 < es_row["distancia_eucl"] < 50 * 1000 and \
                 speed_km_hr <= 120:
             return es_row
         else:
