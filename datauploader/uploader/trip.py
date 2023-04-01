@@ -2,6 +2,7 @@ import os
 from collections import OrderedDict
 from datetime import datetime
 
+from datauploader.errors import FilterDocumentError
 from datauploader.uploader.datafile import DataFile
 
 
@@ -531,4 +532,17 @@ class TripFile(DataFile):
             if row["periodo_bajada_4ta"].isdigit()
             else -1
         )
-        return es_row
+
+        speed_m_s = es_row['distancia_eucl'] / es_row['tviaje']
+        speed_km_hr = speed_m_s * 3600 / 1000
+
+        # check conditions to upload file
+        if es_row["paradero_bajada"] != '-' and \
+                es_row["factor_expansion"] > 0 and \
+                60 < es_row["tviaje"] < 60 * 60 * 4 and \
+                es_row["n_etapas"] <= 5 and \
+                es_row["distancia_eucl"] < 50 * 1000 and \
+                speed_km_hr <= 120:
+            return es_row
+        else:
+            raise FilterDocumentError
