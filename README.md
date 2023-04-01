@@ -10,11 +10,15 @@ Readme.
 
 After elasticsearch and cerebro are running, go to the dataUploader folder and execute:
 
-    pip install -r requirements.txt
+```shell
+pip install -r requirements.txt
+```
 
 To load a file, the usage is:
 
-    python3 datauploader/loadData.py path/to/file
+```shell
+python3 datauploader/loadData.py path/to/file
+```
 
 ## Arguments:
 
@@ -41,20 +45,31 @@ must have extension ```ext```. For the mappings, only JSON format is accepted.
 
 As the ES team is planning to deprecate doctypes, the mappings used to load the file should all use the default doctype
 that is ```doc```. If a property is a ```date```, then expliciting the format is recommended since ES is not able to
-parse all date formats and it may cause an exception. E.g.:
+parse all date formats, and it may cause an exception. E.g.:
 
-    {
-        "mappings": {
-            "doc": {
-                "properties":
-		        "id": {"type": "long"},
-		        "dateTime": {"type": "date", "format" : "yyyy-MM-dd HH:mm:ss"},
-	                "type": {"type": "text"},
-                    "description": {"type": "text"}
-                }
-            }
+```json
+{
+  "mappings": {
+    "doc": {
+      "properties": {
+        "id": {
+          "type": "long"
+        },
+        "dateTime": {
+          "type": "date",
+          "format": "yyyy-MM-dd HH:mm:ss"
+        },
+        "type": {
+          "type": "text"
+        },
+        "description": {
+          "type": "text"
         }
+      }
     }
+  }
+}
+```
 
 Additionally, is a property is listed as boolean only ```true``` and ```false``` values are accepted, using 0 and 1 will
 cause a ```MapperParsingException```. In some cases when the data is not properly parsed the
@@ -69,13 +84,23 @@ The extensions that this script loads are: ```expedition```, ```general```, ```o
 
 In order to load a file that has a different extension its mapping must be included in the mappings folder and its
 header must be added to ```datafile.py```. If not every column of the file is going to be loaded, if more columns need
-to be added or if its a nested file (meaning it has more than a line per document, like ```shape```), then a Python file
-that inherits from ```datafile.py``` must be created and the ```getHeader``` and ```makeDocs``` methods must be
+to be added or if it's a nested file (meaning it has more than a line per document, like ```shape```), then a Python
+file that inherits from ```datafile.py``` must be created and the ```getHeader``` and ```makeDocs``` methods must be
 overwritten.
-  
+
 ## Run tests:
 
-    python -m unittest
+Before to run tests you need to install test dependencies with the command:
+
+```shell
+pip install -r requirements-dev.txt
+```
+
+After that, you can execute:
+
+```shell
+python -m unittest
+```
 
 ### run docker-compose tests
 
@@ -83,13 +108,13 @@ This test the process to upload to elasticsearch.
 
 Build command:
 
-```
+```shell
 docker-compose -p datauploader -f docker\docker-compose.yml build
 ```
 
 Run command:
 
-```
+```shell
 docker-compose -p datauploader -f docker\docker-compose.yml up --abort-on-container-exit
 ```
 
@@ -97,4 +122,4 @@ docker-compose -p datauploader -f docker\docker-compose.yml up --abort-on-contai
 
 - Change version code in `setup.py`
 - Make a release with same version code in `setup.py` in https://github.com/SmartcitySantiagoChile/dataUploader/releases
-- Add changes in github.com
+- Add changes in https://github.com
