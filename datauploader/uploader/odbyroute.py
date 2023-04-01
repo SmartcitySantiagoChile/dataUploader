@@ -30,7 +30,7 @@ class OdByRouteFile(DataFile):
             "endStopName": row['NombreParFin'],
             "startZone": int(row['zonaS']),
             "endZone": int(row['zonaB']),
-            "tripNumber": int(row['ConBajada']),
+            "tripNumber": int(round(float(row['ConBajada']), 0)),
             "tripWithoutLanding": int(row['SinBajada']),
             "expandedTripNumber": float(row['Expandida'])
         }
