@@ -6,5 +6,9 @@ class IndexNotEmptyError(ValueError):
     pass
 
 
-class StopDocumentExist(ValueError):
+class StopDocumentExistError(ValueError):
+    pass
+
+
+class FilterDocumentError(ValueError):
     pass

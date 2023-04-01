@@ -1,7 +1,7 @@
 import csv
 from collections import defaultdict
 
-from datauploader.errors import StopDocumentExist
+from datauploader.errors import StopDocumentExistError
 from datauploader.uploader.datafile import DataFile
 
 
@@ -29,7 +29,7 @@ class StopFile(DataFile):
 
     def row_parser(self, row, path, timestamp):
         if row['CodigoUsuario'] in self.uploaded_stops or row['CodigoUsuario'] == '-':
-            raise StopDocumentExist('Stop {0} exists'.format(row['CodigoUsuario']))
+            raise StopDocumentExistError('Stop {0} exists'.format(row['CodigoUsuario']))
 
         self.uploaded_stops.append(row['CodigoUsuario'])
 

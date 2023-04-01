@@ -10,7 +10,7 @@ from elasticsearch.helpers import parallel_bulk
 from elasticsearch_dsl import Search
 
 from datauploader.config import BASE_DIR
-from datauploader.errors import IndexNotEmptyError, StopDocumentExist
+from datauploader.errors import IndexNotEmptyError, StopDocumentExistError, FilterDocumentError
 
 
 def is_gzipfile(file_path):
@@ -91,7 +91,7 @@ class DataFile:
                     timestamp = get_timestamp()
                     # yield fields
                     yield {"_source": self.row_parser(row, path, timestamp)}
-                except StopDocumentExist:
+                except (StopDocumentExistError, FilterDocumentError):
                     pass
                 except ValueError:
                     traceback.print_exc()
