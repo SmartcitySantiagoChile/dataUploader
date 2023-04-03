@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.0.32 2023-04-04
+
+- Remove unused attribute in trip index
+
 ## v2.0.31 2023-04-04
 
 - Apply filter only for dates greater than 2022-09-31
