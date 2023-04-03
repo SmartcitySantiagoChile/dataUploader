@@ -371,7 +371,7 @@ class TripFile(DataFile):
         if row.get("tviaje2"):
             es_row["tviaje"] = self.get_float_value_or_minus_one(row, "tviaje2")
         else:
-            es_row["tviaje"] = self.get_float_value_or_minus_one(row, "tviaje")
+            es_row["tviaje"] = self.get_float_value_or_minus_one(row, "tviaje") * 60
 
         # Legacy columns
         es_row["tipodia"] = int(row["tipodia"])
