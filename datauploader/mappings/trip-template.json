@@ -65,7 +65,7 @@
         "modo_subida": {
           "type": "byte"
         },
-         "modo_bajada": {
+        "modo_bajada": {
           "type": "byte"
         },
         "srv_1": {
@@ -253,7 +253,6 @@
           "type": "date",
           "format": "hour_minute_second",
           "index": false
-
         },
         "op_etapa_1": {
           "type": "byte",
@@ -384,10 +383,6 @@
           "index": false
         },
         "tiempo_egreso": {
-          "type": "integer",
-          "index": false
-        },
-        "tiempo_viaje_total": {
           "type": "integer",
           "index": false
         }
