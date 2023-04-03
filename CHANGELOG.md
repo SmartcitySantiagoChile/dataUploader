@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.0.31 2023-04-04
+
+- Apply filter only for dates greater than 2022-09-31
+
 ## v2.0.30 2023-04-03
 
 - Cast tripNumber field to int for odbyroute index
