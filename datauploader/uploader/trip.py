@@ -178,10 +178,10 @@ class TripFile(DataFile):
         ]
 
         file_date = os.path.basename(datafile).split(".")[0]
-        formated_date = datetime.strptime(file_date, "%Y-%m-%d")
+        self.formatted_date = datetime.strptime(file_date, "%Y-%m-%d")
         self.fieldnames = []
         for key, value in fieldnames_date_range.items():
-            if formated_date >= datetime.strptime(key, "%Y-%m-%d"):
+            if self.formatted_date >= datetime.strptime(key, "%Y-%m-%d"):
                 self.fieldnames = value
         self.null_date = "1970-01-01 00:00:00"
 
@@ -532,6 +532,9 @@ class TripFile(DataFile):
             if row["periodo_bajada_4ta"].isdigit()
             else -1
         )
+
+        if self.formatted_date < datetime(2022, 10, 1):
+            return es_row
 
         try:
             speed_m_s = es_row['distancia_eucl'] / es_row['tviaje']
