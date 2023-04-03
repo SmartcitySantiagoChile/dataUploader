@@ -134,8 +134,8 @@ vX.Y.Z YYYY-mm-DD
 
 The most recent versions go at the top of the file.
 
-- Commit changes of `CHANGELOG.md` file
 - Change version code in `setup.py` with the same version added in `CHANGELOG.md`
+- Commit changes of `CHANGELOG.md` file and `setup.py` file
 - Create a tag with the same version added in `CHANGELOG.md`. Use the command `git tag vX.Y.Z`, avoid adding comments
   because it will be ignored it
 - Push tag to GitHub with the command: `git push origin vX.Y.Z`
