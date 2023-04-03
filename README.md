@@ -118,8 +118,26 @@ Run command:
 docker-compose -p datauploader -f docker\docker-compose.yml up --abort-on-container-exit
 ```
 
-## Release version:
+## Create a release version:
 
-- Change version code in `setup.py`
-- Make a release with same version code in `setup.py` in https://github.com/SmartcitySantiagoChile/dataUploader/releases
-- Add changes in https://github.com
+To create a release of this project, you must follow the next steps:
+
+- Add a new version to `CHANGELOG.md` file with the following format:
+
+```
+vX.Y.Z YYYY-mm-DD
+
+- Comment 1
+- Comment 2
+...
+```
+
+The most recent versions go at the top of the file.
+
+- Commit changes of `CHANGELOG.md` file
+- Change version code in `setup.py` with the same version added in `CHANGELOG.md`
+- Create a tag with the same version added in `CHANGELOG.md`. Use the command `git tag vX.Y.Z`, avoid adding comments
+  because it will be ignored it
+- Push tag to GitHub with the command: `git push origin vX.Y.Z`
+
+After these steps GitHub Actions take control, it will create a release.
