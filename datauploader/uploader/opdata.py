@@ -20,8 +20,8 @@ class OPDataFile(DataFile):
             reader = csv.DictReader(f, delimiter=delimiter, fieldnames=self.fieldnames)
             # Group data using 'route' as key
             for identifier, day_types in groupby(reader,
-                                                 lambda day_type: (day_type['TipoDia'], day_type['ServicioTS'],
-                                                                   day_type['UN'], day_type['Servicio'])):
+                                                 lambda day_type: (
+                                                 day_type['ServicioTS'], day_type['UN'], day_type['Servicio'])):
                 try:
                     day_types = list(day_types)
                     path = self.basename
@@ -37,9 +37,9 @@ class OPDataFile(DataFile):
                         "_source": {
                             "path": path,
                             "date": path.split(".")[0],
-                            "opRouteCode": identifier[1],
-                            "operator": int(identifier[2]),
-                            "userRouteCode": identifier[3],
+                            "opRouteCode": identifier[0],
+                            "operator": int(identifier[1]),
+                            "userRouteCode": identifier[2],
                             "dayType": day_types
                         }
                     }
