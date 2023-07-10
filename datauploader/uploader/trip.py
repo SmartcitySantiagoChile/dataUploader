@@ -537,7 +537,7 @@ class TripFile(DataFile):
             return es_row
 
         try:
-            speed_m_s = es_row['distancia_eucl'] / es_row['tviaje']
+            speed_m_s = es_row['distancia_ruta'] / es_row['tviaje']
             speed_km_hr = speed_m_s * 3600 / 1000
         except ZeroDivisionError:
             raise FilterDocumentError
@@ -545,9 +545,10 @@ class TripFile(DataFile):
         # check conditions to upload file
         if es_row["paradero_bajada"] != '-' and \
                 es_row["factor_expansion"] > 0 and \
-                60 * 1 < es_row["tviaje"] < 60 * 60 * 4 and \
+                es_row["tviaje"] > 0 and \
                 es_row["n_etapas"] <= 5 and \
-                0 < es_row["distancia_eucl"] < 50 * 1000 and \
+                es_row["distancia_eucl"] > 0 and \
+                es_row["distancia_ruta"] > 0 and \
                 speed_km_hr <= 120:
             return es_row
         else:

@@ -14,6 +14,7 @@ services:
       - cluster.routing.allocation.disk.threshold_enabled=false
       - "ES_JAVA_OPTS=-Xms1024m -Xmx1024m"
       - bootstrap.memory_lock=true
+      - xpack.security.enabled=false
     networks:
       - test_network
 
