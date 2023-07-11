@@ -21,7 +21,7 @@ from datauploader.uploader.stopbyroute import StopByRouteFile
 from datauploader.uploader.trip import TripFile
 
 
-def upload_file(es_instance, datafile, index_name=None, chunk_size=5000, threads=4, timeout=30):
+def upload_file(es_instance, datafile, index_name=None, chunk_size=5000, threads=4, timeout=5 * 60):
     """ upload file to elasticsearch """
 
     # Get file extension
