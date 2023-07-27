@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v2.0.33 2023-07-27
+
+- Increase timeout to 5 minutes
+- Fix opdata loader
+- Fix filter to upload trip data
+
 ## v2.0.32 2023-04-04
 
 - Remove unused attribute in trip index
